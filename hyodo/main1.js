@@ -41,6 +41,31 @@ for (let n=0;n<6;n++){
 }
 createHtml += '</table>';
 
+createHtml+='</tr>';
+
+//
+
+for (let n=0;n<6;n++){
+  row ='';
+    for (let d=0;d<7;d++){
+      if (n==0 && d<firstDay){
+        row+='<td></td>';
+      }else if(dayCount>lastDayCount){
+        row+='<td></td>';
+      }else{
+        row+='<td>' + dayCount + '</td>';
+        dayCount++;
+      }
+    }
+  
+  createHtml += '<tr>'+row+'</tr>';
+  if(dayCount>lastDayCount){
+      break;
+   }
+}
+createHtml += '</table>';
+//
+
 document.querySelector('#calendar').innerHTML = createHtml;
 
 
