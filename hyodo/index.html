@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>コベツバ</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-left">
+        <img class="logo" src="https://chugakujyuken.kobetsuba.jp/wp-content/uploads/2021/05/logo-wp.png">
+      </div>
+      <div class="header-right">
+        <a href="https://chugakujyuken.kobetsuba.jp/my_page/top.php" class="login">ログイン</a>
+      </div>
+    </div>
+  </header>
+  <div class="top-wrapper">
+    <div class="container">
+      <h1>全ては子供の可能性を拓くため、<br>受験家庭をエンパワーする。</h1>
+      <p></p>
+      <a href="https://chugakujyuken.kobetsuba.jp/my_page/top.php" class="btn signup">新規登録はこちら</a><br>
+      <a href="#" class="btn twitter"><span class="fa fa-twitter"></span>Twitterで登録</a>
+    </div>
+  </div>
+  <div class="lesson-wrapper">
+    <div class="container">
+      <div class="heading">
+        <h2>Learn Where to Get Started!</h2>
+      </div>
+      <div class="lessons">
+        <div class="lesson">
+          <div class="lesson-icon">
+            <a href="https://chugakujyuken.kobetsuba.jp/kobetsuba-kaisetsu/sapix-kaisetsu/"><img src="https://chugakujyuken.kobetsuba.jp/img/StandBy/StandBy-top/main-visual_catch.png"></a>
+          </div>
+          <p class="text-contents">ウェブページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。</p>
+        </div>
+        <div class="lesson">
+          <div class="lesson-icon">
+            <a href="https://chugakujyuken.kobetsuba.jp/kobetsuba-kaisetsu/yosyu-kaisetsu/"><img src="https://chugakujyuken.kobetsuba.jp/img/StandBy/yosyu/top/main-visual_catch.png"></a>
+          </div>
+          <p class="text-contents">素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="message-wrapper">
+    <div class="container">
+      <div class="heading">
+        <h2>さぁ、あなたもProgateでプログラミングを学んでみませんか?</h2>
+        <h3>Let's learn to code, learn to be creative!</h3>
+      </div>
+      <span class="btn message">さっそく開発する</span>
+    </div>
+  </div>
+
+
+  <div class="calendar">
+    <div id='calendar'></div>
+  </div>
+
+
+
+<div class="calc">
+  <h1>電卓</h1>
+  <input type="text" id="result">
+  <div>
+    <input type="button" value="1" onclick="edit(this)">
+    <input type="button" value="2" onclick="edit(this)">
+    <input type="button" value="3" onclick="edit(this)">
+    <input type="button" value="/" onclick="edit(this)">
+  </div>
+  <div>
+    <input type="button" value="4" onclick="edit(this)">
+    <input type="button" value="5" onclick="edit(this)">
+    <input type="button" value="6" onclick="edit(this)">
+    <input type="button" value="*" onclick="edit(this)">
+  </div>
+  <div>
+    <input type="button" value="7" onclick="edit(this)">
+    <input type="button" value="8" onclick="edit(this)">
+    <input type="button" value="9" onclick="edit(this)">
+    <input type="button" value="-" onclick="edit(this)">
+  </div>
+  <div>
+    <input type="button" value="0" onclick="edit(this)">
+    <input type="button" value="." onclick="edit(this)">
+    <input type="button" value="=" onclick="calc()">
+    <input type="button" value="+" onclick="edit(this)">
+  </div>
+  <div>
+    <input type="button" value="RESET" onclick="del()">
+  </div>
+  <script language="javascript" type="text/javascript">
+    var result = document.getElementById("result");
+    function edit(elem) {
+      result.value = result.value + elem.value;
+    }
+    function del() {
+      result.value = "";
+    }
+    function calc() {
+      result.value = new Function("return " + result.value)();
+    }
+  </script>
+</div>
+
+
+
+
+  <script src='main1.js'></script>
+</body>
+</html>
