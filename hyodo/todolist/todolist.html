@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <title>TODOリスト</title>
+  </head>
+  <body>
+    <div class="container">
+        <h2>TODOリスト</h2>
+        <form action="">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputName" class="">タスク</label>
+                    <input type="text" class="form-control" id="inputTask" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="inputLimit" class="">期限</label>
+                    <input type="text" class="form-control" id="inputLimit" placeholder="">
+                </div>
+            </div>
+            <input type="button" id="btnAdd" class="btn" value="追加">
+        </form>
+
+        <div class="alert" role="alert" id="divAlert">
+            <span id="inputAlert"></span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover" id="todoList">
+                <thead>
+                    <tr>
+                        <th>完了したか？</th>
+                        <th>タスク内容</th>
+                        <th>期限</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="todo.js"></script>
+</body>
+</html>
