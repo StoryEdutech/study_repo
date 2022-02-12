@@ -10,7 +10,7 @@
       </h2>
   </x-slot>
 
-<form method="POST" action="{{ route('add_child') }}">
+<form method="POST" action="{{ route('child.add') }}">
   <select name="grade">
         @foreach ($can_add_grade as $grade)
           <option value="{{ $grade }}">{{ $grade }}</option>
