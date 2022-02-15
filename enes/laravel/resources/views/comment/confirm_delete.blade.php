@@ -1,11 +1,11 @@
 @if ($already_deleted??FALSE)
   {{ __('見つかりませんでした（すでに消してます？)') }}
 @else
-<form method="POST" action="/comments/{{ $comment->id??'' }}">
+<form method="POST" action="/comment/{{ $comment->id??'' }}">
   @lang('こちらのコメントを削除します。よろしいですか')
   <div style="padding:10px; background:#bbb"> {{ $comment->content??"" }}</div>
   <x-button>
-    <a href="/comments">
+    <a href="/comment">
       @lang('戻る')
     </a>
   </x-button>

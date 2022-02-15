@@ -1,9 +1,11 @@
 @if( Session::has( 'delete_fb' ))
   {{ __(Session::get( 'delete_fb')) }}
 @endif
-@each('comment.show',$comments,'comment')
+@each('comment.show',$comment_collection,'comment')
+@if($of_self)
 <x-button>
-  <a href="/comments/create">
+  <a href="/comment/create">
     @lang('追加')
   </a>
 </x-button>
+@endif
