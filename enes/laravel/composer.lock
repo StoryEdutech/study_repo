@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71d7c9afcc8d7c7f17dcd2947aafe87d",
+    "content-hash": "e966adcb46893e00fda65c383b20f42d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1252,6 +1252,64 @@
                 "psysh"
             ],
             "time": "2022-01-10T08:52:49+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v3.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "1596de849ecafc0bcc891389da939012b67f9d5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/1596de849ecafc0bcc891389da939012b67f9d5c",
+                "reference": "1596de849ecafc0bcc891389da939012b67f9d5c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.42|^9.0",
+                "illuminate/filesystem": "^8.42|^9.0",
+                "illuminate/support": "^8.82|^9.0",
+                "illuminate/validation": "^8.42|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "time": "2022-02-10T22:38:33+00:00"
         },
         {
             "name": "league/commonmark",
@@ -2691,16 +2749,16 @@
         },
         {
             "name": "story_edutech/simple_crud",
-            "version": "v1.0.1",
+            "version": "v1.0.2.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:StoryEdutech/SimpleCrud.git",
-                "reference": "d311a6d000eb2e427f13bd70d15df48332108ea3"
+                "reference": "2521192083c4b3990ecee8a2eeb31b5ea9369848"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/d311a6d000eb2e427f13bd70d15df48332108ea3",
-                "reference": "d311a6d000eb2e427f13bd70d15df48332108ea3",
+                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/2521192083c4b3990ecee8a2eeb31b5ea9369848",
+                "reference": "2521192083c4b3990ecee8a2eeb31b5ea9369848",
                 "shasum": ""
             },
             "type": "library",
@@ -2717,10 +2775,10 @@
             ],
             "description": "Laravel用シンプルなCRUD機能パッケージ",
             "support": {
-                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/v1.0.1",
+                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/v1.0.2.1",
                 "issues": "https://github.com/StoryEdutech/SimpleCrud/issues"
             },
-            "time": "2022-02-16T19:28:45+00:00"
+            "time": "2022-02-16T21:03:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
