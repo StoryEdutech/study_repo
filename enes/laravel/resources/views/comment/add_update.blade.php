@@ -1,3 +1,4 @@
+<x-app-layout>
 <x-button>
   <a href="/comment">
     @lang('一覧へ戻る')
@@ -8,19 +9,9 @@
   {{ __(Session::get( 'edit_fb')) }}
 @endif
 @if( $replying_to??false )
-  @include('comment.show',['comment'=>$replying_to])
+  @include('comment.show',['comment'=>$replying_to,"for_reply"=>true,'replying'=>$comment ?? ''])
+@else
+  @include('comment.reply_box',['comment'=>$comment?? ''])
 @endif
 
-<form method="POST" action="/comment/{{ $comment->id??'' }}">
-  <x-textarea name="content">{{ $comment->content??"" }}</x-textarea>
-  <x-button>
-    @lang('投稿')
-  </x-button>
-  @csrf
-  @if( $replying_to??false )
-    <input type="hidden" name="reply_to" value="{{ $replying_to->id }}">
-  @endif
-  @if ($comment->id??false)
-    @method('PUT')
-  @endif
-</form>
+</x-app-layout>

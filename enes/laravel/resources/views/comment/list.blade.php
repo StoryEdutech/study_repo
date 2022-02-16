@@ -1,3 +1,4 @@
+<x-app-layout>
 @if( Session::has( 'delete_fb' ))
   {{ __(Session::get( 'delete_fb')) }}
 @endif
@@ -9,3 +10,4 @@
   </a>
 </x-button>
 @endif
+</x-app-layout>
