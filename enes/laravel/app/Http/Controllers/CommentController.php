@@ -23,6 +23,7 @@ class CommentController extends Controller
     }
 
   }
+  public static $is_api=true;
   public function index($uid=false){
     return $this->crud_index($uid,[
       function($builder){
