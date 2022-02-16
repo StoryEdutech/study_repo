@@ -14,10 +14,10 @@
         "story_edutech/simple_crud": "^1.0.0"
     },
     "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/StoryEdutech/SimpleCrud"
-    }
+      {
+        "type": "vcs",
+        "url": "https://github.com/StoryEdutech/SimpleCrud"
+      }
     ],
     "require-dev": {
         "facade/ignition": "^2.5",

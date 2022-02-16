@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
-use App\Http\Traits\CrudControllerWithChildTrait;
+use StoryEdutech\SimpleCrud\Traits\CrudControllerWithChildTrait;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller

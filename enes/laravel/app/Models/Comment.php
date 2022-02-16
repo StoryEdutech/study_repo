@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
-use App\Http\Traits\CrudModelWithChildTrait;
+use StoryEdutech\SimpleCrud\Traits\CrudModelWithChildTrait;
 
 class Comment extends Model
 {
