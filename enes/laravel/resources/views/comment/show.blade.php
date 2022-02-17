@@ -12,11 +12,12 @@
       @lang('編集')
     </a>
   </x-button>
-  <x-button>
-    <a href="/comment/{{ $comment->id }}/delete">
-      @lang('削除')
-    </a>
-  </x-button>
+  <form method="post" action="/comment/{{ $comment->id }}/delete" class="inline-block">
+    <x-button type="submit">
+        @lang('削除')
+    </x-button>
+    @csrf
+  </form>
   @endif
   </div>
   </div>

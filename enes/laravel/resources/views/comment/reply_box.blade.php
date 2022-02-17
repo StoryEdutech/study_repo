@@ -19,12 +19,9 @@ ReactDOM.render(React.createElement(BasicTextArea,{
 }),document.getElementById('textarea'));
 
 function send_comment(){
-var ep="/comment/{{ $comment->id??'' }}";
+var ep="/comment/{{ $comment->id??'add' }}";
 var post={};
 post._token='{{ csrf_token() }}';
-@if ($comment->id??false)
-  post._method='PUT';
-@endif
 @if( $replying_to??false )
   post.reply_to="{{ $replying_to->id }}";
 @endif

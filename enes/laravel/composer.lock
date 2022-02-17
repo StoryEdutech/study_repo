@@ -1723,16 +1723,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.56.0",
+            "version": "2.57.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "626ec8cbb724cd3c3400c3ed8f730545b744e3f4"
+                "reference": "4a54375c21eea4811dbd1149fe6b246517554e78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/626ec8cbb724cd3c3400c3ed8f730545b744e3f4",
-                "reference": "626ec8cbb724cd3c3400c3ed8f730545b744e3f4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4a54375c21eea4811dbd1149fe6b246517554e78",
+                "reference": "4a54375c21eea4811dbd1149fe6b246517554e78",
                 "shasum": ""
             },
             "require": {
@@ -1810,7 +1810,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-21T17:08:38+00:00"
+            "time": "2022-02-13T18:13:33+00:00"
         },
         {
             "name": "nette/schema",
@@ -2749,16 +2749,16 @@
         },
         {
             "name": "story_edutech/simple_crud",
-            "version": "v1.0.2.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:StoryEdutech/SimpleCrud.git",
-                "reference": "2521192083c4b3990ecee8a2eeb31b5ea9369848"
+                "reference": "abea472739fa08921e3538cbe51be30d0f56b959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/2521192083c4b3990ecee8a2eeb31b5ea9369848",
-                "reference": "2521192083c4b3990ecee8a2eeb31b5ea9369848",
+                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/abea472739fa08921e3538cbe51be30d0f56b959",
+                "reference": "abea472739fa08921e3538cbe51be30d0f56b959",
                 "shasum": ""
             },
             "type": "library",
@@ -2775,10 +2775,10 @@
             ],
             "description": "Laravel用シンプルなCRUD機能パッケージ",
             "support": {
-                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/v1.0.2.1",
+                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/v1.1.2",
                 "issues": "https://github.com/StoryEdutech/SimpleCrud/issues"
             },
-            "time": "2022-02-16T21:03:58+00:00"
+            "time": "2022-02-17T19:30:19+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
