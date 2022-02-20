@@ -18,6 +18,14 @@
       {
         "type": "vcs",
         "url": "https://github.com/StoryEdutech/SimpleCrud"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/StoryEdutech/ChildAuth"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/StoryEdutech/SessionSync"
       }
     ],
     "require-dev": {
