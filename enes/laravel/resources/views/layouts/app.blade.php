@@ -32,6 +32,10 @@
                 {{ $slot }}
             </main>
         </div>
-    <script src="/js/app.js"></script>
+    <!-- <script src="/js/app.js"></script> -->
+    <script src="{{ env('kobetsuba_url') }}/js_includes/react.production.min.js"></script>
+    <script src="{{ env('kobetsuba_url') }}/js_includes/react-dom.production.min.js"></script>
+    <script src="{{ env('kobetsuba_url') }}/js_includes/react_inc/text_input.js"></script>
+    <script src="{{ env('kobetsuba_url') }}/js_includes/jquery.min.js"></script>
     </body>
 </html>

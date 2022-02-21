@@ -1,24 +1,21 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="flex flex-row">
-  <div class="comment_box_mtc" style="width:100%" id="comment_box{{ $comment->id }}" data-comment='{!! $comment !!}' data-tab='{{ $comment->tab }}' data-user='{!! $comment->user !!}'></div>
+  <div class="comment_box_mtc" style="width:100%"
+    id="comment_box{{ $comment->id }}"
+    data-comment='{!! $comment !!}'
+    data-tab='{{ $comment->tab }}'
+    data-user='{!! $comment->user !!}'
+    @if($comment->is_of_self())
+      data-can_edit="true"
+    @endif
+    data-replying_to="{{ $comment->reply_to??0 }}"
+    ></div>
   <div style="width:100%">
   <x-button>
     <a href="/comment/{{ $comment->id }}/reply_to">
       @lang('返信')
     </a>
   </x-button>
-  @if( $comment->is_of_self() )
-  <x-button>
-    <a href="/comment/{{ $comment->id }}/edit">
-      @lang('編集')
-    </a>
-  </x-button>
-  <form method="post" action="/comment/{{ $comment->id }}/delete" class="inline-block">
-    <x-button type="submit">
-        @lang('削除')
-    </x-button>
-    @csrf
-  </form>
-  @endif
   </div>
   </div>
   @if( $for_reply??false )

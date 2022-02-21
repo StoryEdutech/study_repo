@@ -6,10 +6,6 @@
   </x-button>
   @csrf
 </form>
-<script src="{{ env('kobetsuba_url') }}/js_includes/react.production.min.js"></script>
-<script src="{{ env('kobetsuba_url') }}/js_includes/react-dom.production.min.js"></script>
-<script src="{{ env('kobetsuba_url') }}/js_includes/react_inc/basic_input.js"></script>
-<script src="{{ env('kobetsuba_url') }}/js_includes/jquery.min.js"></script>
 <script>
 var prev=`{{ $comment->content??"" }}`;
 
