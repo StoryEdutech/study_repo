@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import XButton from './XButton.js';
-window.React = React;
 import TextInput from 'text_input';
-import $ from 'jquery';
 
 function CommentBox(props) {
     const { useState } =React;
-    const { user,content,tab,id,start_by_editing,can_edit,replying_to,csrf } = props;
+    const { user,content,tab,id,start_by_editing,can_edit,replying_to } = props;
     const [content_now,setContent]= useState(content?content:"");
     const [editing,setEditing]= useState(start_by_editing?start_by_editing:false);
     const [isDeleted,setIsDeleted]= useState(false);
+    const [showReply,setShowReply]= useState(false);
+    const [id_now,setId]= useState(id?id:false);
 
     const send_comment = ()=>{
-      var ep="/comment/"+(id?id+'/update':'add');
+      setShowReply(false);
+      var ep="/comment/"+(id_now?id_now+'/update':'add');
       var post={};
-      post._token=csrf;
       post.reply_to=replying_to?replying_to:0;
       post.content=content_now;
       $.ajaxSetup({
@@ -23,10 +23,11 @@ function CommentBox(props) {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
       });
-      $.post(ep,post,function(res){setEditing(false);});
+      $.post(ep,post,function(res){setEditing(false);if(res && res.id){setId(res.id);}});
     };
     const delete_comment= ()=>{
-      var ep="/comment/"+id+"/delete";
+      setShowReply(false);
+      var ep="/comment/"+id_now+"/delete";
       var post={};
       $.ajaxSetup({
           headers: {
@@ -36,11 +37,13 @@ function CommentBox(props) {
       $.post(ep,post,function(res){setIsDeleted(true);});
     }
     const clicked_edit = (event) => {
+      setShowReply(false);
       setEditing(true);
     };
 
-    console.log(can_edit && id);
+    console.log(can_edit && id_now);
     return (
+      <React.Fragment>
         <div className="container" style={{
           marginLeft:((tab?parseInt(tab):0) * 20).toString()+"px"
         }}>
@@ -69,25 +72,43 @@ function CommentBox(props) {
                     <div className="card">
                         <div className="card-header">{ user.name } ( UID:{  user.uid } )</div>
                         <div className="card-body">{content_now}</div>
+                        <div className="flex flex-row">
                         {
-                          can_edit && id
+                          can_edit && id_now
                           ?
-                          <div className="flex flex-row">
+                          <React.Fragment>
                             <XButton onClick={clicked_edit}>
                               編集
                             </XButton>
                             <XButton onClick={delete_comment}>
                               削除
                             </XButton>
-                          </div>
+                          </React.Fragment>
                           :null
                         }
+                        <XButton onClick={()=>{setShowReply(true);}}>
+                          返信
+                        </XButton>
+                        </div>
+
                     </div>
 
                     }
                 </div>
             </div>
         </div>
+        {
+        showReply?
+          <CommentBox
+            start_by_editing={true}
+            replying_to={id_now}
+            can_edit={true}
+            user={window.user}
+            tab={tab?(parseInt(tab)+1):1}
+          />
+          :null
+        }
+      </React.Fragment>
     );
 }
 
