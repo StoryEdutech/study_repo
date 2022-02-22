@@ -11,9 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.autoload({
+    jquery: ['$', 'window.jQuery'],
+    React: ['React','window.React'],
+    ReactDOM: ['React','window.ReactDOM'],
+});
+
 mix.webpackConfig({
   externals: {
-    jquery: 'jQuery',
     text_input:'TextInput'
   }
 })
