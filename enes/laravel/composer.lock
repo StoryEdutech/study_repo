@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35fe832cf9066b6372034e4133e427fd",
+    "content-hash": "3f4e7c86fb8ca618abe86c38cbbf25d9",
     "packages": [
         {
             "name": "brick/math",
@@ -544,31 +544,31 @@
         },
         {
             "name": "fruitcake/php-cors",
-            "version": "v1.0.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruitcake/php-cors.git",
-                "reference": "07611b4d603a72f097aeeeeb1e67d5ae7a6d0798"
+                "reference": "58571acbaa5f9f462c9c77e911700ac66f446d4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruitcake/php-cors/zipball/07611b4d603a72f097aeeeeb1e67d5ae7a6d0798",
-                "reference": "07611b4d603a72f097aeeeeb1e67d5ae7a6d0798",
+                "url": "https://api.github.com/repos/fruitcake/php-cors/zipball/58571acbaa5f9f462c9c77e911700ac66f446d4e",
+                "reference": "58571acbaa5f9f462c9c77e911700ac66f446d4e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0",
-                "symfony/http-foundation": "^4|^5|^6"
+                "php": "^7.4|^8.0",
+                "symfony/http-foundation": "^4.4|^5.4|^6"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.4",
-                "phpunit/phpunit": "^7|^9",
+                "phpunit/phpunit": "^9",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.0-dev"
+                    "dev-main": "1.1-dev"
                 }
             },
             "autoload": {
@@ -581,6 +581,10 @@
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Fruitcake",
+                    "homepage": "https://fruitcake.nl"
+                },
                 {
                     "name": "Barryvdh",
                     "email": "barryvdh@gmail.com"
@@ -603,7 +607,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-19T16:21:54+00:00"
+            "time": "2022-02-20T15:07:15+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -976,16 +980,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.83.1",
+            "version": "v8.83.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bddba117f8bce2f3c9875ca1ca375a96350d0f4d"
+                "reference": "b91b3b5b39fbbdc763746f5714e08d50a4dd7857"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bddba117f8bce2f3c9875ca1ca375a96350d0f4d",
-                "reference": "bddba117f8bce2f3c9875ca1ca375a96350d0f4d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b91b3b5b39fbbdc763746f5714e08d50a4dd7857",
+                "reference": "b91b3b5b39fbbdc763746f5714e08d50a4dd7857",
                 "shasum": ""
             },
             "require": {
@@ -1141,7 +1145,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2022-02-15T15:05:20+00:00"
+            "time": "2022-02-22T15:10:17+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1264,16 +1268,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v3.4.4",
+            "version": "v3.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "1596de849ecafc0bcc891389da939012b67f9d5c"
+                "reference": "f11d295de1508c5bb56206a620b00b6616de414c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/1596de849ecafc0bcc891389da939012b67f9d5c",
-                "reference": "1596de849ecafc0bcc891389da939012b67f9d5c",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f11d295de1508c5bb56206a620b00b6616de414c",
+                "reference": "f11d295de1508c5bb56206a620b00b6616de414c",
                 "shasum": ""
             },
             "require": {
@@ -1318,7 +1322,7 @@
                 "laravel",
                 "ui"
             ],
-            "time": "2022-02-10T22:38:33+00:00"
+            "time": "2022-02-21T14:59:16+00:00"
         },
         {
             "name": "league/commonmark",
@@ -2758,16 +2762,16 @@
         },
         {
             "name": "story_edutech/child_auth",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:StoryEdutech/ChildAuth.git",
-                "reference": "bcb513dabe41e7ed4111093d00d2cdadf51f3fde"
+                "reference": "bd4705535f34da3f5702d1931b65c011c886d246"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/StoryEdutech/ChildAuth/zipball/bcb513dabe41e7ed4111093d00d2cdadf51f3fde",
-                "reference": "bcb513dabe41e7ed4111093d00d2cdadf51f3fde",
+                "url": "https://api.github.com/repos/StoryEdutech/ChildAuth/zipball/bd4705535f34da3f5702d1931b65c011c886d246",
+                "reference": "bd4705535f34da3f5702d1931b65c011c886d246",
                 "shasum": ""
             },
             "require": {
@@ -2797,10 +2801,10 @@
             ],
             "description": "Laravel用子ども情報・認証パッケージ",
             "support": {
-                "source": "https://github.com/StoryEdutech/ChildAuth/tree/v1.1.1",
+                "source": "https://github.com/StoryEdutech/ChildAuth/tree/v1.1.2",
                 "issues": "https://github.com/StoryEdutech/ChildAuth/issues"
             },
-            "time": "2022-02-20T04:56:55+00:00"
+            "time": "2022-02-22T15:43:12+00:00"
         },
         {
             "name": "story_edutech/session_sync",
@@ -2837,16 +2841,16 @@
         },
         {
             "name": "story_edutech/simple_crud",
-            "version": "v1.1.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git@github.com:StoryEdutech/SimpleCrud.git",
-                "reference": "84a16ce9d7788fccfb44466ab8acc46293454ccc"
+                "reference": "66bf9873c67bc79d3b6671ff75c126137eb498e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/84a16ce9d7788fccfb44466ab8acc46293454ccc",
-                "reference": "84a16ce9d7788fccfb44466ab8acc46293454ccc",
+                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/66bf9873c67bc79d3b6671ff75c126137eb498e6",
+                "reference": "66bf9873c67bc79d3b6671ff75c126137eb498e6",
                 "shasum": ""
             },
             "require": {
@@ -2866,10 +2870,10 @@
             ],
             "description": "Laravel用シンプルなCRUD機能パッケージ",
             "support": {
-                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/v1.1.3",
+                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/master",
                 "issues": "https://github.com/StoryEdutech/SimpleCrud/issues"
             },
-            "time": "2022-02-20T03:59:20+00:00"
+            "time": "2022-02-22T20:05:22+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5737,16 +5741,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.8.1",
+            "version": "v1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "bdd6b8ac4ef7237770b4cb8b741a14e471e890a3"
+                "reference": "5b034ac325ee8cb34bef3a03daad1d900fcc1a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/bdd6b8ac4ef7237770b4cb8b741a14e471e890a3",
-                "reference": "bdd6b8ac4ef7237770b4cb8b741a14e471e890a3",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/5b034ac325ee8cb34bef3a03daad1d900fcc1a8c",
+                "reference": "5b034ac325ee8cb34bef3a03daad1d900fcc1a8c",
                 "shasum": ""
             },
             "require": {
@@ -5786,20 +5790,20 @@
                 "auth",
                 "laravel"
             ],
-            "time": "2022-02-15T17:05:22+00:00"
+            "time": "2022-02-21T18:18:37+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.13.4",
+            "version": "v1.13.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "57d2942d5edd89b2018d0a3447da321fa35baac7"
+                "reference": "aeb6eeb55b22c328d2f301145b97288127691d48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/57d2942d5edd89b2018d0a3447da321fa35baac7",
-                "reference": "57d2942d5edd89b2018d0a3447da321fa35baac7",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/aeb6eeb55b22c328d2f301145b97288127691d48",
+                "reference": "aeb6eeb55b22c328d2f301145b97288127691d48",
                 "shasum": ""
             },
             "require": {
@@ -5842,7 +5846,7 @@
                 "docker",
                 "laravel"
             ],
-            "time": "2022-02-17T19:55:30+00:00"
+            "time": "2022-02-17T19:59:03+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -6107,16 +6111,16 @@
         },
         {
             "name": "phar-io/version",
-            "version": "3.1.1",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/version.git",
-                "reference": "15a90844ad40f127afd244c0cad228de2a80052a"
+                "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/version/zipball/15a90844ad40f127afd244c0cad228de2a80052a",
-                "reference": "15a90844ad40f127afd244c0cad228de2a80052a",
+                "url": "https://api.github.com/repos/phar-io/version/zipball/4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+                "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
                 "shasum": ""
             },
             "require": {
@@ -6150,7 +6154,7 @@
                 }
             ],
             "description": "Library for handling version information and constraints",
-            "time": "2022-02-07T21:56:48+00:00"
+            "time": "2022-02-21T01:04:05+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -7709,7 +7713,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "story_edutech/simple_crud": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
