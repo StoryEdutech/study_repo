@@ -11,7 +11,7 @@ class CommentController extends Controller
   use CrudControllerWithChildTrait {
     CrudControllerWithChildTrait::index as crud_index;
   }
-  // public $paginate=4;
+  public $paginate=4;
   public static $resource="comment";
   public function reply_to($id){
     $comment=Comment::find($id);
@@ -24,10 +24,18 @@ class CommentController extends Controller
 
   }
   public static $is_api=true;
+  public function handle_show_data($return){
+    $nesting_replies=$this->nested_self_relation_closure("replies",[function($builder){return $builder->orderBy('created_at','desc');}]);
+    $comment=$return["comment"];
+    $comment->replies=$nesting_replies($comment->replies())->get();
+    $comment->loadCount('replies');
+    return $return;
+  }
   public function index($uid=false){
+    $nesting_replies=$this->nested_self_relation_closure("replies",[function($builder){return $builder->orderBy('created_at','desc');}]);
     return $this->crud_index($uid,[
-      function($builder){
-      return $builder->where('reply_to',0);
+      function($builder) use ($nesting_replies){
+      return $nesting_replies($builder->where('reply_to',0));
     }]);
   }
 
