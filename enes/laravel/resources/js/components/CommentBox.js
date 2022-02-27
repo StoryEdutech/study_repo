@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import XButton from './XButton.js';
-import TextInput from 'text_input';
+import kobetsuba_script from '../kobetsuba_src';
+kobetsuba_script('react_inc/text_input.js');
 
 function CommentBox(props) {
     const { useState } =React;
-    const { user,content,tab,id,start_by_editing,can_edit,replying_to } = props;
+    const { user,content,tab,id,start_by_editing,reply_to,replies } = props;
     const [content_now,setContent]= useState(content?content:"");
     const [editing,setEditing]= useState(start_by_editing?start_by_editing:false);
     const [isDeleted,setIsDeleted]= useState(false);
@@ -16,7 +17,7 @@ function CommentBox(props) {
       setShowReply(false);
       var ep="/comment/"+(id_now?id_now+'/update':'add');
       var post={};
-      post.reply_to=replying_to?replying_to:0;
+      post.reply_to=reply_to?reply_to:0;
       post.content=content_now;
       $.ajaxSetup({
           headers: {
@@ -41,12 +42,11 @@ function CommentBox(props) {
       setEditing(true);
     };
 
-    console.log(can_edit && id_now);
     return (
       <React.Fragment>
         <div className="container" style={{
           marginLeft:((tab?parseInt(tab):0) * 20).toString()+"px"
-        }}>
+        }} data-id={id_now}>
             <div className="row justify-content-center" style={isDeleted?{}:{display:"none"}}>
               <div className="col-md-8">
                 <div className="card">
@@ -74,7 +74,7 @@ function CommentBox(props) {
                         <div className="card-body">{content_now}</div>
                         <div className="flex flex-row">
                         {
-                          can_edit && id_now
+                          window.user.uid==user.uid && id_now
                           ?
                           <React.Fragment>
                             <XButton onClick={clicked_edit}>
@@ -101,13 +101,22 @@ function CommentBox(props) {
         showReply?
           <CommentBox
             start_by_editing={true}
-            replying_to={id_now}
-            can_edit={true}
+            key={id_now.toString()}
+            reply_to={id_now}
             user={window.user}
             tab={tab?(parseInt(tab)+1):1}
           />
           :null
         }
+        {replies && replies.length?
+          replies.map((one)=>
+            <CommentBox
+              {...one}
+              key={one.id.toString()}
+              tab={tab?(parseInt(tab)+1):1}
+            />
+          )
+        :null}
       </React.Fragment>
     );
 }

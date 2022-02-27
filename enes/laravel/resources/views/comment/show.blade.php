@@ -1,6 +1,4 @@
-<script src="{{ env('kobetsuba_url') }}/js_includes/react_inc/text_input.js"></script>
-<script>window.user=JSON.parse('{!! auth()->user()->current_child() !!}');</script>
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- <script src="{{ env('kobetsuba_url') }}/js_includes/react_inc/text_input.js"></script> -->
   <div class="comment_box_mtc" style="width:100%"
     id="comment_box{{ $comment->id ?? 0 }}"
     data-comment='{!! ($for_add??false) ? "{\"start_by_editing\":true}" : $comment ?? "{}" !!}'

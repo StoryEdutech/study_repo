@@ -1,14 +1,4 @@
 <x-app-layout>
-@if( Session::has( 'delete_fb' ))
-  {{ __(Session::get( 'delete_fb')) }}
-@endif
-@each('comment.show',$comment_collection->sortByDesc('created_at'),'comment')
-@if($of_self)
-<x-button onclick="$(this).hide();$('.add_wrap').show()">
-  @lang('追加')
-</x-button>
-<div class="add_wrap" style="display:none">
-@include('comment.show',['for_add'=>true])
-</div>
-@endif
+  <script>window.user=JSON.parse('{!! auth()->user()->current_child() !!}');</script>
+<div id="app" data-props="{{ json_encode(['for_uid'=>$for_uid]) }}"></div>
 </x-app-layout>

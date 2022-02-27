@@ -25,19 +25,18 @@ class CommentController extends Controller
   }
   public static $is_api=true;
   public function handle_show_data($return){
-    $nesting_replies=$this->nested_self_relation_closure("replies",[function($builder){return $builder->orderBy('created_at','desc');}]);
+    $nesting_replies=$this->nested_self_relation_closure("replies",[function($builder){return $builder->with('user')->orderBy('created_at','desc');}]);
     $comment=$return["comment"];
     $comment->replies=$nesting_replies($comment->replies())->get();
     $comment->loadCount('replies');
     return $return;
   }
   public function index($uid=false){
-    $nesting_replies=$this->nested_self_relation_closure("replies",[function($builder){return $builder->orderBy('created_at','desc');}]);
+    $nesting_replies=$this->nested_self_relation_closure("replies",[function($builder){return $builder->with('user')->orderBy('created_at','desc');}]);
     return $this->crud_index($uid,[
       function($builder) use ($nesting_replies){
       return $nesting_replies($builder->where('reply_to',0));
     }]);
   }
-
 
 }

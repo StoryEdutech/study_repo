@@ -5050,7 +5050,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/CommentBox */ "./resources/js/components/CommentBox.js");
+__webpack_require__(/*! ./components/CommentList */ "./resources/js/components/CommentList.js");
 
 /***/ }),
 
@@ -5104,8 +5104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _XButton_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./XButton.js */ "./resources/js/components/XButton.js");
-/* harmony import */ var text_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! text_input */ "text_input");
-/* harmony import */ var text_input__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(text_input__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _kobetsuba_src__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../kobetsuba_src */ "./resources/js/kobetsuba_src.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* provided dependency */ var $ = __webpack_require__(/*! jquery */ "../../../../node_modules/jquery/dist/jquery.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -5133,6 +5132,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+(0,_kobetsuba_src__WEBPACK_IMPORTED_MODULE_3__.default)('react_inc/text_input.js');
+
 function CommentBox(props) {
   var useState = react__WEBPACK_IMPORTED_MODULE_0__.useState;
   var user = props.user,
@@ -5140,8 +5141,8 @@ function CommentBox(props) {
       tab = props.tab,
       id = props.id,
       start_by_editing = props.start_by_editing,
-      can_edit = props.can_edit,
-      replying_to = props.replying_to;
+      reply_to = props.reply_to,
+      replies = props.replies;
 
   var _useState = useState(content ? content : ""),
       _useState2 = _slicedToArray(_useState, 2),
@@ -5172,7 +5173,7 @@ function CommentBox(props) {
     setShowReply(false);
     var ep = "/comment/" + (id_now ? id_now + '/update' : 'add');
     var post = {};
-    post.reply_to = replying_to ? replying_to : 0;
+    post.reply_to = reply_to ? reply_to : 0;
     post.content = content_now;
     $.ajaxSetup({
       headers: {
@@ -5207,13 +5208,13 @@ function CommentBox(props) {
     setEditing(true);
   };
 
-  console.log(can_edit && id_now);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "container",
       style: {
         marginLeft: ((tab ? parseInt(tab) : 0) * 20).toString() + "px"
       },
+      "data-id": id_now,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "row justify-content-center",
         style: isDeleted ? {} : {
@@ -5237,7 +5238,7 @@ function CommentBox(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "col-md-8",
           children: editing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)((text_input__WEBPACK_IMPORTED_MODULE_3___default()), {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(TextInput, {
               use_textarea: true,
               prev_val: content_now,
               input_name: "content",
@@ -5260,7 +5261,7 @@ function CommentBox(props) {
               children: content_now
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "flex flex-row",
-              children: [can_edit && id_now ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+              children: [window.user.uid == user.uid && id_now ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
                   onClick: clicked_edit,
                   children: "\u7DE8\u96C6"
@@ -5280,10 +5281,14 @@ function CommentBox(props) {
       })]
     }), showReply ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentBox, {
       start_by_editing: true,
-      replying_to: id_now,
-      can_edit: true,
+      reply_to: id_now,
       user: window.user,
       tab: tab ? parseInt(tab) + 1 : 1
+    }, id_now.toString()) : null, replies && replies.length ? replies.map(function (one) {
+      return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CommentBox, _objectSpread(_objectSpread({}, one), {}, {
+        key: one.id.toString(),
+        tab: tab ? parseInt(tab) + 1 : 1
+      }));
     }) : null]
   });
 }
@@ -5298,6 +5303,166 @@ if (document.querySelectorAll('.comment_box_mtc')) {
     props.tab = one.dataset.tab;
     react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentBox, _objectSpread({}, props)), one);
   });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/CommentList.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/CommentList.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _CommentBox_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CommentBox.js */ "./resources/js/components/CommentBox.js");
+/* harmony import */ var _XButton_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./XButton.js */ "./resources/js/components/XButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* provided dependency */ var $ = __webpack_require__(/*! jquery */ "../../../../node_modules/jquery/dist/jquery.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+function CommentList(props) {
+  var useState = react__WEBPACK_IMPORTED_MODULE_0__.useState,
+      useEffect = react__WEBPACK_IMPORTED_MODULE_0__.useEffect;
+  var for_uid = props.for_uid;
+
+  var _useState = useState([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      comments = _useState2[0],
+      setComments = _useState2[1];
+
+  var _useState3 = useState(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      done_loading = _useState4[0],
+      setDoneLoading = _useState4[1];
+
+  var _useState5 = useState(1),
+      _useState6 = _slicedToArray(_useState5, 2),
+      page = _useState6[0],
+      setPage = _useState6[1];
+
+  var _useState7 = useState(1),
+      _useState8 = _slicedToArray(_useState7, 2),
+      lastPage = _useState8[0],
+      setLastPage = _useState8[1];
+
+  var _useState9 = useState(1),
+      _useState10 = _slicedToArray(_useState9, 2),
+      new_id = _useState10[0],
+      setNewId = _useState10[1];
+
+  var _useState11 = useState(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      loadingMore = _useState12[0],
+      setLoadingMore = _useState12[1];
+
+  useEffect(function () {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.post('/comment/user/' + (for_uid ? for_uid : 0), {}, function (res) {
+      setComments(res.comment_collection.data ? res.comment_collection.data : []);
+      setLastPage(res.comment_collection.last_page);
+      setDoneLoading(true);
+    });
+  }, []);
+
+  var loadMore = function loadMore() {
+    setLoadingMore(true);
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    var new_page = page + 1;
+    $.post('/comment/user/' + (for_uid ? for_uid : 0) + '?page=' + new_page, {}, function (res) {
+      setComments(comments.concat(res.comment_collection.data ? res.comment_collection.data : []));
+      setPage(new_page);
+      setLoadingMore(false);
+    });
+  };
+
+  var addNew = function addNew() {
+    var new_comments = _toConsumableArray(comments);
+
+    new_comments.unshift({
+      content: "",
+      user: window.user,
+      new_id: new_id,
+      start_by_editing: true
+    });
+    setComments(new_comments);
+    setNewId(new_id + 1);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [[window.user.uid, 0].indexOf(for_uid ? parseInt(for_uid) : 0) > -1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_3__.default, {
+      onClick: function onClick() {
+        addNew();
+      },
+      children: "\u8FFD\u52A0"
+    }) : null, comments && comments.length ? comments.map(function (data_one) {
+      return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CommentBox_js__WEBPACK_IMPORTED_MODULE_2__.default, _objectSpread(_objectSpread({}, data_one), {}, {
+        key: (data_one.id ? data_one.id : data_one.new_id).toString()
+      }));
+    }) : done_loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: "\u307E\u3060\u30B3\u30E1\u30F3\u30C8\u304C\u3042\u308A\u307E\u305B\u3093"
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: "\u8AAD\u307F\u8FBC\u307F\u4E2D"
+    }), page == lastPage ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_3__.default, {
+      style: {
+        width: "100%"
+      },
+      onClick: function onClick() {
+        loadMore();
+      },
+      children: loadingMore ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        className: "fas fa-sync fa-spin"
+      }) : "もっと読み込む"
+    })]
+  });
+}
+
+if (document.getElementById('app')) {
+  var el = document.getElementById('app');
+  var props = JSON.parse(el.dataset.props);
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentList, _objectSpread({}, props)), el);
 }
 
 /***/ }),
@@ -5341,6 +5506,28 @@ function XButton(props) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (XButton);
+
+/***/ }),
+
+/***/ "./resources/js/kobetsuba_src.js":
+/*!***************************************!*\
+  !*** ./resources/js/kobetsuba_src.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function kobetsuba_script(file) {
+  var $script = __webpack_require__(/*! scriptjs */ "./node_modules/scriptjs/dist/script.js");
+
+  $script.path("https://chugakujyuken.kobetsuba.jp/js_includes/");
+  return $script(file);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (kobetsuba_script);
 
 /***/ }),
 
@@ -58871,6 +59058,144 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/scriptjs/dist/script.js":
+/*!**********************************************!*\
+  !*** ./node_modules/scriptjs/dist/script.js ***!
+  \**********************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  * $script.js JS loader & dependency manager
+  * https://github.com/ded/script.js
+  * (c) Dustin Diaz 2014 | License MIT
+  */
+
+(function (name, definition) {
+  if ( true && module.exports) module.exports = definition()
+  else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+		__WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  else {}
+})('$script', function () {
+  var doc = document
+    , head = doc.getElementsByTagName('head')[0]
+    , s = 'string'
+    , f = false
+    , push = 'push'
+    , readyState = 'readyState'
+    , onreadystatechange = 'onreadystatechange'
+    , list = {}
+    , ids = {}
+    , delay = {}
+    , scripts = {}
+    , scriptpath
+    , urlArgs
+
+  function every(ar, fn) {
+    for (var i = 0, j = ar.length; i < j; ++i) if (!fn(ar[i])) return f
+    return 1
+  }
+  function each(ar, fn) {
+    every(ar, function (el) {
+      fn(el)
+      return 1
+    })
+  }
+
+  function $script(paths, idOrDone, optDone) {
+    paths = paths[push] ? paths : [paths]
+    var idOrDoneIsDone = idOrDone && idOrDone.call
+      , done = idOrDoneIsDone ? idOrDone : optDone
+      , id = idOrDoneIsDone ? paths.join('') : idOrDone
+      , queue = paths.length
+    function loopFn(item) {
+      return item.call ? item() : list[item]
+    }
+    function callback() {
+      if (!--queue) {
+        list[id] = 1
+        done && done()
+        for (var dset in delay) {
+          every(dset.split('|'), loopFn) && !each(delay[dset], loopFn) && (delay[dset] = [])
+        }
+      }
+    }
+    setTimeout(function () {
+      each(paths, function loading(path, force) {
+        if (path === null) return callback()
+        
+        if (!force && !/^https?:\/\//.test(path) && scriptpath) {
+          path = (path.indexOf('.js') === -1) ? scriptpath + path + '.js' : scriptpath + path;
+        }
+        
+        if (scripts[path]) {
+          if (id) ids[id] = 1
+          return (scripts[path] == 2) ? callback() : setTimeout(function () { loading(path, true) }, 0)
+        }
+
+        scripts[path] = 1
+        if (id) ids[id] = 1
+        create(path, callback)
+      })
+    }, 0)
+    return $script
+  }
+
+  function create(path, fn) {
+    var el = doc.createElement('script'), loaded
+    el.onload = el.onerror = el[onreadystatechange] = function () {
+      if ((el[readyState] && !(/^c|loade/.test(el[readyState]))) || loaded) return;
+      el.onload = el[onreadystatechange] = null
+      loaded = 1
+      scripts[path] = 2
+      fn()
+    }
+    el.async = 1
+    el.src = urlArgs ? path + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path;
+    head.insertBefore(el, head.lastChild)
+  }
+
+  $script.get = create
+
+  $script.order = function (scripts, id, done) {
+    (function callback(s) {
+      s = scripts.shift()
+      !scripts.length ? $script(s, id, done) : $script(s, callback)
+    }())
+  }
+
+  $script.path = function (p) {
+    scriptpath = p
+  }
+  $script.urlArgs = function (str) {
+    urlArgs = str;
+  }
+  $script.ready = function (deps, ready, req) {
+    deps = deps[push] ? deps : [deps]
+    var missing = [];
+    !each(deps, function (dep) {
+      list[dep] || missing[push](dep);
+    }) && every(deps, function (dep) {return list[dep]}) ?
+      ready() : !function (key) {
+      delay[key] = delay[key] || []
+      delay[key][push](ready)
+      req && req(missing)
+    }(deps.join('|'))
+    return $script
+  }
+
+  $script.done = function (idOrDone) {
+    $script([null], idOrDone)
+  }
+
+  return $script
+});
+
+
+/***/ }),
+
 /***/ "../../../../node_modules/jquery/dist/jquery.js":
 /*!******************************************************!*\
   !*** ../../../../node_modules/jquery/dist/jquery.js ***!
@@ -69752,17 +70077,6 @@ return jQuery;
 } );
 
 
-/***/ }),
-
-/***/ "text_input":
-/*!****************************!*\
-  !*** external "TextInput" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = TextInput;
-
 /***/ })
 
 /******/ 	});
@@ -69826,18 +70140,6 @@ module.exports = TextInput;
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

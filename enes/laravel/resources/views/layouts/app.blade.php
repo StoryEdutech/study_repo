@@ -12,10 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet">
 
         <script src="{{ env('kobetsuba_url') }}/js_includes/react.production.min.js"></script>
         <script src="{{ env('kobetsuba_url') }}/js_includes/react-dom.production.min.js"></script>
         <script src="{{ env('kobetsuba_url') }}/js_includes/jquery.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
