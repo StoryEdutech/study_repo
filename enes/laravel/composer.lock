@@ -2830,12 +2830,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:StoryEdutech/SimpleCrud.git",
-                "reference": "819bebc56b04e029171885d4af9247657fb827c7"
+                "reference": "9ea8ff3c15e200bbc2ac01551d8212edae3a971f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/819bebc56b04e029171885d4af9247657fb827c7",
-                "reference": "819bebc56b04e029171885d4af9247657fb827c7",
+                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/9ea8ff3c15e200bbc2ac01551d8212edae3a971f",
+                "reference": "9ea8ff3c15e200bbc2ac01551d8212edae3a971f",
                 "shasum": ""
             },
             "require": {
@@ -2858,7 +2858,7 @@
                 "source": "https://github.com/StoryEdutech/SimpleCrud/tree/master",
                 "issues": "https://github.com/StoryEdutech/SimpleCrud/issues"
             },
-            "time": "2022-02-27T09:36:03+00:00"
+            "time": "2022-02-27T18:13:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

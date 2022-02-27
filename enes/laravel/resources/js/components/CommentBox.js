@@ -6,7 +6,7 @@ kobetsuba_script('react_inc/text_input.js');
 
 function CommentBox(props) {
     const { useState } =React;
-    const { user,content,tab,id,start_by_editing,reply_to,replies } = props;
+    const { user,content,tab,id,start_by_editing,reply_to,replies,can_use_actions } = props;
     const [content_now,setContent]= useState(content?content:"");
     const [editing,setEditing]= useState(start_by_editing?start_by_editing:false);
     const [isDeleted,setIsDeleted]= useState(false);
@@ -74,21 +74,26 @@ function CommentBox(props) {
                         <div className="card-body">{content_now}</div>
                         <div className="flex flex-row">
                         {
-                          window.user.uid==user.uid && id_now
-                          ?
-                          <React.Fragment>
-                            <XButton onClick={clicked_edit}>
+                          can_use_actions.indexOf('update')>-1 && id_now
+                            ?<XButton onClick={clicked_edit}>
                               編集
                             </XButton>
+                            :null
+                          }
+                          {
+                            can_use_actions.indexOf('delete')>-1?
                             <XButton onClick={delete_comment}>
                               削除
                             </XButton>
-                          </React.Fragment>
-                          :null
+                            :null
+                          }
+                          {
+                            can_use_actions.indexOf('reply')>-1?
+                            <XButton onClick={()=>{setShowReply(true);}}>
+                              返信
+                            </XButton>
+                            :null
                         }
-                        <XButton onClick={()=>{setShowReply(true);}}>
-                          返信
-                        </XButton>
                         </div>
 
                     </div>
@@ -105,6 +110,7 @@ function CommentBox(props) {
             reply_to={id_now}
             user={window.user}
             tab={tab?(parseInt(tab)+1):1}
+            can_use_actions={['reply','update','delete','create']}
           />
           :null
         }

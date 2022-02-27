@@ -5142,7 +5142,8 @@ function CommentBox(props) {
       id = props.id,
       start_by_editing = props.start_by_editing,
       reply_to = props.reply_to,
-      replies = props.replies;
+      replies = props.replies,
+      can_use_actions = props.can_use_actions;
 
   var _useState = useState(content ? content : ""),
       _useState2 = _slicedToArray(_useState, 2),
@@ -5261,20 +5262,18 @@ function CommentBox(props) {
               children: content_now
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "flex flex-row",
-              children: [window.user.uid == user.uid && id_now ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
-                  onClick: clicked_edit,
-                  children: "\u7DE8\u96C6"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
-                  onClick: delete_comment,
-                  children: "\u524A\u9664"
-                })]
-              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
+              children: [can_use_actions.indexOf('update') > -1 && id_now ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
+                onClick: clicked_edit,
+                children: "\u7DE8\u96C6"
+              }) : null, can_use_actions.indexOf('delete') > -1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
+                onClick: delete_comment,
+                children: "\u524A\u9664"
+              }) : null, can_use_actions.indexOf('reply') > -1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_2__.default, {
                 onClick: function onClick() {
                   setShowReply(true);
                 },
                 children: "\u8FD4\u4FE1"
-              })]
+              }) : null]
             })]
           })
         })
@@ -5283,7 +5282,8 @@ function CommentBox(props) {
       start_by_editing: true,
       reply_to: id_now,
       user: window.user,
-      tab: tab ? parseInt(tab) + 1 : 1
+      tab: tab ? parseInt(tab) + 1 : 1,
+      can_use_actions: ['reply', 'update', 'delete', 'create']
     }, id_now.toString()) : null, replies && replies.length ? replies.map(function (one) {
       return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CommentBox, _objectSpread(_objectSpread({}, one), {}, {
         key: one.id.toString(),
@@ -5390,6 +5390,11 @@ function CommentList(props) {
       loadingMore = _useState12[0],
       setLoadingMore = _useState12[1];
 
+  var _useState13 = useState([]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      can_use_actions_top = _useState14[0],
+      setCanUseActionsTop = _useState14[1];
+
   useEffect(function () {
     $.ajaxSetup({
       headers: {
@@ -5400,6 +5405,10 @@ function CommentList(props) {
       setComments(res.comment_collection.data ? res.comment_collection.data : []);
       setLastPage(res.comment_collection.last_page);
       setDoneLoading(true);
+
+      if (res.can_use_actions) {
+        setCanUseActionsTop(res.can_use_actions);
+      }
     });
   }, []);
 
@@ -5425,21 +5434,22 @@ function CommentList(props) {
       content: "",
       user: window.user,
       new_id: new_id,
-      start_by_editing: true
+      start_by_editing: true,
+      can_use_actions: ['reply', 'update', 'delete', 'create']
     });
     setComments(new_comments);
     setNewId(new_id + 1);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [[window.user.uid, 0].indexOf(for_uid ? parseInt(for_uid) : 0) > -1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_3__.default, {
+    children: [can_use_actions_top.indexOf('create') > -1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_XButton_js__WEBPACK_IMPORTED_MODULE_3__.default, {
       onClick: function onClick() {
         addNew();
       },
       children: "\u8FFD\u52A0"
     }) : null, comments && comments.length ? comments.map(function (data_one) {
       return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CommentBox_js__WEBPACK_IMPORTED_MODULE_2__.default, _objectSpread(_objectSpread({}, data_one), {}, {
-        key: (data_one.id ? data_one.id : data_one.new_id).toString()
+        key: (data_one.id ? data_one.id : "new_" + data_one.new_id).toString()
       }));
     }) : done_loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       children: "\u307E\u3060\u30B3\u30E1\u30F3\u30C8\u304C\u3042\u308A\u307E\u305B\u3093"

@@ -12,6 +12,7 @@ function CommentList(props){
   const [lastPage,setLastPage]= useState(1);
   const [new_id,setNewId]= useState(1);
   const [loadingMore,setLoadingMore]= useState(false);
+  const [can_use_actions_top,setCanUseActionsTop]= useState([]);
 
 
   useEffect(()=>{
@@ -24,6 +25,7 @@ function CommentList(props){
       setComments(res.comment_collection.data?res.comment_collection.data:[]);
       setLastPage(res.comment_collection.last_page);
       setDoneLoading(true);
+      if(res.can_use_actions){setCanUseActionsTop(res.can_use_actions);}
     });
   },[]);
 
@@ -49,7 +51,8 @@ function CommentList(props){
       content:"",
       user:window.user,
       new_id:new_id,
-      start_by_editing:true
+      start_by_editing:true,
+      can_use_actions:['reply','update','delete','create']
     });
     setComments(new_comments);
     setNewId(new_id+1);
@@ -58,7 +61,7 @@ function CommentList(props){
   return (
     <div>
       {
-      [window.user.uid,0].indexOf(for_uid?parseInt(for_uid):0)>-1?
+      can_use_actions_top.indexOf('create')>-1?
       <XButton onClick={()=>{addNew();}}>
         追加
       </XButton>
@@ -68,7 +71,7 @@ function CommentList(props){
       {comments && comments.length?comments.map((data_one)=>
           <CommentBox
             {...data_one}
-            key={(data_one.id?data_one.id:data_one.new_id).toString()}
+            key={(data_one.id?data_one.id:("new_"+data_one.new_id)).toString()}
            />
       ):
         done_loading?
