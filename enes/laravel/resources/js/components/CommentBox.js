@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import XButton from './XButton.js';
+import QuillWithMention from './QuillWithMention.js';
 import kobetsuba_script from '../kobetsuba_src';
 kobetsuba_script('react_inc/text_input.js');
 
@@ -59,19 +60,22 @@ function CommentBox(props) {
 
             <div className="row justify-content-center" style={isDeleted?{display:"none"}:{}}>
                 <div className="col-md-8">
+                <div className="card">
+                    <div className="card-header">{ user.name } ( UID:{  user.uid } )</div>
+                    <div className="card-body">
+                    <QuillWithMention prev_val={content_now} readOnly={!editing} input_name="content" onchange_f={setContent} />
                     {
                     editing
                     ?
                     <React.Fragment>
-                    <TextInput use_textarea={true} prev_val={content_now} input_name="content" onchange_f={(event)=>{setContent(event.target.value);}}/>
+                    {/*
+                      <TextInput use_textarea={true} prev_val={content_now} input_name="content" onchange_f={(event)=>{setContent(event.target.value);}}/>
+                    */}
                     <XButton onClick={(event)=>{send_comment();}}>
                       投稿
                     </XButton>
                     </React.Fragment>
                     :
-                    <div className="card">
-                        <div className="card-header">{ user.name } ( UID:{  user.uid } )</div>
-                        <div className="card-body">{content_now}</div>
                         <div className="flex flex-row">
                         {
                           can_use_actions.indexOf('update')>-1 && id_now
@@ -95,13 +99,13 @@ function CommentBox(props) {
                             :null
                         }
                         </div>
-
-                    </div>
-
                     }
                 </div>
             </div>
         </div>
+        </div>
+        </div>
+
         {
         showReply?
           <CommentBox
@@ -127,15 +131,18 @@ function CommentBox(props) {
     );
 }
 
+
+
+
 export default CommentBox;
 
 
-if (document.querySelectorAll('.comment_box_mtc')) {
-document.querySelectorAll('.comment_box_mtc').forEach((one)=>{
-  let props=JSON.parse(one.dataset.comment);
-  props.user=JSON.parse(one.dataset.user);
-  props.can_edit=one.dataset.can_edit;
-  props.tab=one.dataset.tab;
-  ReactDOM.render(<CommentBox {...props} />, one);
-})
-}
+// if (document.querySelectorAll('.comment_box_mtc')) {
+// document.querySelectorAll('.comment_box_mtc').forEach((one)=>{
+//   let props=JSON.parse(one.dataset.comment);
+//   props.user=JSON.parse(one.dataset.user);
+//   props.can_edit=one.dataset.can_edit;
+//   props.tab=one.dataset.tab;
+//   ReactDOM.render(<CommentBox {...props} />, one);
+// })
+// }

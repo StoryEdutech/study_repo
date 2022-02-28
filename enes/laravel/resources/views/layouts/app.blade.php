@@ -19,6 +19,15 @@
         <script src="{{ env('kobetsuba_url') }}/js_includes/jquery.min.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <script>
+
+        window.nickname_and_child_info = {
+          1:{ uid: 1, nickname: "インナーサクラ", grade:4 },
+          2:{ uid: 2, nickname: "ラクラク", grade:6 }
+        };
+
+        </script>
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>

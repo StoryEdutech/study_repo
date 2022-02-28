@@ -1,3 +1,13 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.ql-disabled {
+    border: none !important;
+}
+
+.InfoCardArea{
+  position: absolute;
+  bottom: 90%;
+  z-index: 1000;
+}
