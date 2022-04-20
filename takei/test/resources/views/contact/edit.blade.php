@@ -52,7 +52,6 @@
 
                             <input class="btn btn-info" type="submit" value="更新する">
                         </form>
-                        editですYou are logged in!
                     </div>
                 </div>
             </div>

@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\ContactForm;
 use Illuminate\Support\Facades\DB;
 use App\Services\CheckFormData;
+use App\Services\SearchQuery;
 use App\Http\Requests\StoreContactForm;
+
 
 
 class ContactFormController extends Controller
 {
+    public function __construct()
+    {
+        $this->contact = new ContactForm;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,45 +26,16 @@ class ContactFormController extends Controller
      */
     public function index(Request $request)
     {
-
-
         $search = $request->input('search');
-
-
-        // エロクワント ORマッパー
-        // $contacts = ContactForm::all();
-
-        //クエリビルダ
-        // $contacts = DB::table('contact_forms')
-        // ->select('id', 'your_name', 'title', 'created_at')
-        // ->orderBy('created_at', 'desc')
-        // ->paginate(20);
 
         // 検索フォーム
         $query = DB::table('contact_forms');
 
-        // もしキーワードがあったら
-        if($search !== null){
-            // 全角スペースを半角に
-            $search_split = mb_convert_kana($search, 's');
-
-            //空白で区切る
-            $search_split2 = preg_split('/[\s]+/', $search_split);
-
-            //単語をループで回す
-            foreach($search_split2 as $value) {
-                $query->where('your_name', 'like', '%'.$value.'%');
-            }
-        }
-
+        $query = SearchQuery::processQuery($search, $query);
         $query->select('id', 'your_name', 'title', 'created_at');
         $query->orderBy('created_at', 'desc');
         $contacts = $query->paginate(20);
 
-
-
-
-        // dd($contacts);
         return view('contact.index', compact('contacts'));
     }
 
@@ -80,16 +58,7 @@ class ContactFormController extends Controller
      */
     public function store(StoreContactForm $request)
     {
-        $contact = new ContactForm;
-        $contact->your_name = $request->input('your_name');
-        $contact->title = $request->input('title');
-        $contact->email = $request->input('email');
-        $contact->url = $request->input('url');
-        $contact->gender = $request->input('gender');
-        $contact->age = $request->input('age');
-        $contact->contact = $request->input('contact');
-
-        $contact->save();
+        $this->contact->insertContact($request->all());
         return redirect('contact/index');
     }
 
@@ -133,17 +102,9 @@ class ContactFormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $contact = ContactForm::find($id);
-        $contact->your_name = $request->input('your_name');
-        $contact->title = $request->input('title');
-        $contact->email = $request->input('email');
-        $contact->url = $request->input('url');
-        $contact->gender = $request->input('gender');
-        $contact->age = $request->input('age');
-        $contact->contact = $request->input('contact');
+        $contact->updateContact($request->all());
 
-        $contact->save();
         return redirect('contact/index');
     }
 
@@ -155,7 +116,6 @@ class ContactFormController extends Controller
      */
     public function destroy($id)
     {
-        //
         $contact = ContactForm::find($id);
         $contact->delete();
 
