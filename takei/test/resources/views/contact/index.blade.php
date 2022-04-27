@@ -24,7 +24,11 @@
                         <button class="btn btn-outline-success" type="submit">検索する</button>
                       </form>
 
-                    <table class="table">
+                    <div id="ContactList">
+
+                    </div>
+
+                    {{-- <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">id</th>
@@ -48,8 +52,8 @@
                         </tr>
                         @endforeach
                         </tbody>
-                      </table>
-                      {{ $contacts->links() }}
+                      </table> --}}
+                      {{-- {{ $contacts->links() }}/ --}}
                 </div>
             </div>
         </div>

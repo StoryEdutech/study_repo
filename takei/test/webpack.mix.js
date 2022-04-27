@@ -1,5 +1,12 @@
 const mix = require('laravel-mix');
+require('laravel-mix-polyfill');
 
+
+mix.autoload({
+    jquery: ['$', 'window.jQuery'],
+    // React: ['React','window.React'],
+    // ReactDOM: ['ReactDOM','window.ReactDOM'],
+});
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,5 +18,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+// mix.js('resources/js/apps/Contact.js', 'public/js').react().version();
+// mix.js('resources/js/apps/ContactForm.js', 'public/js').react().version();
+// mix.js('resources/js/apps/ContactList.js', 'public/js').react().version();
+
+mix.js('resources/js/apps', 'public/js/test.js').react().version();
+mix.styles('resources/css/app.css', 'public/css/all.css').version();
+
+

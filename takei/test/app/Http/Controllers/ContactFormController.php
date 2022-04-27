@@ -39,6 +39,19 @@ class ContactFormController extends Controller
         return view('contact.index', compact('contacts'));
     }
 
+    public function getContatsData()
+    {
+        // 検索フォーム
+        $contacts = DB::table('contact_forms')
+        ->select('id', 'your_name', 'title', 'created_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        // return view('contact.index', compact('contacts'));
+        return response()->json($contacts);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

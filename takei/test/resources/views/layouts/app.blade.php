@@ -10,8 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -71,10 +70,18 @@
                 </div>
             </div>
         </nav>
+        <div id="Contact">
+
+
+        </div>
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <script>window.api_path_base='{{ env("APP_ENV",false)=="production"?env("APP_URL"):""}}'</script>
+    <script src="{{ url(mix('js/Contact.js')) }}"></script>
+    {{-- <script src="{{ url(mix('js/ContactForm.js')) }}"></script> --}}
+    <script src="{{ url(mix('js/ContactList.js')) }}"></script>
 </body>
 </html>
