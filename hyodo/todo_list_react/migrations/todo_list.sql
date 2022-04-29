@@ -8,3 +8,5 @@ CREATE TABLE IF NOT EXISTS `` (
   `close_day` INT(11) DEFAULT 1,
    PRIMARY KEY(`id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- mysql -u root -p todo_list < todo_list.sql
