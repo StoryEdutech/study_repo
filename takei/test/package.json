@@ -1,0 +1,36 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@babel/preset-react": "^7.16.7",
+        "axios": "^0.21",
+        "jquery": "^3.6.0",
+        "laravel-mix": "^6.0.43",
+        "laravel-mix-polyfill": "^3.0.1",
+        "lodash": "^4.17.19",
+        "postcss": "^8.4.12",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.50.1",
+        "sass-loader": "^7.3.1"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.5",
+        "element-remove": "^1.0.4",
+        "loadjs": "^4.2.0",
+        "popper.js": "^1.16.1",
+        "postcss-import-url": "^7.0.0",
+        "react-router-dom": "^6.3.0",
+        "scriptjs": "^2.5.9",
+        "webpack": "^5.72.0"
+    }
+}
