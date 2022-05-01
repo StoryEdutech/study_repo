@@ -1,27 +1,14 @@
-  <div class="flex flex-row">
-  <div class="comment_box_mtc" style="width:100%" id="comment_box{{ $comment->id }}" data-comment='{!! $comment !!}' data-tab='{{ $comment->tab }}' data-user='{!! $comment->user !!}'></div>
-  <div style="width:100%">
-  <x-button>
-    <a href="/comment/{{ $comment->id }}/reply_to">
-      @lang('返信')
-    </a>
-  </x-button>
-  @if( $comment->is_of_self() )
-  <x-button>
-    <a href="/comment/{{ $comment->id }}/edit">
-      @lang('編集')
-    </a>
-  </x-button>
-  <form method="post" action="/comment/{{ $comment->id }}/delete" class="inline-block">
-    <x-button type="submit">
-        @lang('削除')
-    </x-button>
-    @csrf
-  </form>
-  @endif
-  </div>
-  </div>
-  @if( $for_reply??false )
-    @include('comment.reply_box',['comment'=>$replying])
-  @endif
-  @each('comment.show',$comment->replies->transform(function($a,$i) use ($comment){$a->tab=$comment->tab+1;return $a;}),'comment')
+<!-- <script src="{{ env('kobetsuba_url') }}/js_includes/react_inc/text_input.js"></script> -->
+  <div class="comment_box_mtc" style="width:100%"
+    id="comment_box{{ $comment->id ?? 0 }}"
+    data-comment='{!! ($for_add??false) ? "{\"start_by_editing\":true}" : $comment ?? "{}" !!}'
+    data-tab='{{ $comment->tab ?? 0 }}'
+    data-user='{!! ($for_add??false) ? auth()->user()->current_child() : $comment->user !!}'
+    @if(($for_add??false)?true:$comment->is_of_self())
+      data-can_edit="true"
+    @endif
+    data-replying_to="{{ $comment->reply_to??0 }}"
+    ></div>
+@if(!($for_add??false))
+  @each('comment.show',$comment->replies->sortByDesc('created_at')->transform(function($a,$i) use ($comment){$a->tab=$comment->tab+1;return $a;}),'comment')
+@endif

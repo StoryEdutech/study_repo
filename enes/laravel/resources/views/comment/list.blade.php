@@ -1,13 +1,4 @@
 <x-app-layout>
-@if( Session::has( 'delete_fb' ))
-  {{ __(Session::get( 'delete_fb')) }}
-@endif
-@each('comment.show',$comment_collection,'comment')
-@if($of_self)
-<x-button>
-  <a href="/comment/create">
-    @lang('追加')
-  </a>
-</x-button>
-@endif
+  <script>window.user=JSON.parse('{!! auth()->user()->current_child() !!}');</script>
+<div id="app" data-props="{{ json_encode(['for_uid'=>$for_uid]) }}"></div>
 </x-app-layout>

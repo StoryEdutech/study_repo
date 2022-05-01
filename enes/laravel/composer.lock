@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e966adcb46893e00fda65c383b20f42d",
+    "content-hash": "3f4e7c86fb8ca618abe86c38cbbf25d9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -521,25 +521,23 @@
         },
         {
             "name": "fruitcake/laravel-cors",
-            "version": "v2.0.5",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruitcake/laravel-cors.git",
-                "reference": "3a066e5cac32e2d1cdaacd6b961692778f37b5fc"
+                "reference": "783a74f5e3431d7b9805be8afb60fd0a8f743534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/3a066e5cac32e2d1cdaacd6b961692778f37b5fc",
-                "reference": "3a066e5cac32e2d1cdaacd6b961692778f37b5fc",
+                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/783a74f5e3431d7b9805be8afb60fd0a8f743534",
+                "reference": "783a74f5e3431d7b9805be8afb60fd0a8f743534",
                 "shasum": ""
             },
             "require": {
                 "asm89/stack-cors": "^2.0.1",
                 "illuminate/contracts": "^6|^7|^8|^9",
                 "illuminate/support": "^6|^7|^8|^9",
-                "php": ">=7.2",
-                "symfony/http-foundation": "^4|^5|^6",
-                "symfony/http-kernel": "^4.3.4|^5|^6"
+                "php": ">=7.2"
             },
             "require-dev": {
                 "laravel/framework": "^6|^7.24|^8",
@@ -550,7 +548,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -594,7 +592,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-03T14:53:04+00:00"
+            "time": "2022-02-23T14:25:13+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -967,16 +965,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.83.1",
+            "version": "v8.83.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bddba117f8bce2f3c9875ca1ca375a96350d0f4d"
+                "reference": "b91b3b5b39fbbdc763746f5714e08d50a4dd7857"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bddba117f8bce2f3c9875ca1ca375a96350d0f4d",
-                "reference": "bddba117f8bce2f3c9875ca1ca375a96350d0f4d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b91b3b5b39fbbdc763746f5714e08d50a4dd7857",
+                "reference": "b91b3b5b39fbbdc763746f5714e08d50a4dd7857",
                 "shasum": ""
             },
             "require": {
@@ -1132,7 +1130,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2022-02-15T15:05:20+00:00"
+            "time": "2022-02-22T15:10:17+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1255,16 +1253,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v3.4.4",
+            "version": "v3.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "1596de849ecafc0bcc891389da939012b67f9d5c"
+                "reference": "f11d295de1508c5bb56206a620b00b6616de414c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/1596de849ecafc0bcc891389da939012b67f9d5c",
-                "reference": "1596de849ecafc0bcc891389da939012b67f9d5c",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f11d295de1508c5bb56206a620b00b6616de414c",
+                "reference": "f11d295de1508c5bb56206a620b00b6616de414c",
                 "shasum": ""
             },
             "require": {
@@ -1309,20 +1307,20 @@
                 "laravel",
                 "ui"
             ],
-            "time": "2022-02-10T22:38:33+00:00"
+            "time": "2022-02-21T14:59:16+00:00"
         },
         {
             "name": "league/commonmark",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "13d7751377732637814f0cda0e3f6d3243f9f769"
+                "reference": "47b015bc4e50fd4438c1ffef6139a1fb65d2ab71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/13d7751377732637814f0cda0e3f6d3243f9f769",
-                "reference": "13d7751377732637814f0cda0e3f6d3243f9f769",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/47b015bc4e50fd4438c1ffef6139a1fb65d2ab71",
+                "reference": "47b015bc4e50fd4438c1ffef6139a1fb65d2ab71",
                 "shasum": ""
             },
             "require": {
@@ -1406,7 +1404,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-13T15:00:57+00:00"
+            "time": "2022-02-26T21:24:45+00:00"
         },
         {
             "name": "league/config",
@@ -2748,18 +2746,100 @@
             "time": "2021-09-25T23:10:38+00:00"
         },
         {
-            "name": "story_edutech/simple_crud",
+            "name": "story_edutech/child_auth",
             "version": "v1.1.2",
             "source": {
                 "type": "git",
-                "url": "git@github.com:StoryEdutech/SimpleCrud.git",
-                "reference": "abea472739fa08921e3538cbe51be30d0f56b959"
+                "url": "git@github.com:StoryEdutech/ChildAuth.git",
+                "reference": "bd4705535f34da3f5702d1931b65c011c886d246"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/abea472739fa08921e3538cbe51be30d0f56b959",
-                "reference": "abea472739fa08921e3538cbe51be30d0f56b959",
+                "url": "https://api.github.com/repos/StoryEdutech/ChildAuth/zipball/bd4705535f34da3f5702d1931b65c011c886d246",
+                "reference": "bd4705535f34da3f5702d1931b65c011c886d246",
                 "shasum": ""
+            },
+            "require": {
+                "story_edutech/session_sync": "^1.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "child_auth": "StoryEdutech\\ChildAuth\\Middleware\\ChildSelected"
+                    },
+                    "providers": [
+                        "StoryEdutech\\ChildAuth\\ChildAuthServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "StoryEdutech\\ChildAuth\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "enes1004",
+                    "email": "karabacakenes@gmail.com"
+                }
+            ],
+            "description": "Laravel用子ども情報・認証パッケージ",
+            "support": {
+                "source": "https://github.com/StoryEdutech/ChildAuth/tree/v1.1.2",
+                "issues": "https://github.com/StoryEdutech/ChildAuth/issues"
+            },
+            "time": "2022-02-22T15:43:12+00:00"
+        },
+        {
+            "name": "story_edutech/session_sync",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:StoryEdutech/SessionSync.git",
+                "reference": "a6f4de1411be433aa14c1fb5bfd975fd6ae7c46e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StoryEdutech/SessionSync/zipball/a6f4de1411be433aa14c1fb5bfd975fd6ae7c46e",
+                "reference": "a6f4de1411be433aa14c1fb5bfd975fd6ae7c46e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "StoryEdutech\\SessionSync\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "enes1004",
+                    "email": "karabacakenes@gmail.com"
+                }
+            ],
+            "description": "Laravel・セッション情報同期パッケージ",
+            "support": {
+                "source": "https://github.com/StoryEdutech/SessionSync/tree/v1.0.0",
+                "issues": "https://github.com/StoryEdutech/SessionSync/issues"
+            },
+            "time": "2022-02-19T22:36:40+00:00"
+        },
+        {
+            "name": "story_edutech/simple_crud",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:StoryEdutech/SimpleCrud.git",
+                "reference": "9ea8ff3c15e200bbc2ac01551d8212edae3a971f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StoryEdutech/SimpleCrud/zipball/9ea8ff3c15e200bbc2ac01551d8212edae3a971f",
+                "reference": "9ea8ff3c15e200bbc2ac01551d8212edae3a971f",
+                "shasum": ""
+            },
+            "require": {
+                "story_edutech/child_auth": "^1.0.0"
             },
             "type": "library",
             "autoload": {
@@ -2775,10 +2855,10 @@
             ],
             "description": "Laravel用シンプルなCRUD機能パッケージ",
             "support": {
-                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/v1.1.2",
+                "source": "https://github.com/StoryEdutech/SimpleCrud/tree/master",
                 "issues": "https://github.com/StoryEdutech/SimpleCrud/issues"
             },
-            "time": "2022-02-17T19:30:19+00:00"
+            "time": "2022-02-27T18:13:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5646,16 +5726,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.8.1",
+            "version": "v1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "bdd6b8ac4ef7237770b4cb8b741a14e471e890a3"
+                "reference": "5b034ac325ee8cb34bef3a03daad1d900fcc1a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/bdd6b8ac4ef7237770b4cb8b741a14e471e890a3",
-                "reference": "bdd6b8ac4ef7237770b4cb8b741a14e471e890a3",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/5b034ac325ee8cb34bef3a03daad1d900fcc1a8c",
+                "reference": "5b034ac325ee8cb34bef3a03daad1d900fcc1a8c",
                 "shasum": ""
             },
             "require": {
@@ -5695,20 +5775,20 @@
                 "auth",
                 "laravel"
             ],
-            "time": "2022-02-15T17:05:22+00:00"
+            "time": "2022-02-21T18:18:37+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.13.3",
+            "version": "v1.13.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "53dd949a2134bd468f50defce85de566a7800dd9"
+                "reference": "aeb6eeb55b22c328d2f301145b97288127691d48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/53dd949a2134bd468f50defce85de566a7800dd9",
-                "reference": "53dd949a2134bd468f50defce85de566a7800dd9",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/aeb6eeb55b22c328d2f301145b97288127691d48",
+                "reference": "aeb6eeb55b22c328d2f301145b97288127691d48",
                 "shasum": ""
             },
             "require": {
@@ -5751,7 +5831,7 @@
                 "docker",
                 "laravel"
             ],
-            "time": "2022-02-11T14:28:50+00:00"
+            "time": "2022-02-17T19:59:03+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -6016,16 +6096,16 @@
         },
         {
             "name": "phar-io/version",
-            "version": "3.1.1",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/version.git",
-                "reference": "15a90844ad40f127afd244c0cad228de2a80052a"
+                "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/version/zipball/15a90844ad40f127afd244c0cad228de2a80052a",
-                "reference": "15a90844ad40f127afd244c0cad228de2a80052a",
+                "url": "https://api.github.com/repos/phar-io/version/zipball/4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+                "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
                 "shasum": ""
             },
             "require": {
@@ -6059,7 +6139,7 @@
                 }
             ],
             "description": "Library for handling version information and constraints",
-            "time": "2022-02-07T21:56:48+00:00"
+            "time": "2022-02-21T01:04:05+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6274,16 +6354,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.10",
+            "version": "9.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "d5850aaf931743067f4bfc1ae4cbd06468400687"
+                "reference": "deac8540cb7bd40b2b8cfa679b76202834fd04e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d5850aaf931743067f4bfc1ae4cbd06468400687",
-                "reference": "d5850aaf931743067f4bfc1ae4cbd06468400687",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/deac8540cb7bd40b2b8cfa679b76202834fd04e8",
+                "reference": "deac8540cb7bd40b2b8cfa679b76202834fd04e8",
                 "shasum": ""
             },
             "require": {
@@ -6343,7 +6423,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-05T09:12:13+00:00"
+            "time": "2022-02-23T17:02:38+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -6572,16 +6652,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.13",
+            "version": "9.5.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "597cb647654ede35e43b137926dfdfef0fb11743"
+                "reference": "5ff8c545a50226c569310a35f4fa89d79f1ddfdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/597cb647654ede35e43b137926dfdfef0fb11743",
-                "reference": "597cb647654ede35e43b137926dfdfef0fb11743",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5ff8c545a50226c569310a35f4fa89d79f1ddfdc",
+                "reference": "5ff8c545a50226c569310a35f4fa89d79f1ddfdc",
                 "shasum": ""
             },
             "require": {
@@ -6597,7 +6677,7 @@
                 "phar-io/version": "^3.0.2",
                 "php": ">=7.3",
                 "phpspec/prophecy": "^1.12.1",
-                "phpunit/php-code-coverage": "^9.2.7",
+                "phpunit/php-code-coverage": "^9.2.13",
                 "phpunit/php-file-iterator": "^3.0.5",
                 "phpunit/php-invoker": "^3.1.1",
                 "phpunit/php-text-template": "^2.0.3",
@@ -6667,7 +6747,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-24T07:33:35+00:00"
+            "time": "2022-02-23T17:10:58+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -7618,7 +7698,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "story_edutech/simple_crud": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

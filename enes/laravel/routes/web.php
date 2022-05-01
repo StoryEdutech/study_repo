@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\SelectChildController;
 use StoryEdutech\SimpleCrud\Route\RouteBundler;
 
 /*
@@ -24,5 +23,5 @@ Route::get('/dashboard', function () {
 })->middleware(['auth','child_auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-require __DIR__.'/child_auth.php';
+// require __DIR__.'/child_auth.php';
 require __DIR__.'/crud.php';

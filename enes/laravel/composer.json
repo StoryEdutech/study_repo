@@ -12,12 +12,20 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "story_edutech/simple_crud": "^1.0.0"
+        "story_edutech/simple_crud": "master-dev"
     },
     "repositories": [
       {
         "type": "vcs",
         "url": "https://github.com/StoryEdutech/SimpleCrud"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/StoryEdutech/ChildAuth"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/StoryEdutech/SessionSync"
       }
     ],
     "require-dev": {

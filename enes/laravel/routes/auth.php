@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use StoryEdutech\ChildAuth\Middleware\ChildSelected;
+
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
@@ -59,6 +61,10 @@ Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
                 ->middleware('auth');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+Route::match(['get', 'post'],'/logout',function(){
+              ChildSelected::forget();
+              return redirect('/user_logout');
+            })
                 ->middleware('auth')
                 ->name('logout');
+Route::get('/user_logout',[AuthenticatedSessionController::class, 'destroy']);
