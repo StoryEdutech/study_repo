@@ -42,6 +42,12 @@ config/kobetsuba_api_client.phpを編集して
   'url'=>env('KOBETSUBA_API_URL','https://chugakujyuken.kobetsuba.jp/apis')  #　触らなくて大丈夫
 ```
 
+GXO様用のクライアントIDとシークレット
+```
+クライアントID: 96443259-4224-4f34-8814-4cfd82f34669
+クライアントシークレット: tj36MGSirOItNJfohSfQBZ0gnrUjesz0IOJLQMar
+```
+
 で設定完了です。
 
 #使い方
@@ -51,7 +57,7 @@ use StoryEdutech\KobetsubaApiClient\KobetsubaApiClient;
 
 $client=new KobetsubaApiClient;
 
-$json=$client->get('/video_search')->json();
+$json=$client->get('/video_search?youtube_link={link}')->json(); # {link}はYoutubeの「?v=●●」の●●の部分です。
 ```
 
 ※スコープの設定が必要ならnew KobetsubaApiClient($scopeList)で定義出来ます。（※コンマ区切りスコープ文字列 "scope1,scope2"など）
