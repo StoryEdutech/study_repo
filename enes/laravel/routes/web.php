@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use StoryEdutech\SimpleCrud\Route\RouteBundler;
+use StoryEdutech\KobetsubaApiClient\KobetsubaApiClient;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 // require __DIR__.'/child_auth.php';
 require __DIR__.'/crud.php';
+
+Route::get('/video_test', function () {
+
+  $client=new KobetsubaApiClient;
+
+  return $client->get('/video_search')->json();
+};
