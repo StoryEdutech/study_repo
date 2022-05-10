@@ -10,10 +10,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
+        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "story_edutech/simple_crud": "master-dev",
-        "story_edutech/kobetsuba_api_client":"^1.0.0"
+        "story_edutech/kobetsuba_api_client": "^1.0.0",
+        "story_edutech/simple_crud": "master-dev"
     },
     "repositories": [
       {
