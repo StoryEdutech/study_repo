@@ -31,5 +31,5 @@ Route::get('/video_test', function () {
 
   $client=new KobetsubaApiClient;
 
-  return $client->get('/video_search')->json();
+  return $client->get('/video_search?div_id=v-123')->json();
 });
