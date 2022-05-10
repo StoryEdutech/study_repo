@@ -12,12 +12,13 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "story_edutech/simple_crud": "master-dev"
+        "story_edutech/simple_crud": "master-dev",
+        "story_edutech/kobetsuba_api_client":"^1.0.0"
     },
     "repositories": [
       {
-        "type": "vcs",
-        "url": "https://github.com/StoryEdutech/SimpleCrud"
+          "type": "vcs",
+          "url": "https://gitlab-ci-token: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@github.com/StoryEdutech/KobetsubaApiClient"
       },
       {
         "type": "vcs",

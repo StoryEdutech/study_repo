@@ -1,3 +1,63 @@
-composer require laravel/ui
-php artisan ui react
-npm install && npm run dev
+#インストール方法
+
+composer.jsonにて
+
+requireに
+
+```
+  "story_edutech/kobetsuba_api_client":"^1.0.0"
+```
+
+を追加
+
+repositoriesに
+
+```
+{
+    "type": "vcs",
+    "url": "https://gitlab-ci-token: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@github.com/StoryEdutech/KobetsubaApiClient"
+},
+```
+
+を追加
+
+
+```
+composer update
+```
+
+でパッケージをダウンロード
+
+```
+php artisan vendor:publish --tag=kobetsuba_api_client
+```
+
+を発行。config/kobetsuba_api_client.phpが追加されます。
+
+config/kobetsuba_api_client.phpを編集して
+
+```
+  'client_id'=>env('KOBETSUBA_OAUTH_CLIENT','client'), # 「client」をクライアントIDに編集
+  'client_secret'=>env('KOBETSUBA_OAUTH_SECRET','secret'), #　「secret」をクライアントシークレットに編集
+  'url'=>env('KOBETSUBA_API_URL','https://chugakujyuken.kobetsuba.jp/apis')  #　触らなくて大丈夫
+```
+
+で設定完了です。
+
+#使い方
+
+```
+use StoryEdutech\KobetsubaApiClient\KobetsubaApiClient;
+
+$client=new KobetsubaApiClient;
+
+$json=$client->get('/video_search')->json();
+```
+
+※スコープの設定が必要ならnew KobetsubaApiClient($scopeList)で定義出来ます。（※コンマ区切りスコープ文字列 "scope1,scope2"など）
+
+
+
+#参照
+以下のLarvelのHttpクライアントのメソッドにおいて、ほとんどのものが使えます
+https://laravel.com/docs/8.x/http-client
