@@ -32,4 +32,4 @@ Route::get('/video_test', function () {
   $client=new KobetsubaApiClient;
 
   return $client->get('/video_search')->json();
-};
+});
