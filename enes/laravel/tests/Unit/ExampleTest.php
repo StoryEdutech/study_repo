@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\ExampleTester;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -13,6 +14,7 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
-        $this->assertTrue(true);
+        new ExampleTester($this);
+        // $this->assertTrue(true);
     }
 }

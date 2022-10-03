@@ -29,6 +29,10 @@
       {
         "type": "vcs",
         "url": "https://github.com/StoryEdutech/SessionSync"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/StoryEdutech/SimpleCrud"
       }
     ],
     "require-dev": {
