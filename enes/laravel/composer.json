@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "nunomaduro/collision": "^5.11",
         "story_edutech/kobetsuba_api_client": "^1.0.0",
         "story_edutech/simple_crud": "master-dev"
     },
@@ -37,7 +38,6 @@
         "laravel/dusk": "^6.24",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
