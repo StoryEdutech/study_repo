@@ -18,6 +18,9 @@ use StoryEdutech\KobetsubaApiClient\KobetsubaApiClient;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test_page', function () {
+    return view('test_page');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
