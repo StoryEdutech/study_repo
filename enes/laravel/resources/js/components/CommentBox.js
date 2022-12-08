@@ -22,7 +22,7 @@ function CommentBox(props) {
       post.content=content_now;
       $.ajaxSetup({
           headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
           }
       });
       $.post(ep,post,function(res){setEditing(false);if(res && res.id){setId(res.id);}});
@@ -33,7 +33,7 @@ function CommentBox(props) {
       var post={};
       $.ajaxSetup({
           headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
           }
       });
       $.post(ep,post,function(res){setIsDeleted(true);});

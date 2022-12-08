@@ -24,7 +24,7 @@ Route::get('/test_page', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth','child_auth'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 // require __DIR__.'/child_auth.php';
@@ -35,4 +35,8 @@ Route::get('/video_test', function () {
   $client=new KobetsubaApiClient;
 
   return $client->get('/video_search?div_id=v-123')->json();
+});
+
+Route::get('/scripts',function(){
+  return view("script_includes");
 });

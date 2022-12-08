@@ -18,10 +18,10 @@ function CommentList(props){
   useEffect(()=>{
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
         }
     });
-    $.post('/comment/user/'+(for_uid?for_uid:0),{},(res)=>{
+    $.post(window.url_base+'/comment/user/'+(for_uid?for_uid:0),{},(res)=>{
       setComments(res.comment_collection.data?res.comment_collection.data:[]);
       setLastPage(res.comment_collection.last_page);
       setDoneLoading(true);
@@ -33,11 +33,11 @@ function CommentList(props){
     setLoadingMore(true);
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
         }
     });
     var new_page=page+1;
-    $.post('/comment/user/'+(for_uid?for_uid:0)+'?page='+new_page,{},(res)=>{
+    $.post(window.url_base+'/comment/user/'+(for_uid?for_uid:0)+'?page='+new_page,{},(res)=>{
       setComments(comments.concat(res.comment_collection.data?res.comment_collection.data:[]));
       setPage(new_page);
       setLoadingMore(false);

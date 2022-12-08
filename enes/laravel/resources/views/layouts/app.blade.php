@@ -17,7 +17,7 @@
         <script src="{{ env('kobetsuba_url') }}/js_includes/react.production.min.js"></script>
         <script src="{{ env('kobetsuba_url') }}/js_includes/react-dom.production.min.js"></script>
         <script src="{{ env('kobetsuba_url') }}/js_includes/jquery.min.js"></script>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @csrf
 
         <script>
 
@@ -25,11 +25,14 @@
           1:{ uid: 1, nickname: "インナーサクラ", grade:4 },
           2:{ uid: 2, nickname: "ラクラク", grade:6 }
         };
+        window.url_base="{{ env('APP_URL')??'' }}";
 
         </script>
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ url(mix('js/manifest.js')) }}" defer></script>
+        <script src="{{ url(mix('js/vendor.js')) }}" defer></script>
+        <script src="{{ url(mix('js/app.js')) }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

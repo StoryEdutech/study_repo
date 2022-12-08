@@ -12,13 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix.autoload({
-    jquery: ['$', 'window.jQuery'],
+    // jquery: ['$', 'window.jQuery'],
     React: ['React','window.React'],
     ReactDOM: ['React','window.ReactDOM'],
 });
 
 mix.js('resources/js/app.js', 'public/js')
-    .react()
+    .react().extract().version()
     .sass('resources/sass/app.scss', 'public/css').postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
