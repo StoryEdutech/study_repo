@@ -31,8 +31,8 @@ class Books extends Page
     public function checkCreateBook(Browser $browser, $title, $author) {
         $browser
         ->assertPathIs('/books') // 一覧画面に遷移を確認
-        ->assertSee($title) // 「タイトルテスト」というテキストが含まれていること
-        ->assertSee($author); // 「著者テスト」というテキストが含まれていること
+        ->assertSee($title)
+        ->assertSee($author);
     }
     public function dontCheckCreateBook(Browser $browser, $title, $author) {
         $browser
