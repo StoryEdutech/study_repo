@@ -42,6 +42,32 @@ class BookController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Book $book)
+    {
+         return view('books.edit', compact('book'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Http\Response
+     */
+    public function update(BookRequest $request, Book $book)
+    {
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->save();
+        return response()->redirectToRoute('books.index');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

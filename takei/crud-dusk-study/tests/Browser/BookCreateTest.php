@@ -5,32 +5,84 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Tests\Browser\Pages\Books;
+use Tests\Browser\Components\BookCreateAndUpdateForm;
+
 
 class BookCreateTest extends DuskTestCase
 {
     public function testCreateBookOK()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/books') // 一覧画面に遷移
-                    ->clickLink('新規作成') // 一覧画面で新規作成リンクをクリック
-                    ->type('title', 'タイトルテスト') // タイトルを入力する
-                    ->type('author', '著者テスト')  // 著者を入力する
-                    ->click('button[type="submit"]') // 送信ボタンをクリック
-                    ->assertPathIs('/books') // 一覧画面に遷移を確認
-                    ->assertSee('タイトルテスト') // 「タイトルテスト」というテキストが含まれていること
-                    ->assertSee('著者テスト'); // 「著者テスト」というテキストが含まれていること
+                $browser
+                    ->visit(new Books) // 一覧画面に遷移
+                    ->clickLink('新規作成')
+                    ->within(new BookCreateAndUpdateForm,function($browser){
+                        $browser->typeForm('タイトルテスト','著者テスト')
+                        ->click('@送信ボタン'); // 送信ボタンをクリック
+                    })
+                    ->checkCreateBook('タイトルテスト','著者テスト');
+        });
+    }
+
+    public function testEditBook()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit(new Books)
+                ->clickLink('詳細')
+                ->within(new BookCreateAndUpdateForm,function($browser){
+                    $browser->typeForm('タイトルテスト','著者テスト')
+                    ->click('@送信ボタン'); // 送信ボタンをクリック
+                });
+        });
+    }
+
+    public function testUpdateBook()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit(new Books)
+                ->clickLink('詳細')
+                ->within(new BookCreateAndUpdateForm,function($browser){
+                    $browser->typeForm('タイトルテスト２','著者テスト２')
+                    ->click('button');
+                })
+                ->checkCreateBook('タイトルテスト２','著者テスト２');
         });
     }
 
     public function testCreateBookValidationError()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/books') // 一覧画面に遷移
+            $browser
+                ->visit(new Books) // 一覧画面に遷移
                 ->clickLink('新規作成') // 一覧画面で新規作成リンクをクリック
                 ->click('button') // 何も入力せずにクリック
                 ->assertPathIs('/books/create')
-                ->assertSee('タイトルは必須項目です。') // バリデーションエラーの文言が表示されていること
-                ->assertSee('著者は必須項目です。');// バリデーションエラーの文言が表示されていること
+                ->within(new BookCreateAndUpdateForm,function($browser){
+                    $browser->checkValidationError();
+                });
+        });
+    }
+
+    public function testDestroyCancel()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit(new Books) // 一覧画面を表示
+                ->checkDestroyCancel()
+                ->checkCreateBook('タイトルテスト２','著者テスト２');
+        });
+    }
+
+    public function testDestroyBook()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit(new Books) // 一覧画面を表示
+                ->checkDestroyBook()
+                ->dontCheckCreateBook('タイトルテスト２','著者テスト２');
         });
     }
 }
