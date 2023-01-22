@@ -20,23 +20,15 @@ function CommentBox(props) {
       var post={};
       post.reply_to=reply_to?reply_to:0;
       post.content=content_now;
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
-          }
-      });
-      $.post(ep,post,function(res){setEditing(false);if(res && res.id){setId(res.id);}});
+      window.axios("/sanctum/csrf-cookie");
+      window.axios.post(ep,post).then(function(res){setEditing(false);if(res && res.id){setId(res.id);}});
     };
     const delete_comment= ()=>{
       setShowReply(false);
       var ep="/comment/"+id_now+"/delete";
       var post={};
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
-          }
-      });
-      $.post(ep,post,function(res){setIsDeleted(true);});
+      window.axios("/sanctum/csrf-cookie");
+      window.axios.post(ep,post).then(function(res){setIsDeleted(true);});
     }
     const clicked_edit = (event) => {
       setShowReply(false);

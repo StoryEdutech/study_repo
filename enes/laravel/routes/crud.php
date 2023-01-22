@@ -2,7 +2,10 @@
 use StoryEdutech\SimpleCrud\Route\RouteBundler;
 
 $crud_bindings=[
-  "comment"=>[]
+  "comment"=>[
+    "middleware"=>["web","child_auth_api"],
+
+  ]
 ];
 RouteBundler::bindAll($crud_bindings);
 

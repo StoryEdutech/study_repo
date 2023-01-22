@@ -13,6 +13,10 @@ class CommentController extends Controller
   }
   public $paginate=4;
   public static $resource="comment";
+  public function __construct(){
+    // $this->authorizeResource(Comment::class);
+
+  }
   public function reply_to($id){
     $comment=Comment::find($id);
     if(!empty($comment)){

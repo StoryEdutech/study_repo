@@ -27,7 +27,17 @@ __webpack_require__(/*! ./components/CommentList */ "./resources/js/components/C
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
@@ -43,6 +53,45 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.interceptors.response.use(function (response) {
+  return response;
+}, /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(err) {
+    var status;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            status = window._.get(err, 'response.status');
+
+            if (!(status === 419)) {
+              _context.next = 6;
+              break;
+            }
+
+            console.log("retrying"); // Refresh our session token
+
+            _context.next = 5;
+            return axios.get('sanctum/csrf-token');
+
+          case 5:
+            return _context.abrupt("return", axios(err.response.config));
+
+          case 6:
+            return _context.abrupt("return", Promise.reject(err));
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}());
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -146,12 +195,8 @@ function CommentBox(props) {
     var post = {};
     post.reply_to = reply_to ? reply_to : 0;
     post.content = content_now;
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
-      }
-    });
-    $.post(ep, post, function (res) {
+    window.axios("/sanctum/csrf-cookie");
+    window.axios.post(ep, post).then(function (res) {
       setEditing(false);
 
       if (res && res.id) {
@@ -164,12 +209,8 @@ function CommentBox(props) {
     setShowReply(false);
     var ep = "/comment/" + id_now + "/delete";
     var post = {};
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
-      }
-    });
-    $.post(ep, post, function (res) {
+    window.axios("/sanctum/csrf-cookie");
+    window.axios.post(ep, post).then(function (res) {
       setIsDeleted(true);
     });
   };
@@ -361,12 +402,9 @@ function CommentList(props) {
       setCanUseActionsTop = _useState14[1];
 
   useEffect(function () {
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
-      }
-    });
-    $.post(window.url_base + '/comment/user/' + (for_uid ? for_uid : 0), {}, function (res) {
+    window.axios("/sanctum/csrf-cookie");
+    window.axios.post(window.url_base + '/comment/user/' + (for_uid ? for_uid : 0), {}).then(function (response) {
+      var res = response.data;
       setComments(res.comment_collection.data ? res.comment_collection.data : []);
       setLastPage(res.comment_collection.last_page);
       setDoneLoading(true);

@@ -14,6 +14,20 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.axios.interceptors.response.use(response => response, async err => {
+  const status = window._.get(err, 'response.status')
+
+  if (status === 419) {
+    // Refresh our session token
+    await axios.get('sanctum/csrf-token')
+
+    // Return a new request using the original request's configuration
+    return axios(err.response.config)
+  }
+
+  return Promise.reject(err)
+})
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

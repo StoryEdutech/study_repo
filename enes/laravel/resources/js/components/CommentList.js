@@ -16,12 +16,9 @@ function CommentList(props){
 
 
   useEffect(()=>{
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
-        }
-    });
-    $.post(window.url_base+'/comment/user/'+(for_uid?for_uid:0),{},(res)=>{
+    window.axios("/sanctum/csrf-cookie");
+    window.axios.post(window.url_base+'/comment/user/'+(for_uid?for_uid:0),{}).then((response)=>{
+      var res=response.data;
       setComments(res.comment_collection.data?res.comment_collection.data:[]);
       setLastPage(res.comment_collection.last_page);
       setDoneLoading(true);

@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Comment;
-use StoryEdutech\ChildAuth\Models\ChildUser;
+use StoryEdutech\ChildAuth\Models\BaseChildUser as ChildUser;
 use App\Policies\BasicPolicy;
 
 class CommentPolicy extends BasicPolicy

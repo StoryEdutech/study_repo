@@ -24,9 +24,9 @@ Route::get('/test_page', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware('child_auth')->name('dashboard');
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
 // require __DIR__.'/child_auth.php';
 require __DIR__.'/crud.php';
 
@@ -39,4 +39,4 @@ Route::get('/video_test', function () {
 
 Route::get('/scripts',function(){
   return view("script_includes");
-});
+})->middleware("child_auth_api");

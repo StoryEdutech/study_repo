@@ -13,6 +13,8 @@ class CreateChildAccount extends Migration
      */
     public function up()
     {
+      Schema::defaultStringLength(191);
+      
         Schema::create('child_account', function (Blueprint $table) {
             $table->id('uid');
             $table->unsignedBigInteger('account_id')->default(0);
