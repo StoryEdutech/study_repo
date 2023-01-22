@@ -22,7 +22,7 @@ mix.autoload({
 // mix.js('resources/js/apps/ContactForm.js', 'public/js').react().version();
 // mix.js('resources/js/apps/ContactList.js', 'public/js').react().version();
 
-mix.js('resources/js/apps', 'public/js/test.js').react().version();
+mix.js(['resources/js/apps/Contact.js','resources/js/apps/ContactForm.js','resources/js/apps/ContactList.js'], 'public/js/test.js').react().version();
 mix.styles('resources/css/app.css', 'public/css/all.css').version();
 
 
