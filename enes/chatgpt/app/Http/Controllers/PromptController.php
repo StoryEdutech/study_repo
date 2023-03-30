@@ -13,25 +13,7 @@ class PromptController extends Controller
     }
     public static function ask_gpt($prompt,$options=[]){
       $chatgpt=new ChatGptApi;
-      $response=$chatgpt->chat(collect([
-       'model' => 'gpt-3.5-turbo',
-       'messages' => [
-           [
-               "role" => "system",
-               "content" => "You are a helpful assistant."
-           ],
-           [
-               "role" => "user",
-               "content" => $prompt
-           ],
-       ],
-       'temperature' => 1.0,
-       'max_tokens' => 4000,
-       'frequency_penalty' => 0,
-       'presence_penalty' => 0,
-     ])->replace($options)->toArray());
-     $response_decoded=json_decode($response);
-     return $response_decoded->choices[0]->message->content;
+      return $chatgpt->answer($prompt,$options);
     }
 
     public function withContext(Request $request){
