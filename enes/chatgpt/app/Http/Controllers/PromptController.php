@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ChatGptApi;
+use App\Models\FqaQuestion;
+use Illuminate\Support\Str;
 
 class PromptController extends Controller
 {
@@ -17,19 +19,29 @@ class PromptController extends Controller
     }
 
     public function withContext(Request $request){
-      $request->mergeIfMissing(["context"=>"Enes is the enginer who programmed this"]);
       $req=$request->all();
+      $context=$req["context"];
+      if(strtolower($context)==="fqa"){
+        $context=FqaQuestion::parse_all();
+      }
+      $chunks=mb_str_split($context,4000);
+      foreach ($chunks as $one_context) {
+        $response=static::ask_gpt(
+              "Answer the question in Japanese based on the context below,
+               and if the question can't be answered based on the context,
+               answer only with \"回答できません\"
+               Context: {$one_context}
+               ---
 
-      return response()->json(["reply"=>static::ask_gpt(
-            "Answer the question based on the context below,
-             and if the question can't be answered based on the context,
-             say \"I don't know\"
-             Context: {$req["context"]}
-             ---
-
-             Question: {$req["question"]}
-             Answer:",
-            ["temperature"=>0]
-          )]);
+               Question: {$req["question"]}
+               Answer:",
+              ["temperature"=>0]
+            );
+          var_dump($response);
+          if(!Str::of($response)->contains("回答できません")){
+            break;
+          }
+      }
+      return response()->json(["reply"=>$response]);
     }
 }
