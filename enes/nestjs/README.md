@@ -13,6 +13,8 @@ Refer to screenshots in `api_collections/import_guide` for imports.
 ```bash
 $ npm install
 $ cat .env.example > .env
+# for sqlite database
+$ touch dev.sqlite
 ```
 
 ## Running the app

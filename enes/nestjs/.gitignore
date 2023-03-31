@@ -5,6 +5,9 @@
 # Configs
 .env
 
+# Sqlite
+*.sqlite
+
 # Logs
 logs
 *.log
