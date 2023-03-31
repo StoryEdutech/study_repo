@@ -31,13 +31,10 @@ export class CatsController {
      return this.catsService.findAll();
    }
 
-  @Get("Nest")
-  @Redirect('https://nestjs.com', 301)
-  redirectToNest(){}
 
   @Get(':id')
-  findOne(@Param('id') id: number): string {
-    return `This action returns a #${id} cat`;
+  findOne(@Param('id') id: number):  Promise<Cat | null> {
+    return this.catsService.findOne(id);
   }
 
 }
