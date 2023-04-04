@@ -38,11 +38,11 @@ $ npm install -g @nestjs/cli
 ## example: create users resource
 $ nest g resource users
 
-# TypeORM CLI
-$ npm i -g typeorm
+# CompoDoc for documentation
+$ npm i -D @compodoc/compodoc
 
-## example: sync schema to db
-$ typeorm schema:sync
+## Usage: (served on http://127.0.0.1:8080/)
+$ npx @compodoc/compodoc -p tsconfig.json -s
 
 ```
 ## Test
