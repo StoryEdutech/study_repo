@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "07d7665d-6b3e-4c46-a63c-23033744da62",
+		"name": "/users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7427242"
+	},
+	"item": [
+		{
+			"name": "/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/{{prefix}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/{{prefix}}/1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "enes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "enes@example.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "enespw2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{prefix}}/3",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "enes pw",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "enes",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "enes@example.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "enespw2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "nuru mail",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "nuru",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "nuru@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "nurupw",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"2"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/{{prefix}}/3",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "enes",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "enes@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "enespw",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{prefix}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "enes",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "enes",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "enes@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "enespw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "nuru",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "nuru",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "anekoneko@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "nurupw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prefix",
+			"value": "users",
+			"type": "string"
+		},
+		{
+			"value": ""
+		},
+		{
+			"value": ""
+		}
+	]
+}

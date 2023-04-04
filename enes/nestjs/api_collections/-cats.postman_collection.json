@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "42888115-2ba1-48aa-8787-198cb8a9cfda",
-		"name": "Cats",
+		"_postman_id": "c97c4edf-b664-487e-af0f-ba857de63bc2",
+		"name": "/cats",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7427242"
 	},
 	"item": [
 		{
-			"name": "{{domain}}/cats",
+			"name": "/",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -19,59 +19,37 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{domain}}/cats",
+					"raw": "{{domain}}/{{prefix}}",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
-						"cats"
+						"{{prefix}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "{{domain}}/cats/:id",
+			"name": "/:id",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{domain}}/cats/2",
+					"raw": "{{domain}}/{{prefix}}/s1",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
-						"cats",
-						"2"
+						"{{prefix}}",
+						"s1"
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "{{domain}}/cats/:id",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{domain}}/cats/1",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"cats",
-								"1"
-							]
-						}
-					},
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
-				}
-			]
+			"response": []
 		},
 		{
-			"name": "{{domain}}/cats",
+			"name": "/",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -96,12 +74,12 @@
 					]
 				},
 				"url": {
-					"raw": "{{domain}}/cats",
+					"raw": "{{domain}}/{{prefix}}",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
-						"cats"
+						"{{prefix}}"
 					]
 				}
 			},
@@ -132,12 +110,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{domain}}/cats",
+							"raw": "{{domain}}/{{prefix}}",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
-								"cats"
+								"{{prefix}}"
 							]
 						}
 					},
@@ -167,7 +145,7 @@
 						}
 					],
 					"cookie": [],
-					"body": ""
+					"body": null
 				},
 				{
 					"name": "nuru",
@@ -195,12 +173,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{domain}}/cats",
+							"raw": "{{domain}}/{{prefix}}",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
-								"cats"
+								"{{prefix}}"
 							]
 						}
 					},
@@ -230,9 +208,36 @@
 						}
 					],
 					"cookie": [],
-					"body": ""
+					"body": null
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prefix",
+			"value": "cats",
+			"type": "string"
 		}
 	]
 }
