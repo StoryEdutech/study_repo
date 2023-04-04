@@ -1,27 +1,22 @@
-# リリースチーム用
-## 変更ファイル（変更してないものは消す）
-```
-html/rss.xml
-html/sitemap.xml
-restricted/feature_settings/kobetsubakun.txt
-```
+## 言語／フレームワーク
+- NextJS
+- NestJS
 
-# CRM用
+## 勉強内容
 
-## 何を変更するか？
+例：Controller作りました・データベースに接続を果たせました
+
 - 
 
-## 何のため変更するか？（空でもOK）
+## 有用と思ったもの・意外だったもの
 - 
 
 
-## 次の変更はいつ？
+## 苦戦したもの
 - 
 
-
-## 次の変更のリマインダー設定/格納は済んでいるか？
+## 楽しかったもの（※任意）
 - 
 
-
-# エンジニア用
-このテンプレートは使わない。PR作成前のページ＝ブランチ比較ページ（/kobetsuba-web/compare/master...new_branch)でURLに「?template=dev.md」を付け加えて移動
+## 次勉強するもの
+- 
