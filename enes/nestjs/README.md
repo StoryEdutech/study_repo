@@ -11,10 +11,10 @@ Refer to screenshots in `api_collections/import_guide` for imports.
 ## Installation
 
 ```bash
-$ npm install
-$ cat .env.example > .env
+npm install
+cat .env.example > .env
 # for sqlite database
-$ touch dev.sqlite
+touch dev.sqlite
 ```
 
 ## Running the app
@@ -30,6 +30,21 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## CLI tools
+
+```bash
+# NestJS CLI
+$ npm install -g @nestjs/cli
+## example: create users resource
+$ nest g resource users
+
+# TypeORM CLI
+$ npm i -g typeorm
+
+## example: sync schema to db
+$ typeorm schema:sync
+
+```
 ## Test
 
 ```bash
