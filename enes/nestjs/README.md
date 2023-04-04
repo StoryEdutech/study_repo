@@ -11,10 +11,10 @@ Refer to screenshots in `api_collections/import_guide` for imports.
 ## Installation
 
 ```bash
-$ npm install
-$ cat .env.example > .env
+npm install
+cat .env.example > .env
 # for sqlite database
-$ touch dev.sqlite
+touch dev.sqlite
 ```
 
 ## Running the app
