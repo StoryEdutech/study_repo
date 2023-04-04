@@ -7,18 +7,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import {Cat} from "./cats/cat.entity"
 import { CatsModule } from './cats/cats.module';
 import { UsersModule } from './users/users.module';
-
+import { join } from 'path';
 
 @Module({
   imports: [
     CatsModule,
+    UsersModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       ...getConnectionConfig("sqlite"),
-      entities: [__dirname + '/../**/*.entity.{js,ts}'],
-      autoLoadEntities: true,
+      entities: [join(__dirname, '**', '*.entity.{ts,js}')]
+      // autoLoadEntities: true
     }),
-    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
