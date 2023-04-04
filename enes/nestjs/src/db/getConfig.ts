@@ -4,7 +4,7 @@ import { toBoolean } from '../utils/dotenv';
 
 dotenv.config(); // used to get process.env access prior to AppModule instanciation
 
-export default function getConfig(settings){
+export default function getConnectionConfig(settings){
   const {connection,entities}=settings;
   const connection_select=connection?connection:process.env.DB_TYPE;
   var config_select={};
@@ -18,6 +18,6 @@ export default function getConfig(settings){
       break;
   }
   const synchronize=toBoolean(process.env.DB_SYNCHRONIZE);
-  return {...config_select,entities,synchronize};
+  return {...config_select,synchronize};
 
 }
