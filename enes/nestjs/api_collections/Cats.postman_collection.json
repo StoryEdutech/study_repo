@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "42888115-2ba1-48aa-8787-198cb8a9cfda",
+		"name": "Cats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7427242"
+	},
+	"item": [
+		{
+			"name": "{{domain}}/cats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/cats",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"cats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{domain}}/cats/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/cats/2",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"cats",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "{{domain}}/cats/:id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/cats/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cats",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "{{domain}}/cats",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "nuru",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "breed",
+							"value": "bengal",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/cats",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"cats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "enes",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "enes",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "31",
+									"type": "text"
+								},
+								{
+									"key": "breed",
+									"value": "van",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/cats",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cats"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "nuru",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "nuru",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "27",
+									"type": "text"
+								},
+								{
+									"key": "breed",
+									"value": "bengal",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/cats",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"cats"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}
