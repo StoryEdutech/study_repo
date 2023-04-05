@@ -1,17 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './interfaces/user.interface';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
+  // create should be handled in AuthController
+  // @Post()
+  // create(@Body() createUserDto: CreateUserDto) {
+  //   return this.usersService.create(createUserDto);
+  // }
 
   @Get()
   findAll() {
@@ -25,7 +24,12 @@ export class UsersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    // password should only be changed in /auth/change_pw
+    const {password,...other}=updateUserDto;
+    if(Object.keys(other).length==0 && password){
+      throw new BadRequestException("password_change_on_/auth/change_pw")
+    }
+    return this.usersService.update(+id, other);
   }
 
   @Delete(':id')
