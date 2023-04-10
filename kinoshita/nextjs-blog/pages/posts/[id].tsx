@@ -1,5 +1,5 @@
 import Layout from "@/components/layout"
-import Head from 'next/head';
+import Head from 'next/head'
 import { getAllPostIds, getPostData } from "@/lib/post"
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next"
 import Date from '../../components/date'
