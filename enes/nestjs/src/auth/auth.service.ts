@@ -13,7 +13,7 @@ export class AuthService{
         if(!user) {throw new UnauthorizedException('not_match')};
         const { password, ...result } = user;
         const res = await compare(plain_password,password);
-        if(!res) { throw new UnauthorizedException('not_match'); }        
+        if(!res) { throw new UnauthorizedException('not_match'); }
         console.log(result);
         const payload = result;
         return {
@@ -33,14 +33,14 @@ export class AuthService{
         return this.usersService.create(
             {
                 ...others,
-                password:AuthService.crypt(password)
-            }                
+                password:await AuthService.crypt(password)
+            }
         );
     }
 
     static crypt(plain_password:string) : string{
         const saltRounds = 10;
         return hash(plain_password, saltRounds);
-    } 
+    }
 
 }
