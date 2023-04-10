@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "9a9ec459-49f4-4d36-9b89-03fb1687bc94",
+		"name": "/auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7427242"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "enes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "enes@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "enespw",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{prefix}}/login",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "enes after pw change",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "enes",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "enes@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "enespw2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"login"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "enes",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "enes",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "enes@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "enespw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"login"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "nuru",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "nuru",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "anekoneko@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "nurupw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"login"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "enes",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "enes@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "enespw",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{prefix}}/signup",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "enes",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "enes",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "enes@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "enespw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/signup",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"signup"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "nuru",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "nuru",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "anekoneko@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "nurupw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/{{prefix}}/signup",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"signup"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Mar 2023 16:20:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "/change_pw",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"domain=pm.environment.get(\"domain\");",
+							"pm.sendRequest({",
+							"    url:domain+'/auth/login',",
+							"        method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json',",
+							"    },",
+							"    body: {",
+							"        mode:'raw',",
+							"        raw: JSON.stringify(",
+							"            {",
+							"                email:\"enes@example.com\",",
+							"               password:\"enespw\"",
+							"            })",
+							"    }",
+							"}, function (err, response) {",
+							"    console.log(response.json().access_token)",
+							"    pm.collectionVariables.set(\"token\", response.json().access_token);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "enes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "enes@example.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "enespw2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{prefix}}/change_pw",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"change_pw"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prefix",
+			"value": "auth",
+			"type": "string"
+		},
+		{
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

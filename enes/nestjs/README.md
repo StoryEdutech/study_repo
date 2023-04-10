@@ -30,6 +30,21 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## CLI tools
+
+```bash
+# NestJS CLI
+$ npm install -g @nestjs/cli
+## example: create users resource
+$ nest g resource users
+
+# CompoDoc for documentation
+$ npm i -D @compodoc/compodoc
+
+## Usage: (served on http://127.0.0.1:8080/)
+$ npx @compodoc/compodoc -p tsconfig.json -s
+
+```
 ## Test
 
 ```bash
