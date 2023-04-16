@@ -4,11 +4,13 @@ import Head from "next/head"
 import { getSortedPostsData } from '@/lib/post'
 import { InferGetStaticPropsType } from 'next'
 import Layout from "@/components/layout";
+import fetch from 'node-fetch'
+
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const FirstPost = ({ allPostsData }: Props) => {
-    console.log(allPostsData)
+const FirstPost = ({ data }: Props) => {
+    console.log(data)
 
     return (
         <Layout>
@@ -23,12 +25,16 @@ const FirstPost = ({ allPostsData }: Props) => {
     )
 }
 
-
 export async function getStaticProps() {
-    const allPostsData = getSortedPostsData()
+    // fetchはnode-fetchのfetchじゃないとだめ
+    // 普通のfetch(web api)はクライアントサイドでしか動かない
+    // getStaticPropsはサーバーで実行される
+    const res = await fetch('http://localhost:5000')
+    const data = await res.json()
+
     return {
         props: {
-            allPostsData
+            data
         }
     }
 }
