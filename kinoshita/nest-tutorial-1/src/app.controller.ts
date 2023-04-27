@@ -16,7 +16,7 @@ export class AppController {
     // {controller()のパス} / {Getのパス()} method: Get
     // メソッド名は自由
     @Get()
-    getHello(): string {
+    getHello(): { msg: string} {
         // 実際の処理はserviceにさせる
         // controllerはリクエストをハンドリングするだけ
         return this.appService.getHello();
