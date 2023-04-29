@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+// このUserクラスは、Modelを継承(extends)してかつ、
+// AuthenticatableContract他２つのインターフェイスを実装（implements）した、
+// クラス(Illuminate\Foundation\Auth\User as Authenticatable)を継承している
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,10 +21,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
+
+    protected $guarded = [
+        'id',
         'email',
         'password',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -41,4 +53,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * ユーザーのpost(投稿)を取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    /**
+     * ユーザーのcomment(コメント)を取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }
