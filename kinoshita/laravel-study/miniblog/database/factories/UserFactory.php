@@ -17,6 +17,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // 元々あったfactory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),

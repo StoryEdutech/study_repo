@@ -1,5 +1,5 @@
 ■mysql起動
-mysql -u root -p"3.)W[+jJWL2PT4C"
+mysql -u root -p"3.)W[+jJWL2PT4C" blog
 
 .env
 DB_CONNECTION=mysql
@@ -53,6 +53,11 @@ php artisan migrate:rollback を実行して、ロールバックをする
 ※php artisan migrate:refresh / php artisan migrate:fresh
 というのもある 
 
+■fillableとguraded
+
+■シーダ―を実行
+php artisan db:seed
+
 
 // エンティティ/////////////////////////
 {user}    {Post}     {comment}     
@@ -74,7 +79,15 @@ password   title      content
 breezeインストール
 マイグレーションファイル生成
 テーブルのカラムを設定して、ロールバック＆マイグレーション
+モデルhasMany/BelognsTo
 
 // next
-関係性構築、hasMany/belongsTo
+bladeに入る前にコミットしてプッシュしてもいいかも
+bladeを理解する
+モデルのメソッドはstaticにすればクラスから呼び出せる
+controller
+middleware
+
+■ファザード
+■トレイト
 
