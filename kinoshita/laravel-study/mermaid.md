@@ -2,13 +2,12 @@ mermaid sample
 
 https://mermaid.js.org/
 
-```
-{user}    {Post}     {comment}     
-id         id         id  
-name       user_id    post_id
-email      content    user_id  
-password   title      content
-```
+| user |    Post |     comment |
+|----|-----|-----|
+| id   |   id      |   id   |
+| name    |   user_id  |  post_id |
+| email    |  content  |  user_id | 
+| password  | title   |  content |
 
 ```mermaid
 flowchart LR
