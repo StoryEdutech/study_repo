@@ -1,8 +1,8 @@
 # 内容
 
 ### 言語／フレームワーク
-- NextJS
-- NestJS
+- Laravel
+- React
 
 ### 勉強時間（※大体でOK）
 
