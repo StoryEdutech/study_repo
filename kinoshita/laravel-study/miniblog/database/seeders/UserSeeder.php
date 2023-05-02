@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // UserFactoryで定義したデータを作る
+        User::factory()->count(5)->create();
+    }
+}

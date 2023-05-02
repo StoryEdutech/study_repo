@@ -1,0 +1,93 @@
+■mysql起動
+mysql -u root -p"3.)W[+jJWL2PT4C" blog
+
+.env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=blog
+DB_USERNAME=root
+DB_PASSWORD=3.)W[+jJWL2PT4C
+
+■アプリケーション起動 (laravelのみ)
+php artisan serve
+
+■javascriptビルド (VueとかReactを使っているときに、ビルドして、laravelに組み込む)
+npm run dev
+
+■キャッシュクリア (.envファイルを修正した後とかにやる、修正分が反映されないため)
+php artisan config:cache
+
+▼マイグレーションファイル生成（テーブルのみ作成）hogesがテーブル名
+php artisan make:migration create_hoges_table --create=hoges 
+
+▼マイグレーションファイル生成（テーブルとモデル作成）hogeがモデル名
+php artisan make:model Hoge --migration
+
+▼モデル、マイグレーションファイル、コントローラーを同時に作成（どれか１つでも存在していたらエラーになる）
+php artisan make:model Hoge -c -m
+
+▼全部作成（マイグレーションファイル、モデル、ファクトリー、シーダー、コントローラー）
+php artisan make:model Hoge -a        ※コントローラーはcrud用のものではなく、ほぼ空
+
+■restapi用のコントローラー、マイグレーションファイル、モデル、ファクトリー、シーダーを作成
+php artisan make:model Post -m -r -s -f
+
+■マイグレーション実行
+php artisan migrate
+
+■関係性 (hasOne, hasMany, BelognsTo)
+https://qiita.com/yukachin0414/items/726f3cbf4270f50f6028
+https://moripro.net/laravel-hasmany-belongsto/
+
+■データ型
+https://cross-accelerate-business-create.com/2021/01/02/laravel-column/
+
+
+★マイグレーションファイルを実行後に修正した時
+もう一度、php artisan migateをしても変わらない。
+マイグレーションファイルは一度きり。
+なので、
+php artisan migrate:rollback を実行して、ロールバックをする
+そして、再度 php artisan migateを実行する
+※php artisan migrate:refresh / php artisan migrate:fresh
+というのもある 
+
+■fillableとguraded
+
+■シーダ―を実行
+php artisan db:seed
+
+
+// エンティティ/////////////////////////
+{user}    {Post}     {comment}     
+id         id         id  
+name       user_id    post_id
+email      content    user_id  
+password   title      content
+
+{user} --hasMany--> {post} --hasMany--> {comment}
+   \--<--belongsTo---/  \-<-belongsTo----/  |         
+   \--<-----belongsTo----------hasMany->----|
+
+/////////////////////////////////////
+
+
+
+進捗
+// done
+breezeインストール
+マイグレーションファイル生成
+テーブルのカラムを設定して、ロールバック＆マイグレーション
+モデルhasMany/BelognsTo
+
+// next
+bladeに入る前にコミットしてプッシュしてもいいかも
+bladeを理解する
+モデルのメソッドはstaticにすればクラスから呼び出せる
+controller
+middleware
+
+■ファザード
+■トレイト
+
