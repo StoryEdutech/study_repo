@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
 use Illuminate\Http\Request;
+
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PostController extends Controller
 {
@@ -14,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Post/Index',['posts' => Post::all()]);
     }
 
     /**
@@ -55,9 +59,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
-        //
+        return Inertia::render('Post/Edit', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
     }
 
     /**
