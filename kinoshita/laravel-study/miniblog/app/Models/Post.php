@@ -13,27 +13,24 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = [
-        'id',
-        'user_id',
-        'created_at',
-        'updated_at'
+    protected $fillable = [
+        'title',
+        'content',
+        'user_id'
     ];
+    // protected $guarded = [
+    //     'id',
+    //     'user_id',
+    //     'created_at',
+    //     'updated_at'
+    // ];
 
-    /**
-     * ユーザーとその投稿を紐づける
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function users(){
+    // belongsToは単数形?
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * ユーザーとコメントを紐づける
-     *
-     * @return void
-     */
+    // hasManyは複数形?
     public function comments(){
         return $this->hasMany(Comment::class);
     }

@@ -44,4 +44,12 @@
             </x-primary-button>
         </div>
     </form>
+
+    {{-- 開発でログインするためのアカウント --}}
+    <p>
+        開発でログインするためのアカウント<br />
+        hideki.hirokawa@example.net<br />
+        password
+    </p>
 </x-guest-layout>
+

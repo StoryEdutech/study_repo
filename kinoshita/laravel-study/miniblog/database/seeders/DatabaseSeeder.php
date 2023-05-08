@@ -19,15 +19,5 @@ class DatabaseSeeder extends Seeder
         $this->call(PostSeeder::class);
         $this->call(CommentSeeder::class);
 
-
-        // PostSeederからじゃなくて、こちらからでも実行できる
-        // PostSeederでrun()にfactory()返すようにして、こちらでcall()することもできる
-        // Post::factory()->count(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +17,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // UserFactoryで定義したデータを作る
-        User::factory()->count(5)->create();
+        User::factory(4)
+            ->has(Post::factory(2)
+                ->has(Comment::factory(2))
+            )->create();
     }
 }

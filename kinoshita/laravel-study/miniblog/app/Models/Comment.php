@@ -11,29 +11,26 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'content',
         'post_id',
         'user_id',
-        'created_at',
-        'updated_at'
     ];
+    // protected $guarded = [
+    //     'id',
+    //     'post_id',
+    //     'user_id',
+    //     'created_at',
+    //     'updated_at'
+    // ];
 
-    /**
-     * ユーザーのコメントを紐づける
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function users(){
-        return $this->belongsTo(Users::class);
+    // belongsToは単数形?
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
-    /**
-     * ユーザーの投稿と紐づける
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function posts(){
+    // belongsToは単数形?
+    public function post(){
         return $this->belongsTo(Post::class);
     }
 

@@ -21,19 +21,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
-
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'name',
         'email',
         'password',
-        'created_at',
-        'updated_at'
     ];
+    // protected $guarded = [
+    //     'id',
+    //     'email',
+    //     'password',
+    //     'created_at',
+    //     'updated_at'
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,20 +53,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * ユーザーのpost(投稿)を取得
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    // hasManyは複数形?
     public function posts(){
         return $this->hasMany(Post::class);
     }
 
-    /**
-     * ユーザーのcomment(コメント)を取得
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    // hasManyは複数形?
     public function comments(){
         return $this->hasMany(Comment::class);
     }
