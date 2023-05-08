@@ -21,31 +21,12 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        // fakerを使う
-        // userのデータがあったら、そのユーザーのid
-        // なかったら、userを新しく作り、idを取得
-        $random_id = optional(User::inRandomOrder()->first())->id;
-        $user_id = $this->faker->boolean() && $random_id 
-            ? $random_id
-            : User::factory()->create()->id;
+        $user_id = User::inRandomOrder()->first()->id;
 
         return [
-            'title' => $this->faker->title,
-            'content' => $this->faker->paragraph,
+            'title' => $this->faker->realText(10),
+            'content' => $this->faker->realText(50),
             'user_id' => $user_id
         ];
-
-
-        // fakerを使わないときはべた書き
-        // $titles = ['apple', 'banana', 'lemon', 'grape', 'orange', 'peach', 'pineapple'];
-        // $contents = ['red', 'yellow', 'purple', 'orange', 'pink', 'black', 'white'];
-
-        // $title = $titles[rand(0, count($titles) - 1)];
-        // $content = $contents[rand(0, count($contents) - 1)];
-        // return [
-        //     'title' => $title,
-        //     'content' => $content,
-        //     'user_id' => random_int(1, 100)
-        // ];
     }
 }

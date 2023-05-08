@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -14,7 +18,21 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $logined_user = Auth::user();
+
+        if(!$logined_user) {
+            return view('login');
+        }
+
+        $user_id = $logined_user['id'];
+        $username = $logined_user['name'];
+        $users_posts = Auth::user()->posts;
+
+        return view('blog.home', [
+            'user_id' => $user_id,
+            'username' => $username,
+            'users_posts' => $users_posts
+        ]);
     }
 
     /**
@@ -22,7 +40,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -35,7 +53,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $logined_user = Auth::user();
+
+        if(!$logined_user) {
+            return view('login');
+        }
+
+        $user_id = $logined_user['id'];
+
+        $title = $request->input('title');
+        $content = $request->input('content');
+
+        DB::beginTransaction();
+        try {
+            Post::create([
+                'user_id' => $user_id,
+                'title' => $title,
+                'content' => $content
+            ]);
+    
+            DB::commit();
+        } catch(\Throwable $e) {
+            DB::rollBack();
+            abort(500);
+        }
+
+        return redirect()->route('blog.home');
+
     }
 
     /**

@@ -1,5 +1,5 @@
 ■mysql起動
-mysql -u root -p"3.)W[+jJWL2PT4C" blog
+mysql -u root -p"password" blog
 
 .env
 DB_CONNECTION=mysql
@@ -7,7 +7,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=blog
 DB_USERNAME=root
-DB_PASSWORD=3.)W[+jJWL2PT4C
+DB_PASSWORD=password
 
 ■アプリケーション起動 (laravelのみ)
 php artisan serve
@@ -72,6 +72,21 @@ password   title      content
 
 /////////////////////////////////////
 
+■blade 普通のやつ
+@extends('親のテンプレート')を継承し、@section('...') ~ @endsection で作って、
+@yield('...')で呼び出し、
+子テンプレートの（変数へ）のデータはコントローラーを使う。
+@yieldを利用した場合はapp.blade.php（親）からwelcome.blade.php（子）にコンテンツを渡すことができません。
+@section+@showを利用した場合はapp.blade.phpからwelcome.blade.phpにコンテンツを渡すことができます。
+渡してもらったコンテンツを表示するためには@parentディレクティブが必要となります。
+
+https://codelikes.com/laravel-blade/
+
+■blade components
+https://reffect.co.jp/laravel/laravel-components#Blade_Components
+
+ x-app-layout は、app/view/components/AppLayout.php
+ からきている（多分）
 
 
 進捗
@@ -80,13 +95,19 @@ breezeインストール
 マイグレーションファイル生成
 テーブルのカラムを設定して、ロールバック＆マイグレーション
 モデルhasMany/BelognsTo
+bladeを理解する
+controller
 
 // next
-bladeに入る前にコミットしてプッシュしてもいいかも
-bladeを理解する
-モデルのメソッドはstaticにすればクラスから呼び出せる
-controller
-middleware
+delete, update
+
+// 共有
+マイグレーションにカラムにコメント点けたほうがいいかも
+
+
+factoryとか、userのデータの直接関係しないときとかに、staticを使うべき
+md ファイル
+マーメイド
 
 ■ファザード
 ■トレイト
