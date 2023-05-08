@@ -2,7 +2,7 @@
     class="form-core"
     style="margin-left: 60px"
     method="post"
-    action="{{ route('blog.add') }}"
+    action="{{ route('blog.store') }}"
     onSubmit="return checkSubmit(event)"
 >
     @csrf 

@@ -88,6 +88,21 @@ https://reffect.co.jp/laravel/laravel-components#Blade_Components
  x-app-layout は、app/view/components/AppLayout.php
  からきている（多分）
 
+■リソースコントローラ
+urlは決まってる
+
+リソースコントローラにより処理されるアクション
+動詞	      URI	        アクション	 ルート名
+GET	      /photos	         index	    photos.index
+GET	      /photos/create    create	 photos.create
+POST      	/photos	           store	 photos.store
+GET      	/photos/{photo}	  show	 photos.show
+GET	     /photos/{photo}/edit	edit	 photos.edit
+PUT/PATCH	/photos/{photo}	update	 photos.update
+DELETE    	/photos/{photo}	destroy	 photos.destroy
+
+ https://readouble.com/laravel/8.x/ja/controllers.html#resource-controllers
+
 
 進捗
 // done

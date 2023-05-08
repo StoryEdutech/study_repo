@@ -22,11 +22,7 @@ Route::get('/', function(){
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-// middlewareは一旦なし
-Route::group(['prefix' => 'blog'], function () {
-    Route::get('/', [PostController::class, 'index'])->name('blog.home');
-    Route::post('/', [PostController:: class, 'store'])->name('blog.add');
-});
+Route::resource('blog', PostController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

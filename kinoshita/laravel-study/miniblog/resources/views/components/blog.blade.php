@@ -17,7 +17,7 @@
     <div style="height: 15px" class="spacer"></div>
     <p>本文：{{ $content }}</p>
 
-    @if ((request()->routeIs('blog.home')))
+    @if ((request()->routeIs('blog.index')))
         <div style="height: 15px" class="spacer"></div>
         <x-button>編集</x-button>
         <x-button>削除</x-button>
