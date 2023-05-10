@@ -49,7 +49,7 @@
     @if(env("APP_ENV") == "local")
         <p>
             開発でログインするためのアカウント<br />
-            {{ User::inRandomOrder()->first()->email }}<br />
+                {{ App\Models\User::inRandomOrder()->first()->email }}<br />
             password
         </p>
     @endif

@@ -88,10 +88,7 @@ https://reffect.co.jp/laravel/laravel-components#Blade_Components
  x-app-layout は、app/view/components/AppLayout.php
  からきている（多分）
 
-■リソースコントローラ
-urlは決まってる
-
-リソースコントローラにより処理されるアクション
+■リソースコントローラにより処理されるアクション
 動詞	      URI	        アクション	 ルート名
 GET	      /photos	         index	    photos.index
 GET	      /photos/create    create	 photos.create
@@ -100,6 +97,11 @@ GET      	/photos/{photo}	  show	 photos.show
 GET	     /photos/{photo}/edit	edit	 photos.edit
 PUT/PATCH	/photos/{photo}	update	 photos.update
 DELETE    	/photos/{photo}	destroy	 photos.destroy
+
+index: 一覧 show: 詳細 
+edit: 変更のフォームのビュー update: データを更新
+create: 入力フォームのビュー store: テータを保存
+destroy: データの削除
 
  https://readouble.com/laravel/8.x/ja/controllers.html#resource-controllers
 
@@ -115,12 +117,14 @@ controller
 
 // next
 delete, update
+javascript(fetch)でやるときに、
+1 やり方を調べる
+2 js→laravelにデータやパラメータを渡す
+3 laravel→js にデータを返す方法
+名前空間、factory/seeder
+CSRF トークンとは？https://poppotennis.com/posts/laravel-419-error
 
-// 共有
-マイグレーションにカラムにコメント点けたほうがいいかも
 
-
-factoryとか、userのデータの直接関係しないときとかに、staticを使うべき
 md ファイル
 マーメイド
 

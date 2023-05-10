@@ -4,6 +4,7 @@
     method="post"
     action="{{ route('blog.store') }}"
     onSubmit="return checkSubmit(event)"
+    id="add_blog_form"
 >
     @csrf 
     <div class="title-input" style="width: 50%;">
@@ -25,7 +26,7 @@
 
     <div style="height: 15px" class="spacer"></div>
 
-    <x-button>
+    <x-button type="submit" id="add_blog_btn">
         投稿
     </x-button>
 
@@ -34,11 +35,11 @@
 
     <script>
         function checkSubmit(e){
-        if(window.confirm('送信してよろしいですか？')){
-            return true;
-        } else {
-            return false;
-        }
+            if(window.confirm('送信してよろしいですか？')){
+                return true;
+            } else {
+                return false;
+            }
         }
     </script>
 
