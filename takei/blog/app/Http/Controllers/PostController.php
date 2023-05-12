@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use Inertia\Inertia;
 use Inertia\Response;
@@ -29,6 +30,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Post/Create');
     }
 
     /**
@@ -39,7 +41,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->title;
+        $content = $request->content;
+        $user_id = auth()->id();
+
+        Post::create(['title' => $title, 'content' =>$content, 'user_id'=>$user_id]);
+        return redirect()->route('post.index');
     }
 
     /**
