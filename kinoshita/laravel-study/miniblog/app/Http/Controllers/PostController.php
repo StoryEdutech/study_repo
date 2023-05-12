@@ -79,7 +79,6 @@ class PostController extends Controller
         }
 
         return redirect()->route('blog.index');
-
     }
 
     /**
@@ -88,7 +87,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Request $request, Post $post)
     {
         //
     }
@@ -99,9 +98,14 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
-        //
+        $blog_id = $request->route()->parameter('blog');
+
+        $req_post = Post::find($blog_id);
+
+        return view('blog.edit-blog', compact('req_post'));
+
     }
 
     /**
@@ -113,7 +117,25 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $edited_title = $request->input('blog-title');
+        $edited_content = $request->input('blog-content');
+
+        $blog_id = $request->route()->parameter('blog');
+
+        DB::beginTransaction();
+        try {
+            Post::where('id', $blog_id)->update([
+                'title' => $edited_title,
+                'content' => $edited_content
+            ]);    
+    
+            DB::commit();
+        } catch(\Throwable $e) {
+            DB::rollBack();
+            abort(500);
+        }
+
+        return redirect()->route('blog.index');
     }
 
     /**
@@ -129,8 +151,5 @@ class PostController extends Controller
         Post::find($blog_id)->delete();
 
         return;
-
-        // コントローラからリダイレクトしたい
-        // 今はjsでリダイレクト
     }
 }
