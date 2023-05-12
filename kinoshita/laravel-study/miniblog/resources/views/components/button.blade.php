@@ -1,6 +1,10 @@
+@props([
+    'type' => 'button',
+])
+
 <button
     {{ $attributes->merge([
-        'type' => 'submit',
+        'type' =>  $type ,
         'class' => '
             inline-flex items-center px-4 
             py-2 bg-gray-800 border border-transparent 
@@ -11,7 +15,6 @@
             transition ease-in-out duration-150
         '])
     }}
-    type="submit"
 >
     {{ $slot }}
 </button>

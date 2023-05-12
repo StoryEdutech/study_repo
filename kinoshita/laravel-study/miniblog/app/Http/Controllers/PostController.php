@@ -78,7 +78,7 @@ class PostController extends Controller
             abort(500);
         }
 
-        return redirect()->route('blog.home');
+        return redirect()->route('blog.index');
 
     }
 
@@ -122,8 +122,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request, Post $post)
     {
-        //
+        $blog_id = $request->route()->parameter('blog');
+
+        Post::find($blog_id)->delete();
+
+        return;
+
+        // コントローラからリダイレクトしたい
+        // 今はjsでリダイレクト
     }
 }

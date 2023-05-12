@@ -27,8 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            // string('title', 255)から変更
-            $table->text('title')->change();
+            $table->string('title', 255);
         });
     }
 };

@@ -46,10 +46,12 @@
     </form>
 
     {{-- 開発でログインするためのアカウント --}}
-    <p>
-        開発でログインするためのアカウント<br />
-        hideki.hirokawa@example.net<br />
-        password
-    </p>
+    @if(env("APP_ENV") == "local")
+        <p>
+            開発でログインするためのアカウント<br />
+                {{ App\Models\User::inRandomOrder()->first()->email }}<br />
+            password
+        </p>
+    @endif
 </x-guest-layout>
 
