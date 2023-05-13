@@ -2,7 +2,7 @@
     class="form-core"
     style="margin-left: 60px"
     method="post"
-    action="{{ route('blog.store') }}"
+    action="{{ route('posts.store') }}"
     onSubmit="return checkSubmit(event)"
     id="add_blog_form"
 >

@@ -20,9 +20,7 @@
             @foreach ($users_posts as $post)
                 <div class="wrapper blog">
                     <x-blog
-                        :id="$post['id']"
-                        :title="$post['title']"
-                        :content="$post['content']"
+                        :post="$post"
                     />
                 </div>
             @endforeach
@@ -32,5 +30,4 @@
         @endif
     </div>
 
-    @vite(['resources/js/blog.js'])
 </x-app-layout>
