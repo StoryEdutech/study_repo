@@ -7,6 +7,17 @@
     id="add_blog_form"
 >
     @csrf 
+
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="block sm:inline">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="title-input" style="width: 50%;">
         <label for="add_blog_input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">タイトル</label>
         <input 

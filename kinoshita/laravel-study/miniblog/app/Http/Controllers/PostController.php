@@ -45,7 +45,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $user_id = auth()->id();
         $title = $request->input('title');
@@ -124,7 +124,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Post $post)
+    public function destroy(Post $post)
     {
         $post->delete();
 
