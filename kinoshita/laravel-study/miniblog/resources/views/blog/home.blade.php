@@ -31,4 +31,6 @@
             <h2>上のフォームから投稿してみましょう</h2>
         @endif
     </div>
+
+    @vite(['resources/js/blog.js'])
 </x-app-layout>

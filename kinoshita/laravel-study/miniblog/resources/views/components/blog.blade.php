@@ -14,25 +14,41 @@
         padding: 20px;
     "
 >
-    <p style="border-bottom: 2px solid black">タイトル：{{ $title }}</p>
+    <div style="border-bottom: 2px solid black">
+        <p style="display:inline">タイトル：{{ $title }}</p>
+    </div>
     <div style="height: 15px" class="spacer"></div>
-    <p>本文：{{ $content }}</p>
+    <div>
+        <p style="display:inline">本文： {{ $content }}</p>
+    </div>
 
     @if ((request()->routeIs('blog.index')))
         <div style="height: 15px" class="spacer"></div>
         <x-button
             type="button"
-            id="edit_blog_btn"
-            value="{{ $id }}"
-        >編集</x-button>
+            js_class="edit_blog_btn"
+            style="padding: 0;"
+        >
+            <a 
+                href="{{ route('blog.edit', $id) }}"
+                style="
+                    display:block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 8px 16px;
+                "
+            >編集</a>
+        </x-button>
+
+        {{-- 今はajax form action="post"にする--}}
         <x-button
             type="button"
-            id="delete_blog_btn" 
+            js_class="delete_blog_btn" 
             value="{{ $id }}"
+            style="display: inline-block"
         >削除</x-button>
         <p>id:{{ $id }}</p>
 
-        @vite(['resources/js/blog.js'])
     @else
         <p>ユーザー名：{{ $username }}</p>
     @endif
