@@ -30,11 +30,7 @@ class Post extends Model
 
     public static function fetchPosts()
     {
-        // joinじゃなくてuserメソッドを使いたかったが、やりかた分からず
-        $posts = Post::Join('users', 'users.id', '=', 'posts.user_id')
-        ->select('posts.id','name','title','content')
-        ->get();
-        return $posts;
+        return Post::with('user')->get();
     }
 
 }
