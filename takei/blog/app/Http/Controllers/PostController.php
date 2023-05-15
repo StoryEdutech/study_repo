@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::fetchPosts();
-        return Inertia::render('Post/Index',['posts' => $posts]);
+        return Inertia::render('Posts/Index',['posts' => $posts]);
     }
 
     /**
@@ -31,7 +31,7 @@ class PostController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Post/Create');
+        return Inertia::render('Posts/Create');
     }
 
     /**
@@ -47,7 +47,7 @@ class PostController extends Controller
         $user_id = auth()->id();
 
         Post::create(['title' => $title, 'content' =>$content, 'user_id'=>$user_id]);
-        return redirect()->route('post.index');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, Post $post)
     {
-        return Inertia::render('Post/Edit',['post' => $post]);
+        return Inertia::render('Posts/Edit',['post' => $post]);
     }
 
     /**
@@ -86,7 +86,7 @@ class PostController extends Controller
         $user_id = auth()->id();
 
         $post->update(['title' => $title, 'content' =>$content, 'user_id'=>$user_id]);
-        return redirect()->route('post.index');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -99,6 +99,6 @@ class PostController extends Controller
     {
         //
         $post->delete();
-        return redirect()->route('post.index');
+        return redirect()->route('posts.index');
     }
 }
