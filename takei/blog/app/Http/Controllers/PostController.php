@@ -19,7 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Post/Index',['posts' => Post::all()]);
+        $posts = Post::fetchPosts();
+        return Inertia::render('Post/Index',['posts' => $posts]);
     }
 
     /**
@@ -68,10 +69,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, Post $post)
     {
-        return Inertia::render('Post/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+        return Inertia::render('Post/Edit',['post' => $post]);
     }
 
     /**
@@ -83,7 +81,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $title = $request->title;
+        $content = $request->content;
+        $user_id = auth()->id();
+
+        $post->update(['title' => $title, 'content' =>$content, 'user_id'=>$user_id]);
+        return redirect()->route('post.index');
     }
 
     /**
@@ -95,5 +98,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        $post->delete();
+        return redirect()->route('post.index');
     }
 }
