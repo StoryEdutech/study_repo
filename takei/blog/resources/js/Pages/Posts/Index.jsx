@@ -33,7 +33,7 @@ export default function Index(props) {
     console.log('props', props);
     const { delete: destory } = useForm();
     const handleDelete = (id) => {
-        destory(route("post.destroy", id), {
+        destory(route("posts.destroy", id), {
             preserveScroll: true,
         });
     };
@@ -52,7 +52,7 @@ export default function Index(props) {
             <div className="p-6 bg-white border-b border-gray-200">
                 <div className="bg-white w-2/4 mx-auto">
                     <div>
-                        <Link href={route("post.create")}>
+                        <Link href={route("posts.create")}>
                             <RegistButton>新規作成</RegistButton>
                         </Link>
                     </div>
@@ -81,7 +81,7 @@ export default function Index(props) {
                                         <td className="border px-4 py-2">
                                             <Link
                                                 href={route(
-                                                    "post.edit",
+                                                    "posts.edit",
                                                     post.id
                                                 )}
                                             >

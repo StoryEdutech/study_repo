@@ -1,11 +1,3 @@
-// import React from "react";
-// import Authenticated from "@/Layouts/Authenticated";
-// import { Head, useForm } from "@inertiajs/inertia-react";
-// import Input from "@/Components/Input";
-// import Label from "@/Components/Label";
-// import Button from "@/Components/Button";
-// import ValidationErrors from "@/Components/ValidationErrors";
-
 import React from "react";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
