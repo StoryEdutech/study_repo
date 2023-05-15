@@ -14,13 +14,13 @@ export default function Edit(props) {
     });
 
     const handleOnChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
 
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route("post.update", props.post.id));
+        patch(route("posts.update", props.post.id));
     };
 
     return (
