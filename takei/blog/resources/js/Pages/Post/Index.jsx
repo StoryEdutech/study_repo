@@ -70,7 +70,7 @@ export default function Index(props) {
                                 return (
                                     <tr key={post.id}>
                                         <td className="border px-4 py-2">
-                                            {post.name}
+                                            {post.user.name}
                                         </td>
                                         <td className="border px-4 py-2">
                                             {post.title}
