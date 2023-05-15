@@ -37,6 +37,7 @@ export default function Index(props) {
             preserveScroll: true,
         });
     };
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -62,6 +63,7 @@ export default function Index(props) {
                                 <th>投稿者</th>
                                 <th>タイトル</th>
                                 <th>コンテンツ</th>
+                                <th>更新</th>
                                 <th>削除</th>
                             </tr>
                         </thead>
@@ -79,6 +81,7 @@ export default function Index(props) {
                                             {post.content}
                                         </td>
                                         <td className="border px-4 py-2">
+                                            {props.auth.user?.id === post.user?.id &&
                                             <Link
                                                 href={route(
                                                     "posts.edit",
@@ -89,8 +92,10 @@ export default function Index(props) {
                                                     更新
                                                 </UpdateButton>
                                             </Link>
+                                            }
                                         </td>
                                         <td className="border px-4 py-2">
+                                            {props.auth.user?.id === post.user?.id &&
                                             <DeleteButton
                                                 onClick={() =>
                                                     handleDelete(
@@ -99,6 +104,7 @@ export default function Index(props) {
                                                 }>
                                                 削除
                                             </DeleteButton>
+                                            }
                                         </td>
                                     </tr>
                                 );
