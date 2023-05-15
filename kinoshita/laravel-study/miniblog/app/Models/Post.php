@@ -18,19 +18,17 @@ class Post extends Model
         'content',
         'user_id'
     ];
-    // protected $guarded = [
-    //     'id',
-    //     'user_id',
-    //     'created_at',
-    //     'updated_at'
-    // ];
 
-    // belongsToは単数形?
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    // hasManyは複数形?
     public function comments(){
         return $this->hasMany(Comment::class);
     }

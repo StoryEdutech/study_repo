@@ -1,8 +1,12 @@
 # これがmdファイルです
 
-## これがh2です
+## プレビューの方法
+ - ファイルのところで右クリックして、プレビューを開く
+ - ctrl shift V
 
 ---
+
+<img width="400" src="miniblog/public/images/turuhashi.png" alt="ツルハシ">
 
 > 引用
 ---

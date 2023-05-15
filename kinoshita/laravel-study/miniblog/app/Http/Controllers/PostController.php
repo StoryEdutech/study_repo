@@ -19,8 +19,8 @@ class PostController extends Controller
     public function index()
     {
         $user_id = auth()->id();
-        $username = auth()->user()->name;  // auth()->user() と Auth::user()は同じぽい
-        $users_posts = Auth::user()->posts;
+        $username = auth()->user()->name;
+        $users_posts = auth()->user()->posts;
 
         return view('blog.home', [
             'user_id' => $user_id,
@@ -51,18 +51,16 @@ class PostController extends Controller
         $title = $request->input('title');
         $content = $request->input('content');
 
-        DB::beginTransaction();
         try {
             Post::create([
                 'user_id' => $user_id,
                 'title' => $title,
                 'content' => $content
             ]);
-    
-            DB::commit();
+            
         } catch(\Throwable $e) {
-            DB::rollBack();
-            abort(500);
+            // 一旦この状態
+            throw $e;
         }
 
         return redirect()->route('posts.index');
@@ -102,17 +100,15 @@ class PostController extends Controller
         $edited_title = $request->input('blog-title');
         $edited_content = $request->input('blog-content');
 
-        DB::beginTransaction();
         try {
             $post->update([
                 'title' => $edited_title,
                 'content' => $edited_content
             ]);    
     
-            DB::commit();
         } catch(\Throwable $e) {
-            DB::rollBack();
-            abort(500);
+            // 一旦この状態
+            throw $e;
         }
 
         return redirect()->route('posts.index');

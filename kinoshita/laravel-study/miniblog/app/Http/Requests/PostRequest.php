@@ -13,6 +13,7 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
+        // 認証はミドルウェアに担ってもらうのがいい(?)
         return true;
     }
 
@@ -24,8 +25,8 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'content' => 'required | max:20'
+            'title' => 'required | max:20',
+            'content' => 'required'
         ];
     }
 
@@ -41,8 +42,8 @@ class PostRequest extends FormRequest
     {
         return [
             'title.required' => ':attributeを入力してください',
+            'title.max' => ':attributeは20文字以内で入力してください',
             'content.required' => ':attributeを入力してください',
-            'content.max' => ':attribute</p>は20文字以内で入力してください'
         ];
     }
 }
