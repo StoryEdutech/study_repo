@@ -10,14 +10,14 @@ body:
       value: "- [ ] 学習内容１"
     validations:
       required: true
- - type: dropdown
-   id: fb_assignee
-   attributes:
-    label: FB担当者
-    options:
-      - エネス
-      - 英太郎
-      - まだ不明
+  - type: dropdown
+    id: fb_assignee
+    attributes:
+      label: FB担当者
+      options:
+        - エネス
+        - 英太郎
+        - まだ不明
     validations:
       required: true
   - type: checkboxes
