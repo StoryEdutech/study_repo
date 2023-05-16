@@ -26,4 +26,4 @@ body:
       label: 内容設計の現況
       options:
         - label: 内容書き込み済み（＝WIPじゃない）
-        - label: FB者が内容承諾済み
+        - label: FB者が内容に承諾済み
