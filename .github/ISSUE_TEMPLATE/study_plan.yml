@@ -1,8 +1,6 @@
 name: "学習予定"
 description: "今週の学習内容"
 title: "【名前・今日の日付・期限】～内容～ "
-assignees:
-  - enes1004
 body:
   - type: textarea
     id: what-happened
@@ -10,6 +8,16 @@ body:
       label: 内容
       description: 今回学習する内容
       value: "- [ ] 学習内容１"
+    validations:
+      required: true
+ - type: dropdown
+   id: fb_assignee
+   attributes:
+    label: FB担当者
+    options:
+      - エネス
+      - 英太郎
+      - まだ不明
     validations:
       required: true
   - type: checkboxes
