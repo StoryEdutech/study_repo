@@ -65,7 +65,7 @@
         </script>
 
     @else
-        <p>ユーザー名：{{ $post->username }}</p>
+        <p>ユーザー名：{{ $post->user->name }}</p>
     @endif
 
 </div>

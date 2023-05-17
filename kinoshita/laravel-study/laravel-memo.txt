@@ -110,6 +110,12 @@ destroy: データの削除
  ルート定義のパラメータ名とコントローラのアクションメソッドの引数名が一致している必要があります。
  つまり、{blog} というパラメータ名の場合、それに対応する引数名も $blog にする必要があります。
 
+attachとかsyncとかは中間テーブルがないとできない
+loadとかwithは今のままでもできる
+https://takeru232423.hatenablog.com/entry/2022/06/14/142627
+https://migisanblog.com/laravel-with-load-n/      (デバッガ―を使って、N+!問題を解消しよう
+https://laravel.com/docs/5.2/eloquent-relationships#eager-loading
+https://katsusand.dev/posts/laravel-eager-load/
 
 進捗
 // done
