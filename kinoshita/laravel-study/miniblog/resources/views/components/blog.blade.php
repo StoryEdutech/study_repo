@@ -1,8 +1,5 @@
 @props([
-    'id' => null,
-    'username' => '読み込めませんでした',
-    'title' => '読み込めませんでした',
-    'content' => '読み込めませんでした'
+    'post' => NULL
 ])
 
 <div
@@ -15,42 +12,60 @@
     "
 >
     <div style="border-bottom: 2px solid black">
-        <p style="display:inline">タイトル：{{ $title }}</p>
+        <p style="display:inline">タイトル：{{ $post->title }}</p>
     </div>
     <div style="height: 15px" class="spacer"></div>
     <div>
-        <p style="display:inline">本文： {{ $content }}</p>
+        <p style="display:inline">本文： {{ $post->content }}</p>
     </div>
 
-    @if ((request()->routeIs('blog.index')))
+    @if ((request()->routeIs('posts.index')))
         <div style="height: 15px" class="spacer"></div>
-        <x-button
-            type="button"
-            js_class="edit_blog_btn"
-            style="padding: 0;"
-        >
-            <a 
-                href="{{ route('blog.edit', $id) }}"
-                style="
-                    display:block;
-                    width: 100%;
-                    height: 100%;
-                    padding: 8px 16px;
-                "
-            >編集</a>
-        </x-button>
 
-        {{-- 今はajax form action="post"にする--}}
-        <x-button
-            type="button"
-            js_class="delete_blog_btn" 
-            value="{{ $id }}"
-            style="display: inline-block"
-        >削除</x-button>
-        <p>id:{{ $id }}</p>
+        <div style="display: inline;">
+            <x-button
+                type="button"
+                js_class="edit_blog_btn"
+                style="padding: 0;"
+            >
+                <a 
+                    href="{{ route('posts.edit', $post->id) }}"
+                    style="
+                        display:block;
+                        width: 100%;
+                        height: 100%;
+                        padding: 8px 16px;
+                    "
+                >編集</a>
+            </x-button>
+        </div>
+
+        <form
+            style="display: inline;"
+            method="post"
+            onsubmit="return handleSubmit()"
+            action="{{ route('posts.destroy', $post->id) }}"
+        >
+            @csrf
+            @method('delete')
+            <x-button
+                type="submit"
+                js_class="delete_blog_btn" 
+            >削除</x-button>
+        </form>
+
+        <p>id:{{ $post->id }}</p>
+
+        <script>
+            function handleSubmit(){
+                if(!confirm('この投稿を本当に削除しますか？')){
+                    return false
+                }
+            }
+        </script>
 
     @else
-        <p>ユーザー名：{{ $username }}</p>
+        <p>ユーザー名：{{ $post->username }}</p>
     @endif
 
 </div>

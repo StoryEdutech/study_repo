@@ -18,14 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $logined_user = Auth::user();
-
-        if(!$logined_user) {
-            return view('login');
-        }
-
-        $user_id = $logined_user['id'];
-        $username = $logined_user['name'];
+        $user_id = auth()->id();
+        $username = auth()->user()->name;  // auth()->user() と Auth::user()は同じぽい
         $users_posts = Auth::user()->posts;
 
         return view('blog.home', [
@@ -51,16 +45,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $logined_user = Auth::user();
-
-        if(!$logined_user) {
-            return view('login');
-        }
-
-        $user_id = $logined_user['id'];
-
+        $user_id = auth()->id();
         $title = $request->input('title');
         $content = $request->input('content');
 
@@ -78,7 +65,7 @@ class PostController extends Controller
             abort(500);
         }
 
-        return redirect()->route('blog.index');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -100,12 +87,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, Post $post)
     {
-        $blog_id = $request->route()->parameter('blog');
-
-        $req_post = Post::find($blog_id);
-
-        return view('blog.edit-blog', compact('req_post'));
-
+        return view('blog.edit-blog', compact('post'));
     }
 
     /**
@@ -120,11 +102,9 @@ class PostController extends Controller
         $edited_title = $request->input('blog-title');
         $edited_content = $request->input('blog-content');
 
-        $blog_id = $request->route()->parameter('blog');
-
         DB::beginTransaction();
         try {
-            Post::where('id', $blog_id)->update([
+            $post->update([
                 'title' => $edited_title,
                 'content' => $edited_content
             ]);    
@@ -135,7 +115,7 @@ class PostController extends Controller
             abort(500);
         }
 
-        return redirect()->route('blog.index');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -144,12 +124,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Post $post)
+    public function destroy(Post $post)
     {
-        $blog_id = $request->route()->parameter('blog');
+        $post->delete();
 
-        Post::find($blog_id)->delete();
-
-        return;
+        return redirect()->route('posts.index');
     }
 }

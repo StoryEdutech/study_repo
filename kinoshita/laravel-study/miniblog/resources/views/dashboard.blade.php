@@ -18,9 +18,7 @@
                 "        
             >
                 <x-blog
-                    :username="$post->user->name"
-                    :title="$post['title']"
-                    :content="$post['content']"
+                    :post="$post"
                 />
             </div>
         @endforeach

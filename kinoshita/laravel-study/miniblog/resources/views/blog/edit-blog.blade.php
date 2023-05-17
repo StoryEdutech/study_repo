@@ -10,7 +10,7 @@
     >
         <form
             method="POST"
-            action="{{ route('blog.update', $req_post['id']) }}"
+            action="{{ route('posts.update', $post->id) }}"
         >
             @csrf
             @method('put')
@@ -21,7 +21,7 @@
                         width: 80%;
                         background-color:lightgray;
                     "
-                    value="{{ $req_post['title'] }}"
+                    value="{{ $post->title }}"
                     name="blog-title"
                 />
             </div>
@@ -39,7 +39,7 @@
                         background-color:lightgray;                        
                     "
                     rows="4"
-                >{{ $req_post['content'] }}</textarea>
+                >{{ $post->content }}</textarea>
             </div>
             <div style="height: 15px" class="spacer"></div>
             <x-button

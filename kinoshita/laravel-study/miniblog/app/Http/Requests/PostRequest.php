@@ -25,7 +25,24 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required | max:20'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'title' => 'タイトル',
+            'content' => '本文'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => ':attributeを入力してください',
+            'content.required' => ':attributeを入力してください',
+            'content.max' => ':attribute</p>は20文字以内で入力してください'
         ];
     }
 }

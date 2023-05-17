@@ -106,6 +106,11 @@ destroy: データの削除
  https://readouble.com/laravel/8.x/ja/controllers.html#resource-controllers
 
 
+ ルートモデルバインディングでは、
+ ルート定義のパラメータ名とコントローラのアクションメソッドの引数名が一致している必要があります。
+ つまり、{blog} というパラメータ名の場合、それに対応する引数名も $blog にする必要があります。
+
+
 進捗
 // done
 breezeインストール
@@ -114,6 +119,7 @@ breezeインストール
 モデルhasMany/BelognsTo
 bladeを理解する
 controller
+
 
 // next
 delete, update
