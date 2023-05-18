@@ -19,6 +19,10 @@ const RegistButton = styled(Button)`
   background: #FBF4D6;
   border-width: 1px;
 `;
+const DetailButton = styled(Button)`
+  background: #FBF4D6;
+  border-width: 1px;
+`;
 const DeleteButton = styled(Button)`
   color: #DB5461;
   border-color: #DB5461;
@@ -62,7 +66,8 @@ export default function Index(props) {
                             <tr>
                                 <th>投稿者</th>
                                 <th>タイトル</th>
-                                <th>コンテンツ</th>
+                                {/* <th>コンテンツ</th> */}
+                                <th>詳細</th>
                                 <th>更新</th>
                                 <th>削除</th>
                             </tr>
@@ -77,9 +82,23 @@ export default function Index(props) {
                                         <td className="border px-4 py-2">
                                             {post.title}
                                         </td>
-                                        <td className="border px-4 py-2">
+                                        {/* <td className="border px-4 py-2">
                                             {post.content}
+                                        </td> */}
+
+                                        <td className="border px-4 py-2">
+                                                <Link
+                                                    href={route(
+                                                        "posts.show",
+                                                        post.id
+                                                    )}
+                                                >
+                                                    <DetailButton>
+                                                        詳細
+                                                    </DetailButton>
+                                                </Link>
                                         </td>
+
                                         <td className="border px-4 py-2">
                                             {props.auth.user?.id === post.user?.id &&
                                             <Link
