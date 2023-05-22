@@ -73,65 +73,66 @@ export default function Index(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.posts.map((post) => {
-                                return (
-                                    <tr key={post.id}>
-                                        <td className="border px-4 py-2">
-                                            {post.user.name}
-                                        </td>
-                                        <td className="border px-4 py-2">
-                                            {post.title}
-                                        </td>
-                                        {/* <td className="border px-4 py-2">
-                                            {post.content}
-                                        </td> */}
-
-                                        <td className="border px-4 py-2">
-                                                <Link
-                                                    href={route(
-                                                        "posts.show",
-                                                        post.id
-                                                    )}
-                                                >
-                                                    <DetailButton>
-                                                        詳細
-                                                    </DetailButton>
-                                                </Link>
-                                        </td>
-
-                                        <td className="border px-4 py-2">
-                                            {props.auth.user?.id === post.user?.id &&
-                                            <Link
-                                                href={route(
-                                                    "posts.edit",
-                                                    post.id
-                                                )}
-                                            >
-                                                <UpdateButton>
-                                                    更新
-                                                </UpdateButton>
-                                            </Link>
-                                            }
-                                        </td>
-                                        <td className="border px-4 py-2">
-                                            {props.auth.user?.id === post.user?.id &&
-                                            <DeleteButton
-                                                onClick={() =>
-                                                    handleDelete(
-                                                        post.id
-                                                    )
-                                                }>
-                                                削除
-                                            </DeleteButton>
-                                            }
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                            {props.posts.map((post) =>
+                                <PostOne post={post} />
+                            )}
                         </tbody>
                     </table>
                 </div>
             </div>
         </AuthenticatedLayout>
+    );
+}
+
+export function PostOne(post){
+    console.log('post',post);
+    return (
+        <tr key={post.id}>
+            <td className="border px-4 py-2">
+                {post?.user?.name}
+            </td>
+            <td className="border px-4 py-2">
+                {post?.title}
+            </td>
+            <td className="border px-4 py-2">
+                <Link
+                    href={route(
+                        "posts.show",
+                        post.id
+                    )}
+                >
+                    <DetailButton>
+                        詳細
+                    </DetailButton>
+                </Link>
+            </td>
+
+            <td className="border px-4 py-2">
+                {props.auth.user?.id === post.user?.id &&
+                    <Link
+                        href={route(
+                            "posts.edit",
+                            post.id
+                        )}
+                    >
+                        <UpdateButton>
+                            更新
+                        </UpdateButton>
+                    </Link>
+                }
+            </td>
+            <td className="border px-4 py-2">
+                {props.auth.user?.id === post.user?.id &&
+                    <DeleteButton
+                        onClick={() =>
+                            handleDelete(
+                                post.id
+                            )
+                        }>
+                        削除
+                    </DeleteButton>
+                }
+            </td>
+        </tr>
     );
 }
