@@ -68,7 +68,7 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        //
+        return view('blog.blog-detail', compact('post'));
     }
 
     /**

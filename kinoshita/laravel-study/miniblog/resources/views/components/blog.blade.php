@@ -69,4 +69,19 @@
         <p>ユーザー名：{{ $post->user->name }}</p>
     @endif
 
+    <x-button
+        type="button"
+        style="padding: 0;"
+    >
+        <a 
+            href="{{ route('posts.show', $post->id) }}"
+            style="
+                display:block;
+                width: 100%;
+                height: 100%;
+                padding: 8px 16px;
+            "
+        >コメントする</a>
+    </x-button>
+
 </div>
