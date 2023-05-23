@@ -19,14 +19,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->id();
-        $username = auth()->user()->name;
-        $users_posts = auth()->user()->posts;
+        $user = auth()->user();
 
         return view('blog.home', [
-            'user_id' => $user_id,
-            'username' => $username,
-            'users_posts' => $users_posts
+            "user"=> $user,
+            "posts"=> $user->posts
         ]);
     }
 
