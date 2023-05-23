@@ -21,6 +21,7 @@
                 <div class="wrapper blog">
                     <x-blog
                         :post="$post"
+                        :can_edit="$can_edit"
                     />
                 </div>
             @endforeach

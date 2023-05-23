@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +20,12 @@ class PostController extends Controller
     {
         $user = auth()->user();
 
+        $can_edit = true;
+
         return view('blog.home', [
             "user"=> $user,
-            "posts"=> $user->posts
+            "posts"=> $user->posts,
+            "can_edit" => $can_edit
         ]);
     }
 
@@ -49,17 +51,11 @@ class PostController extends Controller
         $title = $request->input('title');
         $content = $request->input('content');
 
-        try {
-            Post::create([
-                'user_id' => $user_id,
-                'title' => $title,
-                'content' => $content
-            ]);
-            
-        } catch(\Throwable $e) {
-            // 一旦この状態
-            throw $e;
-        }
+        Post::create([
+            'user_id' => $user_id,
+            'title' => $title,
+            'content' => $content
+        ]);
 
         return redirect()->route('posts.index');
     }
@@ -98,16 +94,10 @@ class PostController extends Controller
         $edited_title = $request->input('blog-title');
         $edited_content = $request->input('blog-content');
 
-        try {
-            $post->update([
-                'title' => $edited_title,
-                'content' => $edited_content
-            ]);    
-    
-        } catch(\Throwable $e) {
-            // 一旦この状態
-            throw $e;
-        }
+        $post->update([
+            'title' => $edited_title,
+            'content' => $edited_content
+        ]);    
 
         return redirect()->route('posts.index');
     }
