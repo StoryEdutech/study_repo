@@ -13,7 +13,6 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        // 認証はミドルウェアに担ってもらうのがいい(?)
         return true;
     }
 
