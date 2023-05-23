@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +16,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $all_posts = Post::all();
+        // 【before】sql 25行 (blogコンポーネントでユーザー名を取得しているため)
+        // $all_posts = Post::all();
+
+        // 【after】sql 3行 (users, posts, commentsすべて取得できている)
+        $all_posts = Post::with(['user', 'comments'])->get();
+
+        // $all_posts = Post::all()->load(['user', 'comments']);
+
+        Debugbar::info($all_posts);
 
         return view('dashboard', compact('all_posts'));
     }

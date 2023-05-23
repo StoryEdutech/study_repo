@@ -26,13 +26,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    // protected $guarded = [
-    //     'id',
-    //     'email',
-    //     'password',
-    //     'created_at',
-    //     'updated_at'
-    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,6 +35,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**
@@ -53,12 +49,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // hasManyは複数形?
     public function posts(){
         return $this->hasMany(Post::class);
     }
 
-    // hasManyは複数形?
     public function comments(){
         return $this->hasMany(Comment::class);
     }

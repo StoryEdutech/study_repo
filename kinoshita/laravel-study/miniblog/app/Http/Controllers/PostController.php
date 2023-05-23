@@ -18,14 +18,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->id();
-        $username = auth()->user()->name;  // auth()->user() と Auth::user()は同じぽい
-        $users_posts = Auth::user()->posts;
+        $user = auth()->user();
+
+        $can_edit = true;
 
         return view('blog.home', [
-            'user_id' => $user_id,
-            'username' => $username,
-            'users_posts' => $users_posts
+            "user"=> $user,
+            "posts"=> $user->posts,
+            "can_edit" => $can_edit
         ]);
     }
 
@@ -51,19 +51,11 @@ class PostController extends Controller
         $title = $request->input('title');
         $content = $request->input('content');
 
-        DB::beginTransaction();
-        try {
-            Post::create([
-                'user_id' => $user_id,
-                'title' => $title,
-                'content' => $content
-            ]);
-    
-            DB::commit();
-        } catch(\Throwable $e) {
-            DB::rollBack();
-            abort(500);
-        }
+        Post::create([
+            'user_id' => $user_id,
+            'title' => $title,
+            'content' => $content
+        ]);
 
         return redirect()->route('posts.index');
     }
@@ -102,18 +94,10 @@ class PostController extends Controller
         $edited_title = $request->input('blog-title');
         $edited_content = $request->input('blog-content');
 
-        DB::beginTransaction();
-        try {
-            $post->update([
-                'title' => $edited_title,
-                'content' => $edited_content
-            ]);    
-    
-            DB::commit();
-        } catch(\Throwable $e) {
-            DB::rollBack();
-            abort(500);
-        }
+        $post->update([
+            'title' => $edited_title,
+            'content' => $edited_content
+        ]);    
 
         return redirect()->route('posts.index');
     }

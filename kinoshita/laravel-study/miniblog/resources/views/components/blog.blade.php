@@ -1,5 +1,6 @@
 @props([
-    'post' => NULL
+    'post' => NULL,
+    'can_edit' => false
 ])
 
 <div
@@ -19,7 +20,7 @@
         <p style="display:inline">本文： {{ $post->content }}</p>
     </div>
 
-    @if ((request()->routeIs('posts.index')))
+    @if ($can_edit ?? false)
         <div style="height: 15px" class="spacer"></div>
 
         <div style="display: inline;">
@@ -65,7 +66,7 @@
         </script>
 
     @else
-        <p>ユーザー名：{{ $post->username }}</p>
+        <p>ユーザー名：{{ $post->user->name }}</p>
     @endif
 
 </div>
