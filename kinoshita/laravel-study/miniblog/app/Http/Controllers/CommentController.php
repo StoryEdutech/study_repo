@@ -35,7 +35,17 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->id();
+        $post_id = $request->input('post_id');
+        $content = $request->input('content');
+
+        Comment::create([
+            'user_id' => $user_id,
+            'post_id' => $post_id,
+            'content' => $content
+        ]);
+
+        return redirect()->route('posts.show', $post_id);
     }
 
     /**

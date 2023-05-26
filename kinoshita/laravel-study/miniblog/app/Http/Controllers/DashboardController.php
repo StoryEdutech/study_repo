@@ -26,7 +26,12 @@ class DashboardController extends Controller
 
         Debugbar::info($all_posts);
 
-        return view('dashboard', compact('all_posts'));
+        $show_comment_btn = true;
+
+        return view('dashboard', [
+            "all_posts" => $all_posts,
+            "show_comment_btn" => $show_comment_btn
+        ]);
     }
 
     /**

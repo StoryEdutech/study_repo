@@ -1,6 +1,7 @@
 @props([
     'post' => NULL,
-    'can_edit' => false
+    'can_edit' => false,
+    'show_comment_btn' => false 
 ])
 
 <div
@@ -55,8 +56,6 @@
             >削除</x-button>
         </form>
 
-        <p>id:{{ $post->id }}</p>
-
         <script>
             function handleSubmit(){
                 if(!confirm('この投稿を本当に削除しますか？')){
@@ -69,19 +68,28 @@
         <p>ユーザー名：{{ $post->user->name }}</p>
     @endif
 
-    <x-button
-        type="button"
-        style="padding: 0;"
-    >
-        <a 
-            href="{{ route('posts.show', $post->id) }}"
-            style="
-                display:block;
-                width: 100%;
-                height: 100%;
-                padding: 8px 16px;
-            "
-        >コメントする</a>
-    </x-button>
+    @if(env("APP_ENV") == "local")
+        <div style="background-color: rgb(184, 255, 184); width: 200px;">
+            <p>ユーザーid: {{ $post->user->id }}</p>
+            <p>投稿id:{{ $post->id }}</p>
+        </div>
+    @endif
+
+    @if($show_comment_btn ?? false)
+        <x-button
+            type="button"
+            style="padding: 0;"
+        >
+            <a 
+                href="{{ route('posts.show', $post->id) }}"
+                style="
+                    display:block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 8px 16px;
+                "
+            >コメントする</a>
+        </x-button>
+    @endif
 
 </div>

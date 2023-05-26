@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,7 +69,12 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        return view('blog.blog-detail', compact('post'));
+        $comments = Comment::with('user')->where('post_id', $post->id)->get();
+
+        return view('blog.blog-detail', [
+            "post" => $post,
+            "comments" => $comments
+        ]);
     }
 
     /**
