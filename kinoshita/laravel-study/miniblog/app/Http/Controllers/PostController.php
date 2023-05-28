@@ -22,6 +22,7 @@ class PostController extends Controller
         $user = auth()->user();
 
         $posts = $user->posts;
+        // $posts = $user->posts()->get(); // 上と同じ
 
         $can_edit = true;
 
@@ -67,7 +68,7 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        $comments = Comment::with('user')->where('post_id', $post->id)->get();
+        $comments = $post->comments()->with('user')->get();
 
         return view('blog.blog-detail', compact(['post', 'comments']));
     }
