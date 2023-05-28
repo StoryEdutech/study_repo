@@ -21,13 +21,11 @@ class PostController extends Controller
     {
         $user = auth()->user();
 
+        $posts = $user->posts;
+
         $can_edit = true;
 
-        return view('blog.home', [
-            "user"=> $user,
-            "posts"=> $user->posts,
-            "can_edit" => $can_edit
-        ]);
+        return view('blog.home', compact(['user', 'posts', 'can_edit']));
     }
 
     /**
@@ -71,10 +69,7 @@ class PostController extends Controller
     {
         $comments = Comment::with('user')->where('post_id', $post->id)->get();
 
-        return view('blog.blog-detail', [
-            "post" => $post,
-            "comments" => $comments
-        ]);
+        return view('blog.blog-detail', compact(['post', 'comments']));
     }
 
     /**
