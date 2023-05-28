@@ -14,10 +14,14 @@ font-size: 1.4rem;
 const PostContent = styled.div`
 margin-top: 3rem;
 `;
+const PostComments = styled.div`
+margin-top: 4rem;
+`;
 
 export default function Show(props) {
     const { post } = props;
     const { title, content } = post;
+    console.log(post);
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -40,6 +44,19 @@ export default function Show(props) {
                             <PostContent>
                                 {content}
                             </PostContent>
+
+                            <PostComments>
+                                <div className="text-xl mb-6">あなたの投稿に対するコメント</div>
+                                <div>
+                                    {post?.comments?.length > 0 ?
+                                        post.comments.map((comment) =>
+                                            <div>
+                                                {comment?.content || ""}
+                                            </div>)
+                                        :
+                                        <div>コメントはまだありません</div>}
+                                </div>
+                            </PostComments>
                         </div>
                     </div>
                 </div>

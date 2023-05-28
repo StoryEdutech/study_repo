@@ -56,10 +56,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Request $request, Post $post)
     {
+        $post = Post::fetchPostsComment($post->id);
         return Inertia::render('Posts/Show',['post' => $post]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

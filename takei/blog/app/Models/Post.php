@@ -33,4 +33,9 @@ class Post extends Model
         return Post::with('user')->get();
     }
 
+    public static function fetchPostsComment($id)
+    {
+        return Post::with(['user','comments'])->find($id);
+    }
+
 }
