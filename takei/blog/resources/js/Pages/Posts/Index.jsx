@@ -66,7 +66,6 @@ export default function Index(props) {
                             <tr>
                                 <th>投稿者</th>
                                 <th>タイトル</th>
-                                {/* <th>コンテンツ</th> */}
                                 <th>詳細</th>
                                 <th>更新</th>
                                 <th>削除</th>
