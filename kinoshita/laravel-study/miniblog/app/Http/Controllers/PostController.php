@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,13 +21,12 @@ class PostController extends Controller
     {
         $user = auth()->user();
 
+        $posts = $user->posts;
+        // $posts = $user->posts()->get(); // 上と同じ
+
         $can_edit = true;
 
-        return view('blog.home', [
-            "user"=> $user,
-            "posts"=> $user->posts,
-            "can_edit" => $can_edit
-        ]);
+        return view('blog.home', compact(['user', 'posts', 'can_edit']));
     }
 
     /**
@@ -68,7 +68,9 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        //
+        $comments = $post->comments()->with('user')->get();
+
+        return view('blog.blog-detail', compact(['post', 'comments']));
     }
 
     /**

@@ -16,17 +16,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // 【before】sql 25行 (blogコンポーネントでユーザー名を取得しているため)
-        // $all_posts = Post::all();
-
-        // 【after】sql 3行 (users, posts, commentsすべて取得できている)
         $all_posts = Post::with(['user', 'comments'])->get();
-
-        // $all_posts = Post::all()->load(['user', 'comments']);
 
         Debugbar::info($all_posts);
 
-        return view('dashboard', compact('all_posts'));
+        $show_comment_btn = true;
+
+        return view('dashboard', compact(['all_posts', 'show_comment_btn']));
     }
 
     /**

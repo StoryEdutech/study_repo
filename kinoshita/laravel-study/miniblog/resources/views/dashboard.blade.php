@@ -19,6 +19,7 @@
             >
                 <x-blog
                     :post="$post"
+                    :show_comment_btn="$show_comment_btn"
                 />
             </div>
         @endforeach
