@@ -22,7 +22,10 @@ class PostController extends Controller
         $user = auth()->user();
 
         $posts = $user->posts;
-        // $posts = $user->posts()->get(); // 上と同じ
+
+        // $posts = $user->posts()->with('user')->get();
+        // TODO: エディター内だけで、エラーがでる (posts()に赤い波線)
+        // Undefined method 'posts'.
 
         $can_edit = true;
 
