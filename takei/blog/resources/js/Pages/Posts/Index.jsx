@@ -73,6 +73,7 @@ export default function Index(props) {
                         </thead>
                         <tbody>
                             {props.posts.map((post) =>
+                                post?.user?.name &&
                                 <PostOne post={post} />
                             )}
                         </tbody>
