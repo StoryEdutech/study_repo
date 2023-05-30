@@ -8,7 +8,7 @@
     <div
         class="blog-list dashboard"
     >
-        @foreach ($all_posts as $post)
+        @foreach ($posts as $post)
             <div
                 class="wrapper blog"
                 style="
@@ -25,6 +25,6 @@
         @endforeach
     </div>
 
-    {{ $all_posts->links() }}
+    {{ $posts->links() }}
 
 </x-app-layout>
