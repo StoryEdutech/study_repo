@@ -31,7 +31,7 @@ class PostController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Posts/PostCreatePage');
+        return Inertia::render('Posts/Create');
     }
 
     /**
@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return Inertia::render('Posts/PostShowPage',['post' => $post]);
+        return Inertia::render('Posts/Show',['post' => $post]);
     }
 
     /**
@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, Post $post)
     {
-        return Inertia::render('Posts/PostEditPage',['post' => $post]);
+        return Inertia::render('Posts/Edit',['post' => $post]);
     }
 
     /**
