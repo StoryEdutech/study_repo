@@ -7,7 +7,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 
 
-export default function Edit(props) {
+export default function PostEditPage(props) {
     const { data, setData, patch, processing, errors } = useForm({
         title: props.post.title,
         content: props.post.content,

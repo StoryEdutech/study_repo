@@ -1,19 +1,19 @@
 import React from "react";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-import { Head,useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 
-export default function Create(props) {
+export default function PostCreatePage(props) {
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         content: "",
     });
 
     const handleOnChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
 
     const submit = (e) => {
