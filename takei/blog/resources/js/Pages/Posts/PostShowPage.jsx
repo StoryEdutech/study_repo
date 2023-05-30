@@ -15,7 +15,7 @@ const PostContent = styled.div`
 margin-top: 3rem;
 `;
 
-export default function Show(props) {
+export default function PostShowPage(props) {
     const { post } = props;
     const { title, content } = post;
     return (
