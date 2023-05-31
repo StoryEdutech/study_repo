@@ -24,19 +24,6 @@ margin-top: 4rem;
 
 export default function PostShowPage(props) {
     const blog = props.post;
-    console.log('props',props);
-    console.log('blog',blog);
-
-    // const { data, setData, post, processing, errors } = useForm({
-    //     title: "",
-    //     content: "",
-    // });
-    // const { title, content } = post;
-    // console.log(post);
-
-    const title = "";
-    const content = "";
-
     const { data, setData,patch, post } = useForm({
         comment: "",
     });
@@ -44,7 +31,7 @@ export default function PostShowPage(props) {
     const commentData = {
         comment: data.comment,
         post_id: blog.id
-            };
+    };
 
 
     const handleOnChange = (event) => {
