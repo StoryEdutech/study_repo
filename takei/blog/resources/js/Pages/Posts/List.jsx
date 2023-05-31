@@ -19,6 +19,10 @@ const RegistButton = styled(Button)`
   background: #FBF4D6;
   border-width: 1px;
 `;
+const DetailButton = styled(Button)`
+  background: #FBF4D6;
+  border-width: 1px;
+`;
 const DeleteButton = styled(Button)`
   color: #DB5461;
   border-color: #DB5461;
@@ -29,7 +33,7 @@ const UpdateButton = styled(Button)`
 `;
 
 
-export default function Index(props) {
+export default function List(props) {
     console.log('props', props);
     const { delete: destory } = useForm();
     const handleDelete = (id) => {
@@ -62,26 +66,36 @@ export default function Index(props) {
                             <tr>
                                 <th>投稿者</th>
                                 <th>タイトル</th>
-                                <th>コンテンツ</th>
+                                <th>詳細</th>
                                 <th>更新</th>
                                 <th>削除</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {props.posts.map((post) => {
-                                return (
-                                    <tr key={post.id}>
-                                        <td className="border px-4 py-2">
-                                            {post.user.name}
-                                        </td>
-                                        <td className="border px-4 py-2">
-                                            {post.title}
-                                        </td>
-                                        <td className="border px-4 py-2">
-                                            {post.content}
-                                        </td>
-                                        <td className="border px-4 py-2">
-                                            {props.auth.user?.id === post.user?.id &&
+                            {props.posts.map((post) =>
+                                post?.user?.name &&
+                                <tr key={post.id}>
+                                    <td className="border px-4 py-2">
+                                        {post?.user?.name}
+                                    </td>
+                                    <td className="border px-4 py-2">
+                                        {post?.title}
+                                    </td>
+                                    <td className="border px-4 py-2">
+                                        <Link
+                                            href={route(
+                                                "posts.show",
+                                                post.id
+                                            )}
+                                        >
+                                            <DetailButton>
+                                                詳細
+                                            </DetailButton>
+                                        </Link>
+                                    </td>
+
+                                    <td className="border px-4 py-2">
+                                        {props.auth.user?.id === post.user?.id &&
                                             <Link
                                                 href={route(
                                                     "posts.edit",
@@ -92,10 +106,10 @@ export default function Index(props) {
                                                     更新
                                                 </UpdateButton>
                                             </Link>
-                                            }
-                                        </td>
-                                        <td className="border px-4 py-2">
-                                            {props.auth.user?.id === post.user?.id &&
+                                        }
+                                    </td>
+                                    <td className="border px-4 py-2">
+                                        {props.auth.user?.id === post.user?.id &&
                                             <DeleteButton
                                                 onClick={() =>
                                                     handleDelete(
@@ -104,11 +118,10 @@ export default function Index(props) {
                                                 }>
                                                 削除
                                             </DeleteButton>
-                                            }
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                                        }
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

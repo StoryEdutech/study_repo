@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::fetchPosts();
-        return Inertia::render('Posts/Index',['posts' => $posts]);
+        return Inertia::render('Posts/List',['posts' => $posts]);
     }
 
     /**
@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Inertia::render('Posts/Show',['post' => $post]);
     }
 
     /**
