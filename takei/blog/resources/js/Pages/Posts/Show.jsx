@@ -82,6 +82,32 @@ export default function PostShowPage(props) {
 
                             <PostComments>
                                 <div>
+                                    <div className="text-xl mb-6">コメントを投稿する</div>
+                                    <form onSubmit={submit}>
+                                            <InputLabel forInput="comment" value="" />
+
+                                            <textarea
+                                                name="comment"
+                                                value={data.comment||""}
+                                                className="mt-1 block w-full"
+                                                onChange={handleOnChange}
+                                            >
+                                            </textarea>
+                                            <input
+                                                type="hidden"
+                                                name="post_id"
+                                                value={blog.id}
+                                            />
+                                            <div className="flex items-center justify-end mt-4">
+                                                <PrimaryButton
+                                                    className="ml-4"
+                                                >
+                                                    作成
+                                                </PrimaryButton>
+                                            </div>
+                                    </form>
+                                </div>
+                                <div>
                                     <div className="text-xl my-12 mb-6">あなたの投稿に対するコメント</div>
                                     <div>
                                         {blog?.comments?.length > 0 ?
