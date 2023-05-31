@@ -58,6 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post = Post::fetchPostComments($post->id);
         return Inertia::render('Posts/Show',['post' => $post]);
     }
 
