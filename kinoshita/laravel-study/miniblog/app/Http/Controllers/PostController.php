@@ -21,8 +21,7 @@ class PostController extends Controller
     {
         $user = auth()->user();
 
-        $posts = $user->posts;
-        // $posts = $user->posts()->get(); // 上と同じ
+        $posts = $user->posts()->with('user')->get();
 
         $can_edit = true;
 

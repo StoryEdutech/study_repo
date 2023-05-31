@@ -14,15 +14,15 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $all_posts = Post::with(['user', 'comments'])->get();
+        $posts = Post::with(['user', 'comments'])->paginate(10);
 
-        Debugbar::info($all_posts);
+        Debugbar::info($posts);
 
         $show_comment_btn = true;
 
-        return view('dashboard', compact(['all_posts', 'show_comment_btn']));
+        return view('dashboard', compact(['posts', 'show_comment_btn']));
     }
 
     /**
