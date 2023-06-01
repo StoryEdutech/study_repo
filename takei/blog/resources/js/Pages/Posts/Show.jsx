@@ -21,6 +21,9 @@ margin-top: 3rem;
 const PostComments = styled.div`
 margin-top: 4rem;
 `;
+const CommentContent = styled.div`
+margin-top: 4rem;
+`;
 
 export default function PostShowPage(props) {
     const blog = props.post;
@@ -100,10 +103,10 @@ export default function PostShowPage(props) {
                                         {blog?.comments?.length > 0 ?
                                             blog.comments.map((comment) =>
                                                 <div className="mb-3">
-                                                    <div>
+                                                    <CommentContent>
                                                     {comment?.content || ""}
-                                                    </div>
-                                                    <div>投稿者：{blog?.user?.name}</div>
+                                                    </CommentContent>
+                                                    <UserName>投稿者：{blog?.user?.name}</UserName>
 
                                                 </div>)
                                             :
