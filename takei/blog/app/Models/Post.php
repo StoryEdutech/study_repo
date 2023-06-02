@@ -27,10 +27,4 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
-
-    public static function fetchPosts()
-    {
-        return Post::with('user')->get();
-    }
-
 }

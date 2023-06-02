@@ -19,8 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::fetchPosts();
-        return Inertia::render('Posts/List',['posts' => $posts]);
+        return Inertia::render('Posts/List',[
+            'posts' => Post::with('user')->get()
+        ]);
     }
 
     /**
@@ -58,7 +59,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return Inertia::render('Posts/Show',['post' => $post]);
+        return Inertia::render('Posts/Show',[
+            'post' => $post->load('user'),
+            'comments' =>  $post->comments()->with('user')->get()
+       ]);
     }
 
     /**
@@ -69,7 +73,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, Post $post)
     {
-        return Inertia::render('Posts/Edit',['post' => $post]);
+        return Inertia::render('Posts/Edit',compact('post'));
     }
 
     /**
