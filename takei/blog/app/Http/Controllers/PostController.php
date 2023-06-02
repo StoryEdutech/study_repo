@@ -19,7 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Posts/List',['posts' => Post::with('user')->get()]);
+        return Inertia::render('Posts/List',[
+            'posts' => Post::with('user')->get()
+        ]);
     }
 
     /**
