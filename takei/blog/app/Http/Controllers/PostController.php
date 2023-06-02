@@ -19,8 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->get();
-        return Inertia::render('Posts/List',['posts' => $posts]);
+        return Inertia::render('Posts/List',['posts' => Post::with('user')->get()]);
     }
 
     /**
@@ -72,7 +71,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, Post $post)
     {
-        return Inertia::render('Posts/Edit',['post' => $post]);
+        return Inertia::render('Posts/Edit',compact('post'));
     }
 
     /**
