@@ -26,6 +26,7 @@ margin-top: 4rem;
 `;
 
 export default function PostShowPage(props) {
+    const { comments } = props;
     const blog = props.post;
     const { data, setData,patch, post } = useForm({
         comment: "",
@@ -100,13 +101,13 @@ export default function PostShowPage(props) {
                                 <div>
                                     <div className="text-xl my-12 mb-6">あなたの投稿に対するコメント</div>
                                     <div>
-                                        {blog?.comments?.length > 0 ?
-                                            blog.comments.map((comment) =>
+                                        {comments?.length > 0 ?
+                                            comments.map((comment) =>
                                                 <div className="mb-3">
                                                     <CommentContent>
                                                     {comment?.content || ""}
                                                     </CommentContent>
-                                                    <UserName>投稿者：{blog?.user?.name}</UserName>
+                                                    <UserName>投稿者：{comment?.user?.name}</UserName>
 
                                                 </div>)
                                             :
