@@ -58,9 +58,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post = $post->load('user');
-        $comments = $post->comments()->with('user')->get();
-        return Inertia::render('Posts/Show',['post' => $post, 'comments' => $comments]);
+        return Inertia::render('Posts/Show',[
+            'post' => $post->load('user'),
+            'comments' =>  $post->comments()->with('user')->get()
+       ]);
     }
 
     /**
