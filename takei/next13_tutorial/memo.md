@@ -22,6 +22,9 @@
 - ISRとは
   - SGでは静的コンテンツだけだったが、動的コンテンツもCDNにキャッシュすることができる。
 
+[参考1](https://zenn.dev/bitarts/articles/37260ddb28ae5d)
+[参考2](https://tech.012grp.co.jp/entry/2021/03/25/125014)
+
 ## 作成していて気づいたこと
 
 - layout.tsxにhtmlタグやbodyタグの記載をする
@@ -31,13 +34,15 @@
 
 - Server Componentで、useStateやuseEffectを利用できない
   - SSRでは、サーバーが静的htmlデータを返しているのみなので、状態をクライアントがもっていないため
-- Client Component として扱うためには、`use client` を宣言したファイルでラップします。
+- Client Component として扱うためには、`use client` を宣言したファイルでラップする
 
-- Next.js でデータフェッチングを行うにはサーバーサイドで行うことが一般的です。
-- コベツバもasync/awaitを利用して取得する、？(Fetch API？)
+- Next.js でデータフェッチングを行うにはサーバーサイドで行うことが一般的？
+  - コベツバもasync/awaitを利用して取得する、？(Fetch API？)
 
 - error.tsx は必ず Client Component として扱われます。なぜ？
 - 依存関係のない複数の API を呼び出す場合は処理が並列になるように Promise.all を使うことが推奨されます。
+
+[参考1]()
 
 
 ### reactとの比較(楽になったな‐というところ)
