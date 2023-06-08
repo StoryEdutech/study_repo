@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {ChakraProvider} from "./common/components";
+import Provider from "./Provider";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -19,11 +20,11 @@ export default function RootLayout({
     <html lang="ja">
       <head />
       <body>
-        <ChakraProvider>
+        <Provider>
           <Header />
           <Main>{children}</Main>
           <Footer />
-        </ChakraProvider>
+        </Provider>
       </body>
     </html>
   );
