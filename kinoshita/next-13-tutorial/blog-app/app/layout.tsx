@@ -1,6 +1,9 @@
 import { NextPage, Metadata } from "next";
 import Link from "next/link";
 import { ReactNode } from "react";
+import ChakraProviderWrapper from "@/lib/ChakraProviderWrapper";
+
+import { Box, Flex, Heading, Button } from "@/lib/components"
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -20,21 +23,25 @@ const RootLayout: NextPage<Props> = ({ children }) => {
     return (
         <html lang="ja">
             <head />
+
             <body>
-                <header>
-                    <h1>
-                        <Link href="/">ブログ</Link>
-                    </h1>
-                    <Link href="/articles/new">記事を書く</Link>
-                </header>
+                <ChakraProviderWrapper>
 
-                <main>
-                    {children}
-                </main>
+                    <header>
+                        <h1>
+                            <Link href="/">ブログ</Link>
+                        </h1>
+                        <Link href="/articles/new">記事を書く</Link>
+                    </header>
 
-                <footer>
-                    <small>© 2023 azukiazusa</small>
-                </footer>
+                    <main>
+                        {children}
+                    </main>
+
+                    <footer>
+                        <small>© 2023 azukiazusa</small>
+                    </footer>
+                    </ChakraProviderWrapper>
             </body>
         </html>
     )
