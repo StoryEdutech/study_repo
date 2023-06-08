@@ -66,7 +66,7 @@ appルーターでは、ISR/SSG/SSR/CSRという言葉をほぼ使っていな�
   - Server Componentで、useStateやuseEffectを利用できない
     - SSR,SSG,ISRのコンポーネントではhtmlデータを持っていて、状態をもっていないため
 
-- コベツバで、chakra-uiを利用するとなった際は、app/common/components/index.tsxと同じ対応をすると思う
-- Chakura UIは、直感的に使いやすいと思った。styled-componentsで、コンポーネント名が決まっていて、styleのカスタマイズができるもののイメージだった。
-- Chakura UIが提供しているfigmaのパーツがあり、それを利用すれば、[Chakura UIのコードが作成できる](https://chakra-ui.com/figma/plugin)(コベツバでは使わない気もするが)
+- コベツバで、chakra-uiを利用するとなった際は、app/Provider.tsxと同じ対応をする。他chakra-uiを利用する際は、app/common/components/index.tsxみたいな感じで。
+  - Chakura UIは、TailwindCSSのコンポーネントになったバージョンのイメージだった。
+  - Chakura UIが提供しているfigmaのパーツがあり、それを利用すれば、[Chakura UIのコードが作成できる](https://chakra-ui.com/figma/plugin)(コベツバでは使わない気もするが)
 
