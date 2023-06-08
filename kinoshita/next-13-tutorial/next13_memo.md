@@ -34,4 +34,12 @@ getServerSideProps getStaticProps getStaticPaths がなくなっている
     - stateとかライフサイクルに影響するもの（useEffectとかuseReducerとかを使うとき）
     - ブラウザ専用のapiを使うとき(windowとか)
 
+### Nextjsのバンドルの仕様
+- インポートしたパッケージは、コンポーネント内で使用している分しかバンドルしないようになっている
+
+### コンポーネントの切り出し
+なんでもかんでも、コンポーネントにすればいいというものではない。
+- 小さすぎるとかえって、可読性を下げることになる
+- 大きくなってきたものは、コンポーネント化して扱いやすくする
+
 https://nextjs.org/docs/getting-started/react-essentials
