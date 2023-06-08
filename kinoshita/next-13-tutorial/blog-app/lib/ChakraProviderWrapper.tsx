@@ -9,6 +9,10 @@ interface Props {
     children: ReactNode
 }
 
-const ChakraProviderWrapper: NextPage<Props> = ({ children }) =>  <ChakraProvider>{children}</ChakraProvider>
+const ChakraProviderWrapper: NextPage<Props> = ({ children }) =>  {
+    return (
+        <ChakraProvider>{children}</ChakraProvider>
+    )
+}
 
 export default ChakraProviderWrapper
