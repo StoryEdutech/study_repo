@@ -1,2 +1,2 @@
 "use client";
-export * from "@chakra-ui/react";
+export { Container, Box, Text, Flex, Heading, Button } from "@chakra-ui/react";

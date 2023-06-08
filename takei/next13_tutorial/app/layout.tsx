@@ -1,5 +1,4 @@
 import Link from "next/link";
-import {ChakraProvider} from "./common/components";
 import Provider from "./Provider";
 import Header from "./Header";
 import Main from "./Main";
