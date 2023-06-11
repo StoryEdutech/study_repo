@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Provider from "./Provider";
-import Header from "./Header";
-import { Container, Box, Text } from "./common/components";
-
+import Header from "./_components/Header";
+import Main from "./_components/Main";
+import Footer from "./_components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,24 +20,9 @@ export default function RootLayout({
       <head />
       <body>
         <Provider>
-
           <Header />
-
-          <Container
-            as="main"
-            maxW="container.lg"
-            my="4"
-            minH="calc(100vh - 115px - 2rem)"
-          >
-            {children}
-          </Container>
-          
-          <Box bg="gray.50" color="gray.700" as="footer">
-            <Container maxW="5xl" py={4}>
-              <Text as="small">© 2023 azukiazusa</Text>
-            </Container>
-          </Box>
-
+          <Main>{children}</Main>
+          <Footer />
         </Provider>
       </body>
     </html>
