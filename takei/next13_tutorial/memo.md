@@ -52,6 +52,17 @@ appルーターでは、ISR/SSG/SSR/CSRという言葉をほぼ使っていな�
 - error.tsx は必ず Client Component として扱われます。なぜ？
 - 依存関係のない複数の API を呼び出す場合は処理が並列になるように Promise.all を使うことが推奨されます。
 
+### コンポーネントの切り出し
+小さすぎるとかえって、可読性を下げることになる
+大きくなってきた(1ファイル50行以上)のものは、コンポーネント化して可読性を上げる
+https://nextjs.org/docs/getting-started/react-essentials
+
+### フォルダ構造について
+#### プライベートフォルダー
+- 「_{フォルダ名}」というフォルダにすることで、ルーティングから除外ができる
+  - nextの[routing規則はこちら](https://nextjs.org/docs/getting-started/project-structure#dynamic-routes)
+  - 目的は、ルーティングに関係ないものを明記しておくことで、フォルダが見やすくなるため
+  - [laravel移行のフロントエンドの仕様でも使っている](https://github.com/StoryEdutech/LaravelDiscussion/blob/master/Architecture/Frontend/appFolderStructure.md#lib%E3%81%A8components%E3%81%A8hooks%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
 
 ### reactとの比較(楽になったな‐というところ)
 - react routerでやっていたことがフォルダ構造で出来ること
@@ -69,4 +80,3 @@ appルーターでは、ISR/SSG/SSR/CSRという言葉をほぼ使っていな�
 - コベツバで、chakra-uiを利用するとなった際は、app/Provider.tsxと同じ対応をする。他chakra-uiを利用する際は、app/common/components/index.tsxみたいな感じで。
   - Chakura UIは、TailwindCSSのコンポーネントになったバージョンのイメージだった。
   - Chakura UIが提供しているfigmaのパーツがあり、それを利用すれば、[Chakura UIのコードが作成できる](https://chakra-ui.com/figma/plugin)(コベツバでは使わない気もするが)
-
