@@ -53,5 +53,16 @@ getServerSideProps getStaticProps getStaticPaths がなくなっている
 ### nextjs13でのfetch()
 - 元々のfetchを拡張してあり、キャッシュや再検証(revalidate)の設定をできる
 - クライアントサイドでのデータ取得においては、useSWRが推奨されている
+- クライアントサイドのfetchは拡張しない半面、useSWRにメモ化を入れている
+
+#### cahceのオプション
+##### no-store
+##### no-cache
+##### reload
+##### only-if-cahsed
+##### default
+##### force-cache
+
+
 
 https://nextjs.org/docs/getting-started/react-essentials

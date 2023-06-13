@@ -3,7 +3,7 @@ export interface Article {
     title: string,
     content: string,
     slug: string,
-    createdAt: Date | null,
+    createdAt: Date,
     updatedAt: Date | null
 }
   
@@ -11,7 +11,7 @@ export interface Comment {
     id: number,
     body: string,
     articleId: number,
-    createdAt: Date | null,
+    createdAt: Date,
     updatedAt: Date | null,
     author: Author
 }
