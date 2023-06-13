@@ -68,6 +68,7 @@ https://nextjs.org/docs/getting-started/react-essentials
 - react routerでやっていたことがフォルダ構造で出来ること
 - reactだとローディング中のフラグだったりを作って、制御していた
 - データがあるかないかでの、読み込みページの記載がなくなった(はず)
+- フェッチ作業時に、useEffectで[]で初回レンダリングの際に対応していたのが書かずに済むこと
 
 ### Chakura UIの導入で学んだこと
 - Server Component と Client Component かをコンポーネントごとに使い分ける必要がある
@@ -85,3 +86,41 @@ https://nextjs.org/docs/getting-started/react-essentials
   - 「@/〇〇」という形で引用しやすいため
   - [定義](https://github.com/enes1004/laravel_with_next/blob/master/nextjs_inside_laravel/components/styled-components/index.ts)
   - [使用](https://github.com/enes1004/laravel_with_next/blob/master/nextjs_inside_laravel/app/_components/MyDiv.js)
+
+### 記事の一覧を表示するで学んだこと
+
+- apiは/pages/apiフォルダに用意されていること
+
+### 静的レンダリング
+- 静的レンダリングの使用でビルド時にSC、CCの両方をサーバー上で事前にレンダリングできる。
+- 作業結果はキャッシュされ再利用される
+- 再検証(revalidate)が可能
+
+
+
+### データフェッチ
+- Server Components内でデータフェッチを推奨
+  - Client Components内でする場合は、useSWRを推奨。[将来的にはReactのフックを使用してクライアントコンポーネントのデータをフェッチできるようになる予定](https://nextjs.org/docs/app/building-your-application/data-fetching#fetching-data-on-the-server)
+- データを並行してフェッチして時間短縮
+- データの利用箇所でデータをフェッチ
+  - リクエストの自動重複排除がされる(A,B,B,C,D,A,BとリクエストあってもA,B,C,Dとなる) [資料はこちら](https://nextjs.org/docs/app/building-your-application/data-fetching#automatic-fetch-request-deduping) ただし、POSTリクエストは自動的に重複排除されない。
+- Loading UI, Streaming, Suspenseを使用してページを段階的にレンダリングし、コンテンツが読み込み中に結果を示す。
+
+
+#### 並列にデータフェッチをするためには？
+サーバーコンポーネントを呼び出す前にフェッチを開始することで、同時に開始できる。
+
+#### 気づいたこと
+- データを並行してフェッチして時間短縮
+- データの利用箇所でデータをフェッチ
+
+矛盾しているようなきが、、？データの利用箇所でフェッチするなら、並列ではなくなるのでは。
+[参考](https://zenn.dev/1031take/articles/e9234890d0c6d3)
+[データの取得](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#data-fetching-patterns)
+
+
+### error.tsxやloading.tsx,not-found.tsxについて
+#### error.tsx
+- reactの[エラーバウンダリー](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を採用している
+#### loading.tsx
+- 読み込みが完了しているかのstateを用意して、条件式を書かなくて済んだのがでかい([reactのSuspenseを利用している](https://react.dev/reference/react/Suspense))
