@@ -1,3 +1,4 @@
+// クライアントコンポーネントとして扱えるようにするための対応(chakra公式ドキュメントと同じ方法)
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
