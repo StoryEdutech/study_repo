@@ -1,19 +1,6 @@
 ## next13のドキュメント
 - Using App Routerにすれば、Next13の[公式ドキュメント](https://nextjs.org/docs)を見れる
 
-### Layout(RootLayout)
--  _app.tsx, _document.tsxがなくなったぽいので、html,bodyはここで書く
-- Meatdataを自分で定義してexportすれば、nextが勝手に読み込んでくれる（Headコンポーネントを使わなくてもできる）
-- これまで、layoutを使うときは、コンポーネントをlayoutタグでラップしていたが、やらなくてもよくなった
-
-### 動的パラメータ
-- getStaticPathsがなくなった
-- 特に何も定義しなくても、コンポーネント内でparamsというキーで、パラメータを取得できている
-
-### 今後のnextjsの方針
-getServerSideProps getStaticProps getStaticPaths がなくなっている
-今後は、ユーザーの情報など、キャッシュしてほしくないところを意識していくことになる
-
 ### サーバーコンポーネント
 - すべてのコンポーネントはデフォルトでサーバーコンポーネントになっている
 - jsのバンドルサイズが小さくなる（クライアント側では、jsを実行しないという考え方があるため）
@@ -29,31 +16,47 @@ getServerSideProps getStaticProps getStaticPaths がなくなっている
 
 ### クライアントコンポーネント
 - "use client"を付けると、クライアントコンポーネントになる
+- インポートされた他のすべてのモジュール (子コンポーネントを含む) はクライアント バンドルの一部とみなされます。(公式ドキュメントより)
+- クライアント コンポーネント モジュール グラフ内のコンポーネントは主にクライアント上でレンダリングされますが、Next.js を使用すると、サーバー上で事前レンダリングしてクライアント上でハイドレートすることもできます。(公式ドキュメントより)
+    - 多分、親コンポーネントがサーバーコンポーネントだったら、サーバー上で事前レンダリングしてクライアント上でハイドレートするということ
 - 使うとき
     - ボタンとか、検索バーとかインタラクティブに動くもの(onClick, onChangeとかを使うやつ)
     - stateとかライフサイクルに影響するもの（useEffectとかuseReducerとかを使うとき）
     - ブラウザ専用のapiを使うとき(windowとか)
 
+
 ### Nextjsのバンドルの仕様
 - インポートしたパッケージは、コンポーネント内で使用している分しかバンドルしないようになっている
-
-### コンポーネントの切り出し
-なんでもかんでも、コンポーネントにすればいいというものではない。
-- 小さすぎるとかえって、可読性を下げることになる
-- 大きくなってきたものは、コンポーネント化して扱いやすくする
 
 ### レンダリング
 - レンダリングは、「データ取得」と「動的関数の有無」に依存する
 - [ドキュメントの表](https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic-rendering#dynamic-rendering)
+#### 静的レンダリング(static)
+- **ビルド時**に**SC、CC**の両方をサーバー上で事前にレンダリングできる。
+
+#### 動的レンダリング(dynamic)
+- **リクエスト時**に**SC、CC**の両方をサーバー上で事前にレンダリングできる。
 
 ### 動的関数
 - cookies(), headers(), useSearchParams()などがある
 - 使うと動的なレンダリングになる
+- useSearchParams()を使うときは、使ってるコンポーネントを必ずSuspenseでラップする
+    - [公式ドキュメント](https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic-rendering#dynamic-functions)でもSuspenseでラップすように書いてある
+    - 挙動としては、Suspenseがあるところを探して、その部分までは、ClientComponentにしようとする
+    - なので、Suspenseでラップしていなかったら、（境界線がわからないので）ページ全体がクライアントサイドレンダリングになってしまう
+    - たとえ、SeverComponent(親)のなかで、useSearchParams()を使ったClientComponent(子)で使っていたとしても、Suspenseで子コンポーネントをラップしていなかったら、親コンポーネントごとクライアントサイドレンダリングになってしまう
+
 
 ### nextjs13でのfetch()
 - 元々のfetchを拡張してあり、キャッシュや再検証(revalidate)の設定をできる
 - クライアントサイドでのデータ取得においては、useSWRが推奨されている
 - クライアントサイドのfetchは拡張しない半面、useSWRにメモ化を入れている
+- https://zenn.dev/1031take/articles/e9234890d0c6d3
+
+### Suspense
+- Promiseを返すコンポーネント(Promise<JSX.Element>)にて、Promiseが未解決のときに、別のUI（fallback）を表示させる仕組み
+- Suspenseでラップされた部分の外側だけがレンダリングされているなら、その外側の部分はクライアントサイドに渡される(Suspense内はfallback)
+
 
 #### cahceのオプション
 ##### no-store
@@ -63,6 +66,9 @@ getServerSideProps getStaticProps getStaticPaths がなくなっている
 ##### default
 ##### force-cache
 
+### error.tsx
+- ErrorBoundaryを自動で生成する（**自分で設定しなくておk**）
+- 自分でBoundaryを設定しなくても、勝手にpage.tsx内でエラーが起こったら、page.tsx内でエラーをキャッチしてくれるイメージ
 
 
 https://nextjs.org/docs/getting-started/react-essentials

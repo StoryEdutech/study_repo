@@ -12,7 +12,7 @@ const sampleArticles: Article[] = [
     },
     {
         id: 2,
-        title: "タイトル22333",
+        title: "タイトル2!!!!!!",
         content: "ここが本文",
         slug: "slug_2",
         createdAt: new Date(),
