@@ -81,3 +81,7 @@ https://nextjs.org/docs/getting-started/react-essentials
 - コベツバで、chakra-uiを利用するとなった際は、app/Provider.tsxと同じ対応をする。他chakra-uiを利用する際は、app/common/components/index.tsxみたいな感じで。
   - Chakura UIは、TailwindCSSのコンポーネントになったバージョンのイメージだった。
   - Chakura UIが提供しているfigmaのパーツがあり、それを利用すれば、[Chakura UIのコードが作成できる](https://chakra-ui.com/figma/plugin)(コベツバでは使わない気もするが)
+- ルート直下にcomponentsフォルダを作成して、横断で使われるchakra-uiやstyled-componentsはroot直下に入れるべき
+  - 「@/〇〇」という形で引用しやすいため
+  - [定義](https://github.com/enes1004/laravel_with_next/blob/master/nextjs_inside_laravel/components/styled-components/index.ts)
+  - [使用](https://github.com/enes1004/laravel_with_next/blob/master/nextjs_inside_laravel/app/_components/MyDiv.js)
