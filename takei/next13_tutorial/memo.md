@@ -72,7 +72,8 @@ https://nextjs.org/docs/getting-started/react-essentials
 ### Chakura UIの導入で学んだこと
 - Server Component と Client Component かをコンポーネントごとに使い分ける必要がある
   - 使い分ける判断として、[公式ドキュメントが出している判断方法](https://nextjs.org/docs/getting-started/react-essentials#when-to-use-server-and-client-components)を参照する良い
-    - クライアントが動作をおこなう場合は、クライアントコンポーネント。なければ、サーバーコンポーネントというイメージ
+    - クライアントが動作をおこなう場合は、クライアントコンポーネント。なければ、サーバーコンポーネントというイメージというわけではないよ
+      - ClientComponentでも、SSG/ISR/SSR出来るため。useStateなどのものがあるかないかで判断するべき。
   - Client Component として扱うためには、`use client` を宣言したファイルでラップする
   - Server Componentで、useStateやuseEffectを利用できない
     - SSR,SSG,ISRのコンポーネントではhtmlデータを持っていて、状態をもっていないため
