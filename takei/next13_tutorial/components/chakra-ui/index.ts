@@ -5,11 +5,5 @@ export {
     Heading,
     Button,
     Container,
-    Text,
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    VStack,
-    Spinner
+    Text
 } from "@chakra-ui/react";
