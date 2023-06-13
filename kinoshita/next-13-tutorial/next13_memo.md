@@ -42,4 +42,27 @@ getServerSideProps getStaticProps getStaticPaths がなくなっている
 - 小さすぎるとかえって、可読性を下げることになる
 - 大きくなってきたものは、コンポーネント化して扱いやすくする
 
+### レンダリング
+- レンダリングは、「データ取得」と「動的関数の有無」に依存する
+- [ドキュメントの表](https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic-rendering#dynamic-rendering)
+
+### 動的関数
+- cookies(), headers(), useSearchParams()などがある
+- 使うと動的なレンダリングになる
+
+### nextjs13でのfetch()
+- 元々のfetchを拡張してあり、キャッシュや再検証(revalidate)の設定をできる
+- クライアントサイドでのデータ取得においては、useSWRが推奨されている
+- クライアントサイドのfetchは拡張しない半面、useSWRにメモ化を入れている
+
+#### cahceのオプション
+##### no-store
+##### no-cache
+##### reload
+##### only-if-cahsed
+##### default
+##### force-cache
+
+
+
 https://nextjs.org/docs/getting-started/react-essentials
