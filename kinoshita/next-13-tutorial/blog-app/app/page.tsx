@@ -1,11 +1,23 @@
 import type { Article } from "./types";
+import { Heading, VStack } from '@/lib/components'
+import ArticleCard from "./_components/ArticleCard";
 
 const getArticles = async () => {
+    // Suspense検証用 遅延させる
+    const start = new Date().getTime()
+    while(new Date().getTime() - start < 3500) {
+        // なにもしない
+    }
+
     const res = await fetch("http://localhost:3000/api/articles", {
-        next: {
-            revalidate: 5 // (仮で)
-        }
+        // next: {
+        //     revalidate: 5 // (仮で
+        // },
+        cache: 'no-store'
     });
+
+    // Error検証用
+    // throw new Error("Failed to fetch articles")
 
     // エラーハンドリングを行うことが推奨されている
     if (!res.ok) {
@@ -13,6 +25,7 @@ const getArticles = async () => {
     }
 
     const { articles } = await res.json() as { articles: Article[] }
+
     return articles
 }
 
@@ -21,12 +34,15 @@ const Home = async () => {
 
     return (
         <div>
-            <h1>新着記事</h1>
-            <ul>
+            <Heading as="h1" mb={4}>
+            新着記事
+            </Heading>
+            
+            <VStack spacing={4} as="ul">
                 {articles.map((article) => (
-                    <li key={article.id}>{article.title}</li>
+                    <ArticleCard key={article.id} article={article} />
                 ))}
-            </ul>
+            </VStack>
         </div>
     );
 }

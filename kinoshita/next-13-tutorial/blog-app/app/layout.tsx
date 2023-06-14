@@ -1,9 +1,11 @@
 import { NextPage, Metadata } from "next";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import ChakraProviderWrapper from "@/lib/ChakraProviderWrapper";
 import Header from "./_components/Header";
 import Main from "./_components/Main";
 import Footer from "./_components/Footer";
+import Loading from "./loading";
+
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -25,7 +27,9 @@ const RootLayout: NextPage<Props> = ({ children }) => {
                     <Header />
 
                     <Main>
-                        {children}
+                        <Suspense fallback={<Loading />}>
+                            {children}
+                        </Suspense>
                     </Main>
 
                     <Footer />
