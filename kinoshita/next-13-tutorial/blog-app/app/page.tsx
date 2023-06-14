@@ -3,11 +3,6 @@ import { Heading, VStack } from '@/lib/components'
 import ArticleCard from "./_components/ArticleCard";
 
 const getArticles = async () => {
-    // Suspense検証用 遅延させる
-    const start = new Date().getTime()
-    while(new Date().getTime() - start < 3500) {
-        // なにもしない
-    }
 
     const res = await fetch("http://localhost:3000/api/articles", {
         // next: {
@@ -15,9 +10,6 @@ const getArticles = async () => {
         // },
         cache: 'no-store'
     });
-
-    // Error検証用
-    // throw new Error("Failed to fetch articles")
 
     // エラーハンドリングを行うことが推奨されている
     if (!res.ok) {

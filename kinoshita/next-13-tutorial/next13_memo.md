@@ -18,7 +18,7 @@
 - "use client"を付けると、クライアントコンポーネントになる
 - インポートされた他のすべてのモジュール (子コンポーネントを含む) はクライアント バンドルの一部とみなされます。(公式ドキュメントより)
 - クライアント コンポーネント モジュール グラフ内のコンポーネントは主にクライアント上でレンダリングされますが、Next.js を使用すると、サーバー上で事前レンダリングしてクライアント上でハイドレートすることもできます。(公式ドキュメントより)
-    - 多分、親コンポーネントがサーバーコンポーネントだったら、サーバー上で事前レンダリングしてクライアント上でハイドレートするということ
+    - 親コンポーネントがサーバーコンポーネントだったら、サーバー上で事前レンダリングしてクライアント上でハイドレートするということ
 - 使うとき
     - ボタンとか、検索バーとかインタラクティブに動くもの(onClick, onChangeとかを使うやつ)
     - stateとかライフサイクルに影響するもの（useEffectとかuseReducerとかを使うとき）
@@ -32,10 +32,10 @@
 - レンダリングは、「データ取得」と「動的関数の有無」に依存する
 - [ドキュメントの表](https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic-rendering#dynamic-rendering)
 #### 静的レンダリング(static)
-- **ビルド時**に**SC、CC**の両方をサーバー上で事前にレンダリングできる。
+- **ビルド時**に**ServerComponent, ClientComponent**の両方をサーバー上で事前にレンダリングできる。
 
 #### 動的レンダリング(dynamic)
-- **リクエスト時**に**SC、CC**の両方をサーバー上で事前にレンダリングできる。
+- **リクエスト時**に**ServerComponent, ClientComponent**の両方をサーバー上で事前にレンダリングできる。
 
 ### 動的関数
 - cookies(), headers(), useSearchParams()などがある
@@ -70,5 +70,11 @@
 - ErrorBoundaryを自動で生成する（**自分で設定しなくておk**）
 - 自分でBoundaryを設定しなくても、勝手にpage.tsx内でエラーが起こったら、page.tsx内でエラーをキャッチしてくれるイメージ
 
+### api routeでステータスを返す
+- NextResponse.json()の第２引数に{ status: 400 }とかを入れる
+- https://github.com/vercel/next.js/discussions/48397
+
+### notFound()
+- notFound()を呼び出せば、勝手にnot-found.tsxを表示してくる
 
 https://nextjs.org/docs/getting-started/react-essentials
