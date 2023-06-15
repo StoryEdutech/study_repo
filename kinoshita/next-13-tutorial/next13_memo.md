@@ -77,4 +77,10 @@
 ### notFound()
 - notFound()を呼び出せば、勝手にnot-found.tsxを表示してくる
 
+### generateMetadata
+- 第１引数に params を受け取り、async/await を使って動的に値を取得して オブジェクトを形式で <head> を設定できます。
+- 第 2 引数の parent では上位のディレクトリに設定されている metadata を参照できます。
+- ルートディレクトリに近いセグメントから最も近いセグメントにある page.tsx ファイルの順番に評価されます。
+    - app/page.tsx => app/article/[slug]/page.tsxみたいな感じで
+
 https://nextjs.org/docs/getting-started/react-essentials
