@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
-import articlesData from '@/dummy-data/articles.json'
+import articlesData from '@/dummy-data/articles.data'
 import { Article } from '@/app/types'
 
 const getArticlefromDummy = (slug:string): Article | undefined => {
     return articlesData.find(element => element.slug === slug)
-} 
+}
 
 interface Params {
     params : {

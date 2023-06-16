@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import commentsData from '@/dummy-data/comments.json'
+import commentsData from '@/dummy-data/comments.data'
 import { Comment } from '@/app/types'
 
 const getCommentsfromDummy = (articleId:number): Comment[] | null => {
