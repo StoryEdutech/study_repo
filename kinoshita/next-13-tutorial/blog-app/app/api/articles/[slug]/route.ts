@@ -2,17 +2,8 @@ import { NextResponse } from 'next/server'
 import articlesData from '@/dummy-data/articles.json'
 import { Article } from '@/app/types'
 
-const getArticlefromDummy = (slug:string): Article | null => {
-
-    let article = null
-
-    articlesData.forEach(element => {
-        if(element.slug === slug){
-            article = element
-        } 
-    })
-
-    return article
+const getArticlefromDummy = (slug:string): Article | undefined => {
+    return articlesData.find(element => element.slug === slug)
 } 
 
 interface Params {
