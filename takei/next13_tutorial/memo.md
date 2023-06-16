@@ -1,6 +1,5 @@
 ## 基本
 
-
 ### CSR,SSR,SG,ISRについて
 
 #### 前提
@@ -89,8 +88,11 @@ https://nextjs.org/docs/getting-started/react-essentials
 
 ### 記事の一覧を表示するで学んだこと
 
-- apiは/pages/apiフォルダに用意されていること
-
+- 本実装ではpagesは使用禁止のため、pages/apiも使用禁止。
+  - APIが完全にLaravelにするため、NextJSでAPI書くことがない
+  - [参照1](https://github.com/StoryEdutech/kobetsuba_frontend/tree/master/pages)
+  - [参照2](https://github.com/StoryEdutech/kobetsuba_frontend/tree/master/pages)
+  
 ### 静的レンダリング
 - 静的レンダリングの使用でビルド時にSC、CCの両方をサーバー上で事前にレンダリングできる。
 - 作業結果はキャッシュされ再利用される
@@ -102,7 +104,12 @@ https://nextjs.org/docs/getting-started/react-essentials
 - Server Components内でデータフェッチを推奨
   - Client Components内でする場合は、useSWRを推奨。[将来的にはReactのフックを使用してクライアントコンポーネントのデータをフェッチできるようになる予定](https://nextjs.org/docs/app/building-your-application/data-fetching#fetching-data-on-the-server)
 - データを並行してフェッチして時間短縮
+  - →同じComponentで二つのAPIを叩く時の話（1 Component 2 API）
+  - awaitを無理にfetch直後にしなくていいよ
+  - 必要になった時、必要なものだけawaitを入れてよ
+  - awaitを出来るだけ後にしてくれたら並行フェッチしてあげるよ
 - データの利用箇所でデータをフェッチ
+  - 別々のComponent/関数で同じAPIを叩く時の話 (2 Component 1 API )
   - リクエストの自動重複排除がされる(A,B,B,C,D,A,BとリクエストあってもA,B,C,Dとなる) [資料はこちら](https://nextjs.org/docs/app/building-your-application/data-fetching#automatic-fetch-request-deduping) ただし、POSTリクエストは自動的に重複排除されない。
 - Loading UI, Streaming, Suspenseを使用してページを段階的にレンダリングし、コンテンツが読み込み中に結果を示す。
 
