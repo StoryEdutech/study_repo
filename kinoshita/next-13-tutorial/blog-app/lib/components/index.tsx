@@ -12,4 +12,8 @@ export {
     CardBody,
     CardFooter,
     VStack,
+    FormControl,
+    FormLabel,
+    Input,
+    Textarea,  
 } from "@chakra-ui/react";
