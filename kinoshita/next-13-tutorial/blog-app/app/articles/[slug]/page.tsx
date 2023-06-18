@@ -2,7 +2,7 @@ import { NextPage, Metadata, ResolvingMetadata } from 'next';
 import { Suspense } from "react";
 import { getArticle, getComments } from './_helper'
 import { notFound } from 'next/navigation';
-import { Article } from '@/app/types';
+import { Article, Comment } from '@/app/types';
 
 interface PageProps { 
     params: {
@@ -39,27 +39,27 @@ const CommentList = async ({ articleId }: CommentProps) => {
 
     // 記事では、slugを引数にした関数になってるけど
     // Comment型にはslugがなくて、articleIdがあるので、article.idでCommentを取得
-    const comments = await getComments(articleId)
-
-    if(comments.length === 0) {
-        return <p>コメントがありません</p>
-    }
+    const comments: Comment[] = await getComments(articleId)
     
     return (
         <ul>
-            {comments.map(comment => (
-                <li key={comment.id}>{comment.body}</li>
-            ))}
+            {
+                comments.length ?
+                comments.map(({ id, body }) => (
+                    <li key={`Comment_${id}`}>{body}</li>
+                )) : (
+                    <p>コメントがありません</p>
+                )
+            }
         </ul>
     )
     
 }
 
-interface GenerateMetadata extends PageProps {
-    parent?: ResolvingMetadata // 親のディレクトリのmeatadataを取得するのに必要
-}
-
-export const generateMetadata = async ({ params }: GenerateMetadata) =>  {
+export const generateMetadata = async ({ params }: {
+    params: { slug: string},
+    // parent?: ResolvingMetadata なくてもできる
+}) =>  {
     const { slug } = params
 
     const article = await getArticle(slug)

@@ -22,7 +22,7 @@ const getArticles = async () => {
 }
 
 const Home = async () => {
-    const articles = await getArticles();
+    const articles: Article[] = await getArticles();
 
     return (
         <div>
