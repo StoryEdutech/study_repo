@@ -1,6 +1,6 @@
 import { Comment } from "@/app/types"
 
-export default [
+const comments: Comment[] = [
     {
         id: 1111,
         body: "コメント１",
@@ -23,4 +23,6 @@ export default [
             "avatarUrl": ""
         }
     }
-] as Comment[]
+]
+
+export default comments

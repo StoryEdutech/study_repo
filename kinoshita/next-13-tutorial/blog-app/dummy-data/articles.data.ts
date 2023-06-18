@@ -1,6 +1,6 @@
 import { Article } from "@/app/types";
 
-export default [
+const articles: Article[] = [
     {
         id: 1,
         title: "タイトル1",
@@ -25,4 +25,6 @@ export default [
         createdAt: "2023-10-04 15:25:07",
         updatedAt: null
     }
-] as Article[]
+]
+
+export default articles
