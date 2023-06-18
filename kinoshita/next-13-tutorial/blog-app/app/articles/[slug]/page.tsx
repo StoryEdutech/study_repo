@@ -2,6 +2,7 @@ import { NextPage, Metadata, ResolvingMetadata } from 'next';
 import { Suspense } from "react";
 import { getArticle, getComments } from './_helper'
 import { notFound } from 'next/navigation';
+import { Article } from '@/app/types';
 
 interface PageProps { 
     params: {
@@ -12,15 +13,19 @@ interface PageProps {
 const ArticleDetail: NextPage<PageProps> = async ({ params }) => {
     const { slug } = params
 
-    const article = await getArticle(slug)
+    const {
+        title,
+        content,
+        id
+    }: Article = await getArticle(slug)
   
     return (
         <div>
-            <h1>{article.title}</h1>
-            <p>{article.content}</p>
+            <h1>{title}</h1>
+            <p>{content}</p>
             <h2>Comments</h2>
             <Suspense fallback={<p>コメントを取得中です...</p>}>
-                <CommentList articleId={article.id} />
+                <CommentList articleId={id} />
             </Suspense>
         </div>
     )
