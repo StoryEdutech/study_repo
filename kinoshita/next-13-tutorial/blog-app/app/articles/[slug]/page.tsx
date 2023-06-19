@@ -1,18 +1,76 @@
-import { NextPage } from "next"
+import { NextPage, Metadata, ResolvingMetadata } from 'next';
+import { Suspense } from "react";
+import getArticle from './_helper/getArticle'
+import getComments from './_helper/getComments'
+import { notFound } from 'next/navigation';
+import { Article, Comment } from '@/app/types';
 
-interface Props { 
+interface PageProps { 
     params: {
         slug: string 
     }
 }
 
-const Article: NextPage<Props> = ({ params }) => {
+const ArticleDetail: NextPage<PageProps> = async ({ params }) => {
+    const { slug } = params
+
+    const {
+        title,
+        content,
+        id
+    }: Article = await getArticle(slug)
+  
     return (
         <div>
-            <h1>記事の詳細</h1>
-            <p>記事のスラッグ: {params.slug}</p>
+            <h1>{title}</h1>
+            <p>{content}</p>
+            <h2>Comments</h2>
+            <Suspense fallback={<p>コメントを取得中です...</p>}>
+                <CommentList articleId={id} />
+            </Suspense>
         </div>
     )
 }
 
-export default Article
+interface CommentProps {
+    articleId: number
+}
+
+const CommentList = async ({ articleId }: CommentProps) => {
+
+    // 記事では、slugを引数にした関数になってるけど
+    // Comment型にはslugがなくて、articleIdがあるので、article.idでCommentを取得
+    const comments: Comment[] = await getComments(articleId)
+    
+    return (
+        <ul>
+            {
+                comments.length ?
+                comments.map(({ id, body }) => (
+                    <li key={`Comment_${id}`}>{body}</li>
+                )) : (
+                    <p>コメントがありません</p>
+                )
+            }
+        </ul>
+    )
+    
+}
+
+export const generateMetadata = async ({ params }: {
+    params: { slug: string},
+    // parent?: ResolvingMetadata なくてもできる
+}) =>  {
+    const { slug } = params
+
+    const article = await getArticle(slug)
+
+    if(!article) notFound()
+
+    return {
+        title: `Blog app | ${article.title}`,
+        description: article.content
+    }
+}
+
+export default ArticleDetail

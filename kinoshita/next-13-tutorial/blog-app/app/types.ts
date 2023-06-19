@@ -3,16 +3,16 @@ export interface Article {
     title: string,
     content: string,
     slug: string,
-    createdAt: Date,
-    updatedAt: Date | null
+    createdAt: string,
+    updatedAt: string | null
 }
   
 export interface Comment {
     id: number,
     body: string,
     articleId: number,
-    createdAt: Date,
-    updatedAt: Date | null,
+    createdAt: string,
+    updatedAt: string | null,
     author: Author
 }
 
