@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Article} from "@/app/types";
 
-export const getArticle = async (slug: string): Promise<Article> => {
+const getArticle = async (slug: string): Promise<Article> => {
     const res = await fetch(`http://localhost:3000/api/articles/${slug}`,{
         next: { revalidate: 2 },
     });
@@ -18,3 +18,5 @@ export const getArticle = async (slug: string): Promise<Article> => {
     const { article } = await res.json() as { article: Article }
     return article
 }
+
+export default getArticle

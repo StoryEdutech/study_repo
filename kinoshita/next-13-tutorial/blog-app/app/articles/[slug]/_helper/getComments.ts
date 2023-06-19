@@ -1,6 +1,6 @@
 import { Comment } from "@/app/types";
 
-export const getComments = async (articleId: number): Promise<Comment[]> => {
+const getComments = async (articleId: number): Promise<Comment[]> => {
     
     // [slug]でディレクトリを切ってしまっているので、無理くり代入する
     const slug = articleId 
@@ -20,3 +20,5 @@ export const getComments = async (articleId: number): Promise<Comment[]> => {
     
     return comments
 }
+
+export default getComments

@@ -1,6 +1,7 @@
 import { NextPage, Metadata, ResolvingMetadata } from 'next';
 import { Suspense } from "react";
-import { getArticle, getComments } from './_helper'
+import getArticle from './_helper/getArticle'
+import getComments from './_helper/getComments'
 import { notFound } from 'next/navigation';
 import { Article, Comment } from '@/app/types';
 
