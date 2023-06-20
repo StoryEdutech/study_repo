@@ -11,13 +11,11 @@ export const getArticle = async (slug: string) => {
     }
 
     if(!res.ok) {
-        // throw new Error("Failed to fetch article");
-        console.error('response.ok:', res.ok);
-        console.error('esponse.status:', res.status);
-        console.error('esponse.statusText:', res.statusText);
-        throw new Error(res.statusText);
+        throw new Error("Failed to fetch article");
     }
 
     const data = await res.json();
     return data as Article;
 };
+
+export default getArticle;

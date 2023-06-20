@@ -7,7 +7,7 @@ import {
   Text,
 } from "@/components/chakra-ui";;
 import NextLink from "next/link";
-import { Article } from "../types";
+import { Article } from "@/app/types";
 
 export default function ArticleCard({ article }: { article: Article }) {
   const formattedDate = new Date(article.createdAt).toLocaleDateString(

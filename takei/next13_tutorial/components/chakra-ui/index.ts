@@ -11,5 +11,13 @@ export {
     CardBody,
     CardFooter,
     VStack,
-    Spinner
+    Spinner,
+    StackDivider,
+    Avatar,
+    SkeletonCircle,
+    Skeleton,
+    FormControl,
+    FormLabel,
+    Input,
+    Textarea,
 } from "@chakra-ui/react";

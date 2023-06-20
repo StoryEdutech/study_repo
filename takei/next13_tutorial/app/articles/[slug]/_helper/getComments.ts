@@ -7,11 +7,7 @@ export const getComments = async (slug: string) => {
   );
 
   if (!res.ok) {
-    // throw new Error("Faild to fetch comments");
-    console.error('response.ok:', res.ok);
-    console.error('esponse.status:', res.status);
-    console.error('esponse.statusText:', res.statusText);
-    throw new Error(res.statusText);
+    throw new Error("Faild to fetch comments");
   }
 
   const data = await res.json();

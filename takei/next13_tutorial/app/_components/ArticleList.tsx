@@ -1,6 +1,6 @@
 import { VStack } from "@/components/chakra-ui";
 import ArticleCard from "./ArticleCard";
-import { Article } from "../types";
+import { Article } from "@/app/types";
 
 export default function ArticleList({ articles }: { articles: Article[] }) {
   return (
