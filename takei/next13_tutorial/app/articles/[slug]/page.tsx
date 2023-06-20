@@ -1,18 +1,27 @@
-import {notFound} from "next/navigation";
-import {Suspence} from "react";
-import { Article, Comment } from "@/app/types";
+import {Suspense} from "react";
 import ArticleContent from "./_components/ArticleContent";
-import { getArticle,getComments } from "./_helper";
+import Comments from "./_components/Comments";
+import { Heading } from "@/components/chakra-ui";
+import getArticle from "./_helper/getArtilce"
+import getComments from "./_helper/getComments";
+import LoadingComments from "./LoadingComments";
 
 export default async function ArticleDetail ({params}: {params : {slug: string}}) {
 
   const articlePromise = getArticle(params.slug);
-  const commentPromise = getArticle(params.slug);
+  const commentPromise = getComments(params.slug);
 
   const article = await articlePromise;
 
-
   return (
-    <ArticleContent article={article}></ArticleContent>
+    <div>
+      <ArticleContent article={article} />
+      <Heading>
+        コメント一覧
+      </Heading>
+      <Suspense fallback={<LoadingComments />}>
+        <Comments commentPromise={commentPromise} />
+      </Suspense>
+    </div>
   )
 }

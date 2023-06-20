@@ -7,14 +7,15 @@ import {
 } from "@/components/chakra-ui";
 import { Article } from "@/app/types";
 const ArticleContent = ({ article }: { article: Article }) => {
+    const { title, content } = article
     return (
         <Card as="article">
             <CardHeader>
-                <Heading as="h1">{article.title}</Heading>
+                <Heading as="h1">{title||"タイトルがありません"}</Heading>
             </CardHeader>
             <CardBody>
                 <Text as="p" fontSize="md">
-                    {article.content}
+                    {content||"内容がありません"}
                 </Text>
             </CardBody>
         </Card>
