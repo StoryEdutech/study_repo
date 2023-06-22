@@ -5,6 +5,7 @@ import { Heading } from "@/components/chakra-ui";
 import getArticle from "./_helper/getArtilce"
 import getComments from "./_helper/getComments";
 import LoadingComments from "./LoadingComments";
+import {Article} from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next';
 
 
@@ -36,7 +37,7 @@ export async function generateMetadata({
   params: { slug: string };
   parent?: ResolvingMetadata;
 }): Promise<Metadata> {
-  const article = await getArticle(params.slug);
+  const article:Article = await getArticle(params.slug);
   return {
     title: article?.title,
     description: article?.content,

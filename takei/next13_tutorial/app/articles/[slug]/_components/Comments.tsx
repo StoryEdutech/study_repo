@@ -13,7 +13,7 @@ export default async function Comments({
 }: {
   commentPromise: Promise<Comment[]>;
 }) {
-  const comments = await commentPromise;
+  const comments:Comment[] = await commentPromise;
 
   return (
     comments && Array.isArray(comments) && comments.length > 0 ?

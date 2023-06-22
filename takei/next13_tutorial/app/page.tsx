@@ -16,7 +16,7 @@ async function getArticles() {
 }
 
 export default async function Home() {
-  const articles = await getArticles();
+  const articles:Article[] = await getArticles();
 
   return (
     <div>
