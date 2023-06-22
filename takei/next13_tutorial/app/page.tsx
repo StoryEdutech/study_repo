@@ -11,7 +11,8 @@ async function getArticles() {
   }
 
   const data = await res.json();
-  return data.articles as Article[];
+
+  return data as Article[];
 }
 
 export default async function Home() {
