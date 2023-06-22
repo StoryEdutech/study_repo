@@ -131,3 +131,23 @@ https://nextjs.org/docs/getting-started/react-essentials
 - reactの[エラーバウンダリー](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を採用している
 #### loading.tsx
 - 読み込みが完了しているかのstateを用意して、条件式を書かなくて済んだのがでかい([reactのSuspenseを利用している](https://react.dev/reference/react/Suspense))
+
+### デバッグについて
+- Server Componentにて、jsのconsole.logがブラウザのコンソールではなく、ターミナル上で表示される
+  - npm run devをしたときのみ
+- Suspenseの検証 UI切り替えが早すぎたら分からないため、遅延させる
+```
+    // Suspense検証用 遅延させる
+    const start = new Date().getTime()
+    while(new Date().getTime() - start < 3500) {
+        // なにもしない
+    }
+```
+
+### キャッシュについて
+
+- router.refreshを呼び出すことで、キャッシュを無効にすることができる
+
+### 内部リンクの画面遷移について
+
+- "next/link"からのLinkコンポーネント,'next/navigation'内のuseRouterを利用する
