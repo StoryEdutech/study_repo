@@ -10,9 +10,8 @@ async function getArticles() {
     throw new Error("Failed to fetch articles");
   }
 
-  const data = await res.json();
-
-  return data as Article[];
+  const data: Article[] = await res.json();
+  return data;
 }
 
 export default async function Home() {

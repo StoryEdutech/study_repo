@@ -151,3 +151,21 @@ https://nextjs.org/docs/getting-started/react-essentials
 ### 内部リンクの画面遷移について
 
 - "next/link"からのLinkコンポーネント,'next/navigation'内のuseRouterを利用する
+
+
+### typescriptの扱いについて
+
+下記の内容から、
+```
+  const data = await res.json();
+  return data as Article[];
+```
+
+の`as Article[]`のasは使わないべき。
+
+```
+  const data: Article[] = await res.json();
+  return data;
+```
+
+に変更すること
