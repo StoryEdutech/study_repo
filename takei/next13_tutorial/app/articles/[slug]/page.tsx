@@ -3,7 +3,6 @@ import ArticleContent from "./_components/ArticleContent";
 import Comments from "./_components/Comments";
 import { Heading } from "@/components/chakra-ui";
 import getArticle from "./_helper/getArtilce"
-import getComments from "./_helper/getComments";
 import LoadingComments from "./LoadingComments";
 import {Article} from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next';
@@ -12,7 +11,6 @@ import type { Metadata, ResolvingMetadata } from 'next';
 export default async function ArticleDetail ({params}: {params : {slug: string}}) {
 
   const articlePromise = getArticle(params.slug);
-  const commentPromise = getComments(params.slug);
 
   const article = await articlePromise;
 
@@ -24,7 +22,7 @@ export default async function ArticleDetail ({params}: {params : {slug: string}}
       </Heading>
       <Suspense fallback={<LoadingComments />}>
         {/* @ts-expect-error 現状は jsx が Promise を返すと TypeScript が型エラーを報告するが、将来的には解決される */}
-        <Comments commentPromise={commentPromise} />
+        <Comments slug={params.slug} />
       </Suspense>
     </div>
   )

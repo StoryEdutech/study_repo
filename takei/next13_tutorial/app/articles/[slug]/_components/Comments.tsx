@@ -7,13 +7,15 @@ import {
 } from "@/components/chakra-ui";
 
 import { Comment } from "@/app/types";
+import getComments from "../_helper/getComments";
 
 export default async function Comments({
-  commentPromise,
+  slug,
 }: {
-  commentPromise: Promise<Comment[]>;
+  slug: string;
 }) {
-  const comments:Comment[] = await commentPromise;
+
+  const comments:Comment[] = await getComments(slug);
 
   return (
     comments && Array.isArray(comments) && comments.length > 0 ?
