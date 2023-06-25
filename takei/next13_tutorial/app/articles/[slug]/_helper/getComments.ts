@@ -1,4 +1,6 @@
-export const getComments = async (slug: string) => {
+import { Comment } from "@/app/types";
+
+export const getComments = async (slug: string):Promise<Comment[]> => {
   const res = await fetch(
     `http://localhost:3000/api/articles/${slug}/comments`,
     {
@@ -10,7 +12,7 @@ export const getComments = async (slug: string) => {
     throw new Error("Faild to fetch comments");
   }
 
-  const data = await res.json();
-  return data as Comment[];
+  const data:Comment[] = await res.json();
+  return data;
 };
 export default getComments;
