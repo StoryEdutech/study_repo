@@ -8,7 +8,7 @@ import {Article} from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next';
 
 
-export default async function ArticleDetail ({params}: {params : {slug: string}}) {
+export default async function ArticleDetail ({params}: {params : {slug: string}})Promise:Article[] {
 
   const articlePromise = getArticle(params.slug);
 

@@ -1,7 +1,7 @@
 import { Article } from "@/app/types";
 import NotFound from "../not-found";
 
-export const getArticle = async (slug: string) => {
+export const getArticle = async (slug: string):Promise<Article> => {
     const res = await fetch(`http://localhost:3000/api/articles/${slug}`, {
         next: { revalidate: 60 },
     });

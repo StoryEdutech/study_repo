@@ -2,7 +2,7 @@ import type { Article } from "./types";
 import { Heading } from "@/components/chakra-ui";
 import ArticleList from "./_components/ArticleList";
 
-async function getArticles() {
+async function getArticles():Promise<Article[]> {
   const res = await fetch("http://localhost:3000/api/articles", { cache: "no-store" });
 
   // エラーハンドリングを行うことが推奨されている
