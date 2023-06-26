@@ -10,9 +10,7 @@ import type { Metadata, ResolvingMetadata } from 'next';
 
 export default async function ArticleDetail ({params}: {params : {slug: string}}){
 
-  const articlePromise = getArticle(params.slug);
-
-  const article = await articlePromise;
+  const article:Article = await getArticle(params.slug);
 
   return (
     <div>
