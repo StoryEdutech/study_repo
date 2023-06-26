@@ -12,10 +12,10 @@ export default async function handler(
     await delay(3000);
     const comments = fs.readFileSync("comments.json", "utf8");
     const articles = fs.readFileSync("articles.json", "utf8");
-    const articleId = JSON.parse(articles).articles.find(
+    const articleId = JSON.parse(articles).find(
       (a: any) => a.slug === slug
     ).id;
-    const comment = JSON.parse(comments).comments.filter(
+    const comment = JSON.parse(comments).filter(
       (c: any) => c.articleId === articleId
     );
     res.status(200).json(comment);

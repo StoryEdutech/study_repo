@@ -1,8 +1,41 @@
-export default function Article({ params }: { params: { slug: string } }) {
-    return (
-        <div>
-            <h1>記事の詳細</h1>
-            <p>記事のスラッグ: {params.slug}</p>
-        </div>
-    )
+import {Suspense} from "react";
+import ArticleContent from "./_components/ArticleContent";
+import Comments from "./_components/Comments";
+import { Heading } from "@/components/chakra-ui";
+import getArticle from "./_helper/getArtilce"
+import LoadingComments from "./LoadingComments";
+import {Article} from "@/app/types";
+import type { Metadata, ResolvingMetadata } from 'next';
+
+
+export default async function ArticleDetail ({params}: {params : {slug: string}}){
+
+  const article:Article = await getArticle(params.slug);
+
+  return (
+    <div>
+      <ArticleContent article={article} />
+      <Heading>
+        コメント一覧
+      </Heading>
+      <Suspense fallback={<LoadingComments />}>
+        {/* @ts-expect-error 現状は jsx が Promise を返すと TypeScript が型エラーを報告するが、将来的には解決される */}
+        <Comments slug={params.slug} />
+      </Suspense>
+    </div>
+  )
+}
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+  parent?: ResolvingMetadata;
+}): Promise<Metadata> {
+  const article:Article = await getArticle(params.slug);
+  return {
+    title: article?.title,
+    description: article?.content,
+  };
 }

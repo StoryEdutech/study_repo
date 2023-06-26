@@ -7,10 +7,11 @@ import {
   Text,
 } from "@/components/chakra-ui";;
 import NextLink from "next/link";
-import { Article } from "../types";
+import { Article } from "@/app/types";
 
 export default function ArticleCard({ article }: { article: Article }) {
-  const formattedDate = new Date(article.createdAt).toLocaleDateString(
+  const {createdAt,slug,title,content} =  article;
+  const formattedDate = new Date(createdAt).toLocaleDateString(
     "ja-JP",
     {
       year: "numeric",
@@ -26,12 +27,12 @@ export default function ArticleCard({ article }: { article: Article }) {
       }}
       minW="100%"
     >
-      <NextLink href={`/articles/${article.slug}`}>
+      <NextLink href={`/articles/${slug}`}>
         <CardHeader>
-          <Heading size="md">{article.title}</Heading>
+          <Heading size="md">{title}</Heading>
         </CardHeader>
         <CardBody>
-          <Text>{article.content.substring(0, 200)}...</Text>
+          <Text>{content.substring(0, 200)}...</Text>
         </CardBody>
         <CardFooter>
           <Text fontSize="sm" color="gray.600">

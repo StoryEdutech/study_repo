@@ -11,7 +11,7 @@ export default async function handler(
   if (req.method === "GET") {
     await delay(1000);
     const articles = fs.readFileSync("articles.json", "utf8");
-    const article = JSON.parse(articles).articles.find(
+    const article = JSON.parse(articles).find(
       (a: any) => a.slug === slug
     );
     if (!article) {
