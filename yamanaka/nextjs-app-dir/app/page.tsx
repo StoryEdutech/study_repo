@@ -1,4 +1,3 @@
-"use client";
 import { Heading } from "./common/components";
 import type { Article } from "./types";
 import ArticleList from "./components/ArticleList";
