@@ -1,6 +1,6 @@
 import { Heading } from "@/common/components";
 import type { Article } from "@/common/types";
-import ArticleList from "./components/ArticleList";
+import { ArticleList } from "./components";
 
 
 async function getArticles() {

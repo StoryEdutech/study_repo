@@ -1,7 +1,5 @@
-import ArticleContent from "./components/ArticleContent";
-import Comments from "./components/Comments";
+import { ArticleContent,  Comments,  LoadingComments } from "./components";
 import { Heading } from "@/common/components";
-import LoadingComments from "./components/LoadingComments";
 import { notFound } from "next/navigation";
 import { Article, Comment } from "@/common/types";
 import { Suspense } from "react";
