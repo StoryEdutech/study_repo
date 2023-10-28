@@ -7,8 +7,8 @@ import {
     Box,
     Avatar,
     Flex,
-  } from "../../common/components";
-  import { Comment } from "../../types";
+  } from "@/common/components";
+  import { Comment } from "@/common/types";
   
   export default async function Comments({
     commentPromise,

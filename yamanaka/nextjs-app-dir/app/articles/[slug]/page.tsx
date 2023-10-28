@@ -1,9 +1,9 @@
-import ArticleContent from "./ArticleContent";
-import Comments from "./Comments";
-import { Heading } from "../../common/components";
-import LoadingComments from "./LoadingComments";
+import ArticleContent from "./components/ArticleContent";
+import Comments from "./components/Comments";
+import { Heading } from "@/common/components";
+import LoadingComments from "./components/LoadingComments";
 import { notFound } from "next/navigation";
-import { Article, Comment } from "../../types";
+import { Article, Comment } from "@/common/types";
 import { Suspense } from "react";
 import type { Metadata, ResolvingMetadata } from 'next';
 

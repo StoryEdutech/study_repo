@@ -9,7 +9,7 @@ import {
   Input,
   Textarea,
   Button,
-} from "../../common/components";
+} from "@/common/components";
 
 export default function CreateArticle() {
   const router = useRouter();
