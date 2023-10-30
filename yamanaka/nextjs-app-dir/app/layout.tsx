@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { Provider,  Header,  Main,  Footer } from "./components";
+import Provider from "./_components/Provider";
+import Header from "./_components/Header";
+import Main from "./_components/Main";
+import Footer from "./_components/Footer";
 
 export const metadata = {
   title: "Create Next App",

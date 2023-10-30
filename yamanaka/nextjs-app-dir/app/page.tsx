@@ -1,11 +1,10 @@
-import { Heading } from "@/common/components";
-import type { Article } from "@/common/types";
-import { ArticleList } from "./components";
-
+import { Heading } from "@/app/_common/components";
+import type { Article } from "@/app/_common/types";
+import ArticleList from "./_components/ArticleList";
 
 async function getArticles() {
-  const res = await fetch("http://localhost:3000/api/articles",{
-    cache:"no-store"
+  const res = await fetch("http://localhost:3000/api/articles", {
+    cache: "no-store",
   });
 
   // エラーハンドリングを行うことが推奨されている
@@ -22,10 +21,10 @@ export default async function Home() {
 
   return (
     <div>
-    <Heading as="h1" mb={4}>
-      新着記事
-    </Heading>
-    <ArticleList articles={articles} />
+      <Heading as="h1" mb={4}>
+        新着記事
+      </Heading>
+      <ArticleList articles={articles} />
     </div>
   );
 }

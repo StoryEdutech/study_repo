@@ -1,8 +1,8 @@
-import { Heading, Button } from "@/common/components";
+import { Heading, Button } from "@/app/_common/components";
 import NextLink from "next/link";
 
-export const metadata={
-  title:"Not Found",
+export const metadata = {
+  title: "Not Found",
 };
 
 export default function NotFound() {

@@ -9,7 +9,7 @@ import {
   Input,
   Textarea,
   Button,
-} from "@/common/components";
+} from "@/app/_common/components";
 
 export default function CreateArticle() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function CreateArticle() {
     setLoading(false);
     router.push("/");
     startTransition(() => {
-        router.refresh();
+      router.refresh();
     });
   };
 
