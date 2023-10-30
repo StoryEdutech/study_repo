@@ -1,4 +1,4 @@
-import { Box, Spinner } from "./common/components";
+import { Box, Spinner } from "@/app/_common/components";
 
 export default function Loading() {
   return (

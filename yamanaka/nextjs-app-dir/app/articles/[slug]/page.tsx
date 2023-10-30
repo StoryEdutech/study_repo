@@ -1,11 +1,11 @@
-import ArticleContent from "./ArticleContent";
-import Comments from "./Comments";
-import { Heading } from "../../common/components";
-import LoadingComments from "./LoadingComments";
+import { Heading } from "@/app/_common/components";
 import { notFound } from "next/navigation";
-import { Article, Comment } from "../../types";
+import { Article, Comment } from "@/app/_common/types";
 import { Suspense } from "react";
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata, ResolvingMetadata } from "next";
+import ArticleContent from "./_components/ArticleContent";
+import LoadingComments from "./_components/LoadingComments";
+import Comments from "./_components/Comments";
 
 export async function generateMetadata({
   params,

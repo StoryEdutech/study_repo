@@ -1,6 +1,6 @@
-import { VStack } from "../common/components";
+import { VStack } from "@/app/_common/components";
 import ArticleCard from "./ArticleCard";
-import { Article } from "../types";
+import { Article } from "@/app/_common/types";
 
 export default function ArticleList({ articles }: { articles: Article[] }) {
   return (
