@@ -21,7 +21,7 @@ export async function generateMetadata({
 }
 
 const getArticle = async (slug: string) => {
-  const res = await fetch(`http://localhost:3000/api/articles/${slug}`, {
+  const res = await fetch(`http://localhost:8000/api/articles/${slug}`, {
     next: { revalidate: 60 },
   });
 
@@ -40,7 +40,7 @@ const getArticle = async (slug: string) => {
 
 const getComments = async (slug: string) => {
   const res = await fetch(
-    `http://localhost:3000/api/articles/${slug}/comments`,
+    `http://localhost:8000/api/articles/${slug}/comments`,
     {
       cache: "no-store",
     }

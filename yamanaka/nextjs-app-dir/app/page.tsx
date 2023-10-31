@@ -3,7 +3,7 @@ import type { Article } from "@/app/_common/types";
 import ArticleList from "./_components/ArticleList";
 
 async function getArticles() {
-  const res = await fetch("http://localhost:3000/api/articles", {
+  const res = await fetch("http://localhost:8000/api/articles", {
     cache: "no-store",
   });
 
