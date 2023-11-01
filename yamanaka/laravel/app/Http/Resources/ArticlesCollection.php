@@ -15,7 +15,7 @@ class ArticlesCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            'articles'=>$this->collection
+            'articles'=> ArticleResource::collection($this)
         ];
     }
 }

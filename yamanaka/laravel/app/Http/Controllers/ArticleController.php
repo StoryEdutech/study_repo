@@ -8,10 +8,12 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesCollection;
 use App\Models\Article;
 
+use Illuminate\Support\Facades\Log;
+
 class ArticleController extends Controller
 {
     public function index(){
-        return new ArticlesCollection(Article::all());
+        return new ArticlesCollection(Article::orderBy('updated_at','desc')->get());
     }
     public function show(string $slug){
         return new ArticleResource(Article::where('slug',$slug)->firstOrFail());
@@ -21,6 +23,7 @@ class ArticleController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
+        Log::debug(Str::uuid());
         $newArticle=Article::create([
             'title' => $request->title,
             'content' => $request->content,

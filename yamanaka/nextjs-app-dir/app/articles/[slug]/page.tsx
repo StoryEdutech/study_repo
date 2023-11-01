@@ -6,6 +6,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import ArticleContent from "./_components/ArticleContent";
 import LoadingComments from "./_components/LoadingComments";
 import Comments from "./_components/Comments";
+import SendComment from "./_components/SendComment";
 
 export async function generateMetadata({
   params,
@@ -73,6 +74,7 @@ export default async function ArticleDetail({
       <Suspense fallback={<LoadingComments />}>
         {/* @ts-expect-error 現状は jsx が Promise を返すと TypeScript が型エラーを報告するが、将来的には解決される */}
         <Comments commentPromise={commentPromise} />
+        <SendComment slug={article.slug} />
       </Suspense>
     </div>
   );

@@ -19,9 +19,11 @@ export default async function Comments({
 
   if (comments.length === 0) {
     return (
-      <Text as="p" fontSize="md">
-        コメントはありません。
-      </Text>
+      <>
+        <Text as="p" fontSize="md">
+          コメントはありません。
+        </Text>
+      </>
     );
   }
   return (

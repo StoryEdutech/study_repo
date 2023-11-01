@@ -24,3 +24,4 @@ Route::get('/articles', [ArticleController::class,'index']);
 Route::post('/articles', [ArticleController::class,'store']);
 Route::get('/articles/{slug}', [ArticleController::class,'show']);
 Route::get('/articles/{slug}/comments',[CommentController::class,'index']);
+Route::post('/articles/{slug}/comments',[CommentController::class,'store']);

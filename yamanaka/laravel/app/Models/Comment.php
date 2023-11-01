@@ -14,6 +14,7 @@ class Comment extends Model
         'body',
         'name',
         'avater_url',
+        'article_id',
     ];
 
     /**
