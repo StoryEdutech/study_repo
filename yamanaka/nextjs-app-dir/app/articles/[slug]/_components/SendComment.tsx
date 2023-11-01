@@ -13,6 +13,7 @@ import {
 } from "@/app/_common/components";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { getCookie, getCsrfToken } from "@/app/_common/fucntions";
 
 export default function SendComment({ slug }: { slug: string }) {
   const router = useRouter();
@@ -54,30 +55,6 @@ export default function SendComment({ slug }: { slug: string }) {
       }
     }
   };
-
-  async function getCsrfToken() {
-    const res = await fetch("http://localhost:8000/sanctum/csrf-cookie", {
-      cache: "no-store",
-      credentials: "include",
-    });
-    return res;
-  }
-  async function getCookie(key: string) {
-    const cookies = document.cookie.split("; ");
-    const check = async (key: string, str: string) => {
-      const arr = str.split("=");
-      const res = key == arr[0] ? decodeURIComponent(arr[1]) : false;
-      return res;
-    };
-    let ans = "";
-    const res = await Promise.all(
-      cookies.map(async (cookie) => {
-        const found = await check(key, cookie);
-        if (found != false) ans = found;
-      })
-    );
-    return ans;
-  }
 
   return (
     <form onSubmit={handleSubmit}>
