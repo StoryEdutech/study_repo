@@ -11,7 +11,7 @@ import {
   Button,
   FormErrorMessage,
 } from "@/app/_common/components";
-import { getCookie, getCsrfToken } from "@/app/_common/fucntions";
+import postArticle from "@/app/_lib/api/postArticle";
 
 export default function CreateArticle() {
   const router = useRouter();
@@ -24,28 +24,16 @@ export default function CreateArticle() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const csrf = await getCsrfToken();
-    if (csrf.ok) {
-      const token = await getCookie("XSRF-TOKEN");
-      const res = await fetch("http://localhost:8000/api/articles", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "X-XSRF-TOKEN": token,
-        },
-        body: JSON.stringify({ title, content }),
+    setIsInvalid(false);
+    const res = await postArticle(title, content);
+    setLoading(false);
+    if (res == 201) {
+      router.push("/");
+      startTransition(() => {
+        router.refresh();
       });
-      setLoading(false);
-      if (res.ok) {
-        router.push("/");
-        startTransition(() => {
-          router.refresh();
-        });
-      } else {
-        setIsInvalid(true);
-      }
+    } else {
+      setIsInvalid(true);
     }
   };
 

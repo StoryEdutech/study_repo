@@ -13,7 +13,7 @@ import {
 } from "@/app/_common/components";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { getCookie, getCsrfToken } from "@/app/_common/fucntions";
+import postComment from "@/app/_lib/api/postComment";
 
 export default function SendComment({ slug }: { slug: string }) {
   const router = useRouter();
@@ -27,32 +27,17 @@ export default function SendComment({ slug }: { slug: string }) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const csrf = await getCsrfToken();
-    if (csrf.ok) {
-      const token = await getCookie("XSRF-TOKEN");
-      const res = await fetch(
-        `http://localhost:8000/api/articles/${slug}/comments`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "X-XSRF-TOKEN": token,
-          },
-          body: JSON.stringify({ name, avaterUrl, body }),
-        }
-      );
-      setLoading(false);
-      if (res.ok) {
-        startTransition(() => {
-          setBody("");
-          setIsInvalid(false);
-          router.refresh();
-        });
-      } else {
-        setIsInvalid(true);
-      }
+    const res = await postComment(slug, name, avaterUrl, body);
+    setLoading(false);
+    setIsInvalid(false);
+    if (res == 201) {
+      startTransition(() => {
+        setBody("");
+        setIsInvalid(false);
+        router.refresh();
+      });
+    } else {
+      setIsInvalid(true);
     }
   };
 

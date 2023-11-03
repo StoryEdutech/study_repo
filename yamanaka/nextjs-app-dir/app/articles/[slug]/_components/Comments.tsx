@@ -9,13 +9,10 @@ import {
   Flex,
 } from "@/app/_common/components";
 import { Comment } from "@/app/_common/types";
+import getComments from "@/app/_lib/api/getComments";
 
-export default async function Comments({
-  commentPromise,
-}: {
-  commentPromise: Promise<Comment[]>;
-}) {
-  const comments = await commentPromise;
+export default async function Comments({ slug }: { slug: string }) {
+  const comments = await getComments(slug);
 
   if (comments.length === 0) {
     return (
@@ -25,20 +22,21 @@ export default async function Comments({
         </Text>
       </>
     );
+  } else {
+    return (
+      <VStack
+        divider={<StackDivider borderColor="gray.200" />}
+        spacing={4}
+        as="ul"
+        align="stretch"
+        px={4}
+      >
+        {comments.map((comment) => (
+          <CommentItem key={comment.id} comment={comment} />
+        ))}
+      </VStack>
+    );
   }
-  return (
-    <VStack
-      divider={<StackDivider borderColor="gray.200" />}
-      spacing={4}
-      as="ul"
-      align="stretch"
-      px={4}
-    >
-      {comments.map((comment) => (
-        <CommentItem key={comment.id} comment={comment} />
-      ))}
-    </VStack>
-  );
 }
 
 function CommentItem({ comment }: { comment: Comment }) {
