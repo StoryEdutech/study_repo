@@ -9,8 +9,8 @@ use Illumination\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {
     use HasFactory;
-    
-    protected $fillable=[
+
+    protected $fillable = [
         'body',
         'name',
         'avater_url',

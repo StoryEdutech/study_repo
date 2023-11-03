@@ -23,8 +23,6 @@ class Article extends Model
 
     /**
      * Get all of the comments for the Article
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments(): HasMany
     {

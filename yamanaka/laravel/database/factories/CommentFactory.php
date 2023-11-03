@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Article;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
@@ -17,14 +17,15 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
-        $date=fake()->date();
+        $date = fake()->date();
+
         return [
-            'body'=>fake()->realText(50),
-            'name'=>fake()->name(),
-            'article_id'=>Article::factory(),
-            'avater_url'=>fake()->imageUrl(300,300),
-            'created_at'=>$date,
-            'updated_at'=>$date,
+            'body' => fake()->realText(50),
+            'name' => fake()->name(),
+            'article_id' => Article::factory(),
+            'avater_url' => fake()->imageUrl(300, 300),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

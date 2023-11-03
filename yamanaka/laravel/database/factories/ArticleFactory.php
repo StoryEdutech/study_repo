@@ -16,13 +16,14 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
-        $date=fake()->date();
+        $date = fake()->date();
+
         return [
-            'title'=>fake()->realText(16),
-            'content'=>fake()->realText(),
-            'slug'=>fake()->unique()->slug(),
-            'created_at'=>$date,
-            'updated_at'=>$date,
+            'title' => fake()->realText(16),
+            'content' => fake()->realText(),
+            'slug' => fake()->unique()->slug(),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }
