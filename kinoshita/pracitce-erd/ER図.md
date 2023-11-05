@@ -6,6 +6,9 @@ erDiagram
     users ||--o{ follow_relationships : ""
 
     posts ||--o{ comments : ""
+    posts ||--o{ post_tags : ""
+
+    tags ||--o{ post_tags : ""
 
     posts ||--o{ favorites : ""
     stories ||--o{ favorites : ""
@@ -41,6 +44,17 @@ erDiagram
       varchar image_url "画像 NULL可能"
       timestamp deleted_at "削除日時"
       timestamp created_at "作成日時"
+    }
+
+    tags {
+      bigint id PK "ID"
+      varchar body "タグの内容"
+    }
+
+    post_tags {
+      bigint id PK "ID"
+      bigint post_id FK "投稿のid"
+      bigint tag_id FK "ハッシュタグのid"
     }
 
     comments {
