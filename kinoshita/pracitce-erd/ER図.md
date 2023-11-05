@@ -48,7 +48,7 @@ erDiagram
       bigint id PK "ID"
       bigint user_id FK "ユーザーid"
       varchar content "本文"
-      varchar image_url "画像"
+      varchar image_url "画像 NULL可能"
       timestamp deleted_at "削除日時"
       timestamp created_at "作成日時"
     }
