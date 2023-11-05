@@ -2,8 +2,7 @@
 erDiagram
     users ||--o{ posts : ""
     users ||--o{ stories : ""
-    users }o--|| followers : ""
-    users ||--o{ followings : ""
+    users ||--o{ follow_relationships : ""
     users ||--o{ comments : ""
     users ||--o{ posts_likes : ""
     users ||--o{ comments_likes : ""
@@ -32,16 +31,10 @@ erDiagram
       timestamp updated_at "更新日時"
     }
 
-    followers {
+    follow_relationships {
       bigint id PK "ID"
-      bigint user_id FK "ユーザーid"
-      bigint follower_user_id "自分をフォローしたユーザーのid"
-    }
-
-    followings {
-      bigint id PK "ID"
-      bigint user_id FK "ユーザーid"
-      bigint following_user_id "自分がフォローしているユーザーのid"
+      bigint following_id FK "フォローしているユーザーのユーザーID"
+      bigint followed_id FK "フォローされているユーザーのユーザーID"
     }
 
     posts {
