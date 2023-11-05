@@ -2,21 +2,19 @@
 erDiagram
     users ||--o{ posts : ""
     users ||--o{ stories : ""
-    users ||--o{ follow_relationships : ""
     users ||--o{ comments : ""
-    users ||--o{ posts_likes : ""
-    users ||--o{ comments_likes : ""
+    users ||--o{ follow_relationships : ""
 
     posts ||--o{ comments : ""
-    posts ||--o{ posts_likes : ""
 
-    stories ||--o{ stories_likes : ""
+    posts ||--o{ favorites : ""
+    stories ||--o{ favorites : ""
+    comments ||--o{ favorites : ""
+
     stories ||--o{ stories_watched_users : ""
 
     followers }o--|| stories_watched_users : ""
-    followers ||--o{ stories_likes : ""
 
-    comments ||--o{ comments_likes : ""
 
     users {
       bigint id PK "ID"
@@ -46,30 +44,6 @@ erDiagram
       timestamp created_at "作成日時"
     }
 
-    posts_likes {
-      bigint id PK "ID"
-      bigint user_id FK "いいねしたユーザーのid"
-      bigint post_id FK "投稿のid"
-      timestamp deleted_at "削除日時"
-      timestamp created_at "作成日時"
-    }
-
-    stories_likes {
-      bigint id PK "ID"
-      bigint user_id FK "いいねしたユーザーのid"
-      bigint story_id FK "ストーリーのid"
-      timestamp deleted_at "削除日時"
-      timestamp created_at "作成日時"
-    }
-
-    comments_likes {
-      bigint id PK "ID"
-      bigint user_id FK "いいねしたユーザーのid"
-      bigint comment_id FK "コメントのid"
-      timestamp deleted_at "削除日時"
-      timestamp created_at "作成日時"
-    }
-
     comments {
       bigint id PK "ID"
       bigint user_id FK "ユーザーのid"
@@ -85,6 +59,13 @@ erDiagram
       varchar video_url "動画のurl"
       timestamp deleted_at "削除日時"
       timestamp created_at "作成日時"
+    }
+
+    favorites {
+      bigint id PK "ID"
+      bigint user_id FK "ユーザーID"
+      bigint favoritable_id "id"
+      varchar favoritable_type "post or comment or story"
     }
 
     stories_watched_users {
