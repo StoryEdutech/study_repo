@@ -11,6 +11,8 @@ erDiagram
     stories ||--o{ favorites : ""
     comments ||--o{ favorites : ""
 
+    comments ||--o{ comment_replies : ""
+
     stories ||--o{ story_views : ""
 
     users {
@@ -48,6 +50,12 @@ erDiagram
       varchar content "本文"
       timestamp deleted_at "削除日時"
       timestamp created_at "作成日時"
+    }
+
+    comment_replies {
+      bigint id PK "ID"
+      bigint comment_id FK "コメントのid"
+      bigint reply_comment_id FK "コメントに対して返信したコメントのid"
     }
 
     stories {
