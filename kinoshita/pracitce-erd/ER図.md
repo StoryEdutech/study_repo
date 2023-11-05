@@ -11,10 +11,7 @@ erDiagram
     stories ||--o{ favorites : ""
     comments ||--o{ favorites : ""
 
-    stories ||--o{ stories_watched_users : ""
-
-    followers }o--|| stories_watched_users : ""
-
+    stories ||--o{ story_views : ""
 
     users {
       bigint id PK "ID"
@@ -68,10 +65,10 @@ erDiagram
       varchar favoritable_type "post or comment or story"
     }
 
-    stories_watched_users {
+    story_views {
       bigint id PK "ID"
-      bigint user_id FK "ストーリーを見たユーザーのid"
-      bigint story_id FK "ストーリーのid"
+      bigint user_id FK "ユーザーID"
+      bigint story_id FK "みたstoryのid"
       timestamp deleted_at "削除日時"
       timestamp created_at "作成日時"
     }
