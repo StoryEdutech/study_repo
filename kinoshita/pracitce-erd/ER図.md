@@ -26,7 +26,7 @@ erDiagram
       varchar username "ユーザー名"
       varchar email "Eメールアドレス"
       varchar password "パスワード"
-      text icon_url "アイコンのURL"
+      varchar icon_url "アイコンのURL NULL可能"
       timestamp deleted_at "削除日時"
       timestamp created_at "作成日時"
       timestamp updated_at "更新日時"
