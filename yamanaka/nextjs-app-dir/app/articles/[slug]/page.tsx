@@ -36,8 +36,8 @@ export default async function ArticleDetail({
       </Heading>
       <Suspense fallback={<LoadingComments />}>
         <Comments slug={article.slug} />
-        <SendComment slug={article.slug} />
       </Suspense>
+      <SendComment slug={article.slug} />
     </div>
   );
 }

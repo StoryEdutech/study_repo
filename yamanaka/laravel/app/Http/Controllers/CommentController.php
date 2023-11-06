@@ -20,14 +20,11 @@ class CommentController extends Controller
     {
         $article = Article::where('slug', $slug)->firstOrFail();
         $request->validate([
-            'name' => 'required',
             'body' => 'required',
-            'avaterUrl' => 'required|url',
         ]);
         $newComment = Comment::create([
-            'name' => $request->name,
+            'user_id' => $request->user()->id,
             'body' => $request->body,
-            'avater_url' => $request->avaterUrl,
             'article_id' => $article->id,
         ]);
 

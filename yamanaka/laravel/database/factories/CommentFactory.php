@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,9 +22,8 @@ class CommentFactory extends Factory
 
         return [
             'body' => fake()->realText(50),
-            'name' => fake()->name(),
             'article_id' => Article::factory(),
-            'avater_url' => fake()->imageUrl(300, 300),
+            'user_id' => User::factory(),
             'created_at' => $date,
             'updated_at' => $date,
         ];

@@ -21,8 +21,8 @@ class CommentResource extends JsonResource
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'author' => [
-                'name' => $this->name,
-                'avaterUrl' => $this->avater_url,
+                'name' => $this->user->name,
+                'avaterUrl' => $this->user->avater_url,
             ],
         ];
     }

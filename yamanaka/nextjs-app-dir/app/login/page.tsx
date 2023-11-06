@@ -7,31 +7,31 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Textarea,
+  Text,
   Button,
   FormErrorMessage,
   Box,
   Spinner,
 } from "@/app/_common/components";
-import postArticle from "@/app/_lib/api/postArticle";
+import login from "@/app/_lib/api/auth/login";
+import { Link } from "@chakra-ui/next-js";
 import getUser from "@/app/_lib/api/auth/getUser";
-import type { User } from "@/app/_common/types";
 
 export default function CreateArticle() {
   const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [user, setUser] = useState<User | number | undefined>(undefined);
+  const [checked, setChecked] = useState(false);
   useEffect(() => {
     const authCheck = async () => {
       const user = await getUser();
       if (typeof user == "object") {
-        setUser(user);
+        router.push("/");
       } else {
-        router.push("/login");
+        setChecked(true);
       }
     };
     authCheck();
@@ -41,9 +41,9 @@ export default function CreateArticle() {
     e.preventDefault();
     setLoading(true);
     setIsInvalid(false);
-    const res = await postArticle(title, content);
+    const res = await login(email, password);
     setLoading(false);
-    if (res == 201) {
+    if (typeof res == "number" && 200 <= res && res < 300) {
       router.push("/");
       startTransition(() => {
         router.refresh();
@@ -52,21 +52,27 @@ export default function CreateArticle() {
       setIsInvalid(true);
     }
   };
-  if (typeof user == "object") {
+  if (checked) {
     return (
       <div>
-        <Heading mb={4}>Create Article</Heading>
+        <Heading mb={4}>ログイン</Heading>
 
         <form onSubmit={handleSubmit}>
           <FormControl isInvalid={isInvalid}>
-            <FormLabel>タイトル</FormLabel>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} />
-
-            <FormLabel>本文</FormLabel>
-            <Textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+            <FormLabel>メールアドレス</FormLabel>
+            <Input
+              value={email}
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
             />
+
+            <FormLabel>パスワード</FormLabel>
+            <Input
+              value={password}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
             <Button
               type="submit"
               color="white"
@@ -74,11 +80,17 @@ export default function CreateArticle() {
               isLoading={loading || isPending}
               mt={4}
             >
-              作成
+              ログイン
             </Button>
-            <FormErrorMessage>記事の作成に失敗しました</FormErrorMessage>
+            <FormErrorMessage>ログインに失敗しました</FormErrorMessage>
           </FormControl>
         </form>
+        <Text mt={4}>
+          新規登録は
+          <Link href="/register" color="teal.500">
+            こちら
+          </Link>
+        </Text>
       </div>
     );
   } else {
