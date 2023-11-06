@@ -2,7 +2,7 @@ import Axios from "axios";
 import axios from "@/app/_lib/axios";
 import { unstable_cache } from "next/cache";
 import { notFound } from "next/navigation";
-import type { Article } from "@/app/_common/types";
+import type { Article } from "@/app/_lib/types";
 
 export const getArticle = unstable_cache(
   async (slug: string) => {

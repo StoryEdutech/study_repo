@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useContext } from "react";
 import { useRouter } from "next/navigation";
 import {
   Heading,
@@ -10,12 +10,9 @@ import {
   Textarea,
   Button,
   FormErrorMessage,
-  Box,
-  Spinner,
-} from "@/app/_common/components";
+} from "@/app/_lib/components";
 import postArticle from "@/app/_lib/api/postArticle";
-import getUser from "@/app/_lib/api/auth/getUser";
-import type { User } from "@/app/_common/types";
+import { LoginContext } from "@/app/_lib/components/AuthProvider";
 
 export default function CreateArticle() {
   const router = useRouter();
@@ -24,18 +21,7 @@ export default function CreateArticle() {
   const [loading, setLoading] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [user, setUser] = useState<User | number | undefined>(undefined);
-  useEffect(() => {
-    const authCheck = async () => {
-      const user = await getUser();
-      if (typeof user == "object") {
-        setUser(user);
-      } else {
-        router.push("/login");
-      }
-    };
-    authCheck();
-  }, []);
+  const { isLogin, setIsLogin } = useContext(LoginContext);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,10 +35,13 @@ export default function CreateArticle() {
         router.refresh();
       });
     } else {
+      if (res == 401) {
+        setIsLogin(false);
+      }
       setIsInvalid(true);
     }
   };
-  if (typeof user == "object") {
+  if (isLogin) {
     return (
       <div>
         <Heading mb={4}>Create Article</Heading>
@@ -82,10 +71,6 @@ export default function CreateArticle() {
       </div>
     );
   } else {
-    return (
-      <Box justifyContent="center" display="flex">
-        <Spinner color="orange.400" size="xl" />
-      </Box>
-    );
+    router.push("/login");
   }
 }

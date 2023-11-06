@@ -1,5 +1,5 @@
 import axios from "@/app/_lib/axios";
-import type { Comment } from "@/app/_common/types";
+import type { Comment } from "@/app/_lib/types";
 
 export default async function getComments(slug: string) {
   try {

@@ -1,4 +1,4 @@
-import { Heading } from "@/app/_common/components";
+import { Heading } from "@/app/_lib/components";
 import { Suspense } from "react";
 import type { Metadata, ResolvingMetadata } from "next";
 import ArticleContent from "./_components/ArticleContent";

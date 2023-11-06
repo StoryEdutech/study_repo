@@ -1,6 +1,6 @@
 import axios from "@/app/_lib/axios";
 import Axios from "axios";
-import type { User } from "@/app/_common/types";
+import type { User } from "@/app/_lib/types";
 
 export default async function getUser() {
   try {

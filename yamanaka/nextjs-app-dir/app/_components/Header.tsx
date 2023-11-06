@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Button } from "@/app/_common/components";
+import { Box, Flex, Heading, Button } from "@/app/_lib/components";
 import NextLink from "next/link";
 import HeaderButtons from "./HeaderButtons";
 import { Suspense } from "react";

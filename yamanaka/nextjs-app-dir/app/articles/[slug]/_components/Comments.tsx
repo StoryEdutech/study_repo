@@ -7,8 +7,8 @@ import {
   Box,
   Avatar,
   Flex,
-} from "@/app/_common/components";
-import { Comment } from "@/app/_common/types";
+} from "@/app/_lib/components";
+import { Comment } from "@/app/_lib/types";
 import getComments from "@/app/_lib/api/getComments";
 
 export default async function Comments({ slug }: { slug: string }) {

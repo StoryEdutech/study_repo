@@ -5,9 +5,9 @@ import {
   CardFooter,
   Heading,
   Text,
-} from "@/app/_common/components";
+} from "@/app/_lib/components";
 import NextLink from "next/link";
-import { Article } from "@/app/_common/types";
+import { Article } from "@/app/_lib/types";
 
 export default function ArticleCard({ article }: { article: Article }) {
   const formattedDate = new Date(article.createdAt).toLocaleDateString(

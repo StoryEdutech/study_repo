@@ -1,4 +1,4 @@
-import { Heading, Button } from "@/app/_common/components";
+import { Heading, Button } from "@/app/_lib/components";
 import NextLink from "next/link";
 
 export const metadata = {

@@ -1,5 +1,5 @@
 import axios from "@/app/_lib/axios";
-import type { Article } from "@/app/_common/types";
+import type { Article } from "@/app/_lib/types";
 
 export default async function getArticles() {
   try {

@@ -1,4 +1,4 @@
-import { Heading } from "@/app/_common/components";
+import { Heading } from "@/app/_lib/components";
 import ArticleList from "./_components/ArticleList";
 import getArticles from "@/app/_lib/api/getArticles";
 

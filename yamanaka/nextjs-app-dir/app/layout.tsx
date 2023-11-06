@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Provider from "./_components/Provider";
 import Header from "./_components/Header";
 import Main from "./_components/Main";
 import Footer from "./_components/Footer";
+import AuthProvider from "@/app/_lib/components/AuthProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,9 +20,11 @@ export default function RootLayout({
       <head />
       <body>
         <Provider>
-          <Header />
-          <Main>{children}</Main>
-          <Footer />
+          <AuthProvider>
+            <Header />
+            <Main>{children}</Main>
+            <Footer />
+          </AuthProvider>
         </Provider>
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useContext } from "react";
 import { useRouter } from "next/navigation";
 import {
   Heading,
@@ -10,12 +10,10 @@ import {
   Text,
   Button,
   FormErrorMessage,
-  Box,
-  Spinner,
-} from "@/app/_common/components";
+} from "@/app/_lib/components";
 import register from "@/app/_lib/api/auth/register";
 import { Link } from "@chakra-ui/next-js";
-import getUser from "@/app/_lib/api/auth/getUser";
+import { LoginContext } from "@/app/_lib/components/AuthProvider";
 
 export default function CreateArticle() {
   const router = useRouter();
@@ -26,18 +24,7 @@ export default function CreateArticle() {
   const [loading, setLoading] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    const authCheck = async () => {
-      const user = await getUser();
-      if (typeof user == "object") {
-        router.push("/");
-      } else {
-        setChecked(true);
-      }
-    };
-    authCheck();
-  }, []);
+  const { isLogin, setIsLogin } = useContext(LoginContext);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,6 +33,7 @@ export default function CreateArticle() {
     const res = await register(name, email, password, passwordConfirm);
     setLoading(false);
     if (typeof res == "number" && 200 <= res && res < 300) {
+      setIsLogin(true);
       router.push("/");
       startTransition(() => {
         router.refresh();
@@ -54,7 +42,7 @@ export default function CreateArticle() {
       setIsInvalid(true);
     }
   };
-  if (checked) {
+  if (!isLogin) {
     return (
       <div>
         <Heading mb={4}>ユーザー登録</Heading>
@@ -106,10 +94,7 @@ export default function CreateArticle() {
       </div>
     );
   } else {
-    return (
-      <Box justifyContent="center" display="flex">
-        <Spinner color="orange.400" size="xl" />
-      </Box>
-    );
+    router.push("/");
+    router.refresh();
   }
 }
