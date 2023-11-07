@@ -4,8 +4,8 @@ import {
   CardBody,
   Text,
   Heading,
-} from "@/app/_common/components";
-import { Article } from "@/app/_common/types";
+} from "@/app/_lib/components";
+import { Article } from "@/app/_lib/types";
 
 export default function ArticleContent({ article }: { article: Article }) {
   return (

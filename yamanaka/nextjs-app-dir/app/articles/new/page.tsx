@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useContext } from "react";
 import { useRouter } from "next/navigation";
 import {
   Heading,
@@ -9,57 +9,68 @@ import {
   Input,
   Textarea,
   Button,
-} from "@/app/_common/components";
+  FormErrorMessage,
+} from "@/app/_lib/components";
+import postArticle from "@/app/_lib/api/postArticle";
+import { LoginContext } from "@/app/_lib/components/AuthProvider";
 
 export default function CreateArticle() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const { isLogin, setIsLogin } = useContext(LoginContext);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await fetch("/api/articles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, content }),
-    });
+    setIsInvalid(false);
+    const res = await postArticle(title, content);
     setLoading(false);
-    router.push("/");
-    startTransition(() => {
-      router.refresh();
-    });
+    if (res == 201) {
+      router.push("/");
+      startTransition(() => {
+        router.refresh();
+      });
+    } else {
+      if (res == 401) {
+        setIsLogin(false);
+      }
+      setIsInvalid(true);
+    }
   };
+  if (isLogin) {
+    return (
+      <div>
+        <Heading mb={4}>Create Article</Heading>
 
-  return (
-    <div>
-      <Heading mb={4}>Create Article</Heading>
+        <form onSubmit={handleSubmit}>
+          <FormControl isInvalid={isInvalid}>
+            <FormLabel>タイトル</FormLabel>
+            <Input value={title} onChange={(e) => setTitle(e.target.value)} />
 
-      <form onSubmit={handleSubmit}>
-        <FormControl>
-          <FormLabel>タイトル</FormLabel>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} />
-
-          <FormLabel>本文</FormLabel>
-          <Textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <Button
-            type="submit"
-            color="white"
-            bg="orange.400"
-            isLoading={loading || isPending}
-            mt={4}
-          >
-            作成
-          </Button>
-        </FormControl>
-      </form>
-    </div>
-  );
+            <FormLabel>本文</FormLabel>
+            <Textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <Button
+              type="submit"
+              color="white"
+              bg="orange.400"
+              isLoading={loading || isPending}
+              mt={4}
+            >
+              作成
+            </Button>
+            <FormErrorMessage>記事の作成に失敗しました</FormErrorMessage>
+          </FormControl>
+        </form>
+      </div>
+    );
+  } else {
+    router.push("/login");
+  }
 }

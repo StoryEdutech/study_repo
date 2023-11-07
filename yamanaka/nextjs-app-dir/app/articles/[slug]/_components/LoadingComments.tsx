@@ -4,7 +4,7 @@ import {
   Flex,
   SkeletonCircle,
   Skeleton,
-} from "@/app/_common/components";
+} from "@/app/_lib/components";
 
 export default function LoadingComments({}) {
   return (
