@@ -10,9 +10,9 @@ erDiagram
 
     tags ||--o{ post_tags : ""
 
-    posts ||--o{ favorites : ""
-    stories ||--o{ favorites : ""
-    comments ||--o{ favorites : ""
+    posts ||--o{ likes : ""
+    stories ||--o{ likes : ""
+    comments ||--o{ likes : ""
 
     comments ||--o{ comment_replies : ""
 
@@ -80,11 +80,11 @@ erDiagram
       timestamp created_at "作成日時"
     }
 
-    favorites {
+    likes {
       bigint id PK "ID"
       bigint user_id FK "ユーザーID"
-      bigint favoritable_id "id"
-      varchar favoritable_type "post or comment or story"
+      bigint likeable_id "id"
+      varchar likeable_type "post or comment or story"
     }
 
     story_views {
