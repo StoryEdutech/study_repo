@@ -15,7 +15,7 @@ erDiagram
     stories ||--o{ likes : ""
     comments ||--o{ likes : ""
 
-    comments ||--o{ comment_replies : ""
+    comments ||--o{ comments : "コメントにコメントする"
 
     stories ||--o{ story_views : ""
 
@@ -60,17 +60,9 @@ erDiagram
 
     comments {
       bigint id PK "ID"
-      bigint user_id FK "ユーザーのid"
-      bigint post_id FK "投稿のid"
-      varchar content "本文"
-      timestamp deleted_at "削除日時"
-      timestamp created_at "作成日時"
-    }
-
-    comment_replies {
-      bigint id PK "ID"
-      bigint comment_id FK "コメントのid"
-      bigint reply_comment_id FK "コメントに対して返信したコメントのid"
+      bigint user_id FK "ユーザーID"
+      bigint commentable_id "id"
+      varchar commentable_type "post or comment"
     }
 
     stories {
