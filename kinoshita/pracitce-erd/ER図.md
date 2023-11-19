@@ -4,7 +4,7 @@ erDiagram
     users ||--o{ stories : ""
     users ||--o{ comments : ""
     users ||--o{ followers : ""
-    followers ||--o{ users : ""
+    followers }o--|| users : ""
 
     posts ||--o{ comments : ""
     posts ||--o{ post_tags : ""
