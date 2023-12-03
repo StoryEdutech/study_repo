@@ -26,6 +26,7 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tags');
+        // https://readouble.com/laravel/7.x/ja/eloquent-relationships.html#many-to-many:~:text=%27other_key%27)%3B%0A%7D-,%E5%A4%9A%E5%AF%BE%E5%A4%9A,-%E5%A4%9A%E5%AF%BE%E5%A4%9A
     }
 }

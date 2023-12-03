@@ -21,7 +21,12 @@ class Comment extends Model
 
     public function post()
     {
-        return $this->belongsTo(Post::class); 
+        return $this->morphOne(Post::class, 'commentable'); 
+    }
+
+    public function comments() // コメントに対する返信コメント
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function likes()
