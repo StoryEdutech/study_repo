@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -19,7 +19,7 @@ class Comment extends Model
         return $this->morphTo();
     }
 
-    public function posts()
+    public function post()
     {
         return $this->belongsTo(Post::class); 
     }

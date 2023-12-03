@@ -14,12 +14,12 @@ class Like extends Model
         return $this->morphTo();
     }
 
-    public function posts()
+    public function post()
     {
         return $this->belongsTo(Post::class);
     }
 
-    public function comments()
+    public function comment()
     {
         return $this->belongsTo(Comment::class);
     }

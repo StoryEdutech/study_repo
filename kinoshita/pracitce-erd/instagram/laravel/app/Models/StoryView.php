@@ -9,7 +9,7 @@ class StoryView extends Model
 {
     use HasFactory;
 
-    public function stories()
+    public function story()
     {
         return $this->belongsTo(Story::class);
     }
