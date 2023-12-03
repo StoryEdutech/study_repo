@@ -16,9 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('story_id');
             $table->timestamps();
-        });
 
-        Schema::table('story_views', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('story_id')->references('id')->on('stories');
         });

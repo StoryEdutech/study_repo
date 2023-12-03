@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('フォローしている人');
             $table->unsignedBigInteger('follower_id')->comment('フォローされた人');
-        });
 
-        Schema::table('followers', function (Blueprint $table) {
-            // $table->foreignId('user_id')->constrained(); これでもいい
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('follower_id')->references('id')->on('users');
         });

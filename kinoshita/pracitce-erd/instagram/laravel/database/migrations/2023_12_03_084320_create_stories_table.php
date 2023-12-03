@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string('video_url');
             $table->softDeletes();
             $table->timestamps();
-        });
 
-        Schema::table('stories', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

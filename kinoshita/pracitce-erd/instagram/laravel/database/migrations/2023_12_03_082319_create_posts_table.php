@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('image_url')->nullable()->comment('画像');
             $table->softDeletes();
             $table->timestamps();
-        });
 
-        Schema::table('posts', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -17,9 +17,7 @@ return new class extends Migration
             $table->bigInteger('likeable_id');
             $table->string('likeable_type');
             $table->timestamps();
-        });
 
-        Schema::table('likes', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
