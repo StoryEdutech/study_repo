@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];
@@ -42,4 +41,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function followers() // フォロワー (自分をフォローしてくれている人)
+    {
+        // return $this->belongsToMany(User::class)->using(Follower::class)->withPivot('follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    public function followees() // フォロイー (自分がフォローしている人)
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function stories()
+    {
+        return $this->hasMany(Story::class);
+    }
+    
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
