@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->bigInteger('commentable_id');
-            $table->string('commentable_type');
+            $table->morphs('commentable');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
