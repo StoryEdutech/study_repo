@@ -16,11 +16,16 @@ class Like extends Model
 
     public function post()
     {
-        return $this->belongsTo(Post::class);
+        return $this->morphTo(Post::class);
     }
 
     public function comment()
     {
-        return $this->belongsTo(Comment::class);
+        return $this->morphTo(Comment::class);
+    }
+
+    public function story()
+    {
+        return $this->morphTo(Story::class);
     }
 }
