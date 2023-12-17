@@ -48,7 +48,7 @@ erDiagram
       bigint id PK "ID"
       bigint user_id "ユーザーのid"
       bigint restarant_id "レストランのid"
-      varchar reserve_time "予約時間"
+      timestamp reserve_time "予約時間"
     }
 
 ```
