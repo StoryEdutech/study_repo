@@ -25,6 +25,11 @@ erDiagram
       varchar contact_number "電話番号"
       boolean reservation_status "予約可否"
       text transportation "交通手段"
+      int seating_capacity "席数"
+      boolean has_private_room "個室"
+      boolean accepts_exclusive_reservation "貸し切り"
+      enum smorking_policy "禁煙 喫煙"
+      boolean has_parking "駐車場"
     }
 
     views {
