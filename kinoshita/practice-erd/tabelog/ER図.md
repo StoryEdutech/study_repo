@@ -3,9 +3,9 @@ erDiagram
     users ||--o{ reviews : ""
     users ||--o{ reserves : ""
 
-    restaurant ||--o{ reviews : ""
-    restaurant ||--o{ views : ""
-    restaurant ||--o{ reserves : ""
+    restaurants ||--o{ reviews : ""
+    restaurants ||--o{ views : ""
+    restaurants ||--o{ reserves : ""
 
     users {
       bigint id PK "ID"
@@ -18,11 +18,13 @@ erDiagram
       timestamp updated_at "更新日時"
     }
 
-    restaurant {
+    restaurants {
       bigint id PK "ID"
       varchar name "店名"
-      varchar  address "住所"
-      bigint star_average "平均の星数"
+      varchar address "住所"
+      varchar contact_number "電話番号"
+      boolean reservation_status "予約可否"
+      text transportation "交通手段"
     }
 
     views {
