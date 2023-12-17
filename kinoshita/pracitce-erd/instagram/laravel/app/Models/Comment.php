@@ -21,11 +21,6 @@ class Comment extends Model
         return $this->morphTo();
     }
 
-    public function post()
-    {
-        return $this->morphTo(Post::class, 'commentable'); 
-    }
-
     public function replies() // コメントに対する返信コメント
     {
         return $this->morphMany(Comment::class, 'commentable');

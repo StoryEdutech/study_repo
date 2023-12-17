@@ -13,19 +13,4 @@ class Like extends Model
     {
         return $this->morphTo();
     }
-
-    public function post()
-    {
-        return $this->morphTo(Post::class);
-    }
-
-    public function comment()
-    {
-        return $this->morphTo(Comment::class);
-    }
-
-    public function story()
-    {
-        return $this->morphTo(Story::class);
-    }
 }
