@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post->load('comments');
+        $post->load('comments')->load('likes')->load('tags');
 
         return response()->json(new PostResource($post));
     }
