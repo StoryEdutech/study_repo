@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $comments = $post->comments()->get();
+        $post->load('comments');
 
-        return response()->json(compact('post', 'comments'));
+        return response()->json(new PostResource($post));
     }
 
     /**
