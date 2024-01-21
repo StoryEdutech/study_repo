@@ -9,6 +9,11 @@ class StoryView extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'story_id',
+    ];
+
     public function story()
     {
         return $this->belongsTo(Story::class);

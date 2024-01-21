@@ -11,6 +11,12 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'commentable_type',
+        'commentable_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

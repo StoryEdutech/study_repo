@@ -11,6 +11,12 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'content',
+        'image_url'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
