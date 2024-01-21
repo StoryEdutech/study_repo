@@ -9,6 +9,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    public $timestamps = false; // タイムスタンプカラムを無効にする
+
     protected $fillable = [
         'body',
     ];
