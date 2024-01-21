@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
@@ -28,6 +29,10 @@ class DatabaseSeeder extends Seeder
                 // タグのデータを紐づける
                 $tags = Tag::factory(2)->create(['body' => fake()->word()]);
                 $post->tags()->attach($tags->pluck('id'));
+
+                //いいね
+                $likes = Like::factory(2)->make(['user_id' => $user->id]);
+                $post->likes()->saveMany($likes);
             });
 
             $user->posts()->saveMany($posts); // ユーザーに投稿を関連付け
