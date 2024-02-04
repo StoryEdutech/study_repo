@@ -9,9 +9,10 @@ class StoryView extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'story_id',
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 
     public function story()

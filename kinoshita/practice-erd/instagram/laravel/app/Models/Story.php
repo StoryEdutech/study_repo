@@ -9,9 +9,10 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'video_url'
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 
     public function user()

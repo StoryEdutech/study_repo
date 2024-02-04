@@ -11,11 +11,10 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
-        'user_id',
-        'content',
-        'commentable_type',
-        'commentable_id'
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 
     public function user()
