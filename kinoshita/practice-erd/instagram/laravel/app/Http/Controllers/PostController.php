@@ -29,7 +29,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post->load('comments')->load('likes')->load('tags');
+        $post->load([
+            'comments' => [ 'likes' ], //Postコメントとそれぞれのコメントのいいね
+            'likes', // Postのいいね
+            'tags' // Postのタグ
+        ]);
 
         return response()->json(new PostResource($post));
     }
