@@ -28,7 +28,9 @@ class PostResource extends JsonResource
             'tags' => $this->tags->map(function ($tag) {
                 return $tag->body;
             }),
-            'likes' => $this->likes
+            'likes' => $this->likes->map(function ($like) {
+                return $like->user_id;
+            })
         ];
     }
 }
