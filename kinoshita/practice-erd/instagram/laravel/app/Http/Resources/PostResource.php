@@ -18,7 +18,11 @@ class PostResource extends JsonResource
         
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id,
+            'author' => [
+                'name' => $this->user->last_name.' '.$this->user->first_name,
+                'signup_date'  => $this->user->created_at ,
+                'post_count' => $this->user->posts->count()
+            ],
             'content' => $this->content,
             'comments' => $this->comments,
             'tags' => $this->tags->map(function ($tag) {
