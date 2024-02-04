@@ -21,7 +21,9 @@ class PostResource extends JsonResource
             'user_id' => $this->user_id,
             'content' => $this->content,
             'comments' => $this->comments,
-            'tags' => $this->tags,
+            'tags' => $this->tags->map(function ($tag) {
+                return $tag->body;
+            }),
             'likes' => $this->likes
         ];
     }
