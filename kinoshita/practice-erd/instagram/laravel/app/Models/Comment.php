@@ -11,6 +11,12 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

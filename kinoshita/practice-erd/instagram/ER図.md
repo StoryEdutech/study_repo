@@ -61,6 +61,7 @@ erDiagram
     comments {
       bigint id PK "ID"
       bigint user_id FK "ユーザーID"
+      text content "本文"
       bigint commentable_id "id"
       varchar commentable_type "post or comment"
     }
