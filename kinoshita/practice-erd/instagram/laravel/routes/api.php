@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Models\Comment;
 use App\Models\Post;
@@ -22,3 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/post', PostController::class);
+
+Route::controller(LikeController::class)->group(function () {
+    Route::post('/like/{likeable_type}/{likeable_id}', 'store');
+    Route::delete('/like/{likeable_type}/{likeable_id}', 'destroy');
+});
