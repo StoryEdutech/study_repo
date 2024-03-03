@@ -71,8 +71,18 @@ class LikeController extends Controller
      */
     public function destroy(Request $request, String $likeable_type, String $likeable_id)
     {
+        // いいねが紐づくモデル
+        $likeableModel = match ($likeable_type) {
+            'post' => Post::class,
+            'comment' => Comment::class,
+            default => null,
+        };
+
         // いいねを探す
-        $like = Like::where('likeable_id', $likeable_id)->firstOrFail();
+        $like = Like::where([
+            ['likeable_id', '=', $likeable_id],
+            ['likeable_type', '=', $likeableModel]
+        ])->firstOrFail();
 
         $like->delete();
 
