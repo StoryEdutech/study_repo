@@ -28,10 +28,8 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(String $id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id); // なかったら404を自動で返してくれる
-
         $post->load([
             'comments' => [ 'likes' ], //Postコメントとそれぞれのコメントのいいね
             'likes', // Postのいいね
