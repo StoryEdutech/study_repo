@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Cast\String_;
 
@@ -44,9 +45,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $new_content = $request->input('content');
+        $validated = $request->validate([
+            'content' => ['required', 'max:2200'],
+        ]);
 
-        $post->content = $new_content;
+        $post->content = $validated['content'];
 
         $post->save();
 
