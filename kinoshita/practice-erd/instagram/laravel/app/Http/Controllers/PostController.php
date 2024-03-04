@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Cast\String_;
 
 class PostController extends Controller
 {
@@ -41,16 +43,26 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+            'content' => ['required', 'max:2200'],
+        ]);
+
+        $post->content = $validated['content'];
+
+        $post->save();
+
+        return response()->json(new PostResource($post));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+       $post->delete();
+
+        return response(null, 200);
     }
 }
