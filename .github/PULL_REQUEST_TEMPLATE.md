@@ -1,8 +1,10 @@
 # 内容
 
 ### 言語／フレームワーク
-- Laravel
-- React
+- [ ] Laravel
+- [ ] NextJs
+- [ ] React＋Typescript
+- [ ] Reactのみ
 
 ### 勉強時間（※大体でOK）
 
