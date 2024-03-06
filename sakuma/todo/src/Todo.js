@@ -1,60 +1,59 @@
 import { useState } from 'react';
 import './Todo.css';
+import initialData from'./initialData';
 
 export default function Todo() {
-    const [isShow, setIsShow] = useState(false);
+    const [showCompleted, setShowCompleted] = useState(true);
     const [list, setList] = useState(initialData);
     const [text, setText] = useState('');
-    let nextId = 3;
+    const [nextId,setNextId] = useState(initialData.length+1);
 
     function handleClick(){
         setList([
             ...list,
             {
-                id:nextId++,
+                id:nextId,
                 task: text
             }
         ]);
         setText('');
+        setNextId(nextId + 1);
     }
 
     return (
         <div className='Todo'>
             <div className='Todo-container'>
-                <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                <input 
+                    type="text" 
+                    value={text} 
+                    onChange={(e) => setText(e.target.value)} 
+                />
                 <button type="button" onClick={handleClick}>追加</button><br />
-                <button onClick={() =>  setIsShow(!isShow)}>{isShow ? '非表示にする' : '表示する'}</button>
-                {list.map((data) =>
-                    <Task key={data.id} task={data.task} isShow={isShow} />
+
+                <button onClick={() =>  setShowCompleted(!showCompleted)}>
+                    完了タスクを{showCompleted ? '非表示にする' : '表示する'}
+                </button>
+
+                {list.map(({id, task}) =>
+                    <Task key={id} task={task} showCompleted={showCompleted} />
                 )}
             </div>
         </div>
     );
 }
 
-function Task({task, isShow}) {
-    const [isChecked, setIsChecked] = useState(false);
-    if(isShow || !isChecked){
-        return (
-            <label className="Todo-list">
-                <input type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} />
-                {isChecked ? <s>{task}</s> : task}
-            </label>
-        );
-    }
-}
+function Task({task, showCompleted}) {
+    const [isCompleted, setIsCompleted] = useState(false);
+    if( isCompleted && !showCompleted ) return;
 
-const initialData = [
-    {
-        'id' : 0,
-        'task': 'やること１',
-    },
-    {
-        'id' : 1,
-        'task': 'やること２',
-    },
-    {
-        'id' : 2,
-        'task': 'やること３',
-    }
-];
+    return (
+        <label className="Todo-list">
+            <input 
+                type="checkbox" 
+                checked={isCompleted} 
+                onChange={(e) => setIsCompleted(e.target.checked)}
+            />
+            {isCompleted ? <s>{task}</s> : task}
+        </label>
+    );
+}
