@@ -1,0 +1,16 @@
+.Todo {
+    max-width: 1000px;
+    width: 97%;
+    margin: 100px auto;
+}
+
+.Todo-container {
+    display: table;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Todo-list {
+    display: block;
+}
