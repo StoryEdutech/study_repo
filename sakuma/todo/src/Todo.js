@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import initialData from'./initialData';
 import TodoTabPanel from'./TodoTabPanel';
+import AddTodo from'./AddTodo';
 import { Tabs, Tab, Box } from "@mui/material";
 import { styled } from '@mui/system';
 
@@ -15,27 +16,14 @@ const TodoContainer = styled('div')`
     width:100%;
 `;
 
-const BlockDiv = styled('div')`
-    display: block;
-`;
-
-const BorderBox = styled(Box)`
-    border: 1px solid grey;
-    padding: 10px;
-    margin: 10px 0;
-`;
-
 export default function Todo() {
-    const defaultAddTodo = {task:'', until:''};
-
     const [list, setList] = useState(initialData);
     const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
-    const [addTodo, setAddTodo] = useState(defaultAddTodo);
     const [nextId,setNextId] = useState(initialData.length+1);
     const [activeTab, setActiveTab] = useState('all');
 
-    function handleAddTodo(){
-        if(!addTodo.task || !addTodo.until) return;
+    function handleAddTodo(addTodo){
+        if(!addTodo.task) return;
 
         setList([
             ...list,
@@ -45,7 +33,6 @@ export default function Todo() {
                 completed: false
             }
         ]);
-        setAddTodo(defaultAddTodo);
         setNextId(nextId + 1);
     }
 
@@ -75,28 +62,8 @@ export default function Todo() {
     return (
         <TodoComponent>
             <TodoContainer>
-                <BorderBox>
-                    <BlockDiv>
-                        タスク：
-                        <input 
-                            type="text" 
-                            value={addTodo.task} 
-                            onChange={(e) => setAddTodo({...addTodo, task: e.target.value})}
-                            placeholder='やること'
-                            required
-                        />
-                    </BlockDiv>
-                    <BlockDiv>
-                        期限：
-                        <input 
-                            type="date" 
-                            value={addTodo.until} 
-                            onChange={(e) => setAddTodo({...addTodo, until: e.target.value})}
-                            required 
-                        />
-                    </BlockDiv>
-                    <button type="button" onClick={handleAddTodo}>追加</button><br />
-                </BorderBox>
+                
+                <AddTodo onAddTodo={(addTodo) => handleAddTodo(addTodo)} today={today} />
 
                 <Box>
                     今日：
@@ -120,7 +87,7 @@ export default function Todo() {
                     <TodoTabPanel 
                         key={tabName} 
                         tabList={tabList[tabName]} 
-                        active={activeTab} 
+                        isActive={activeTab === tabName} 
                         tabName={tabName} 
                         onChangeCompleted={handleChangeCompleted}
                     />

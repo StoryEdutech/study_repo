@@ -10,25 +10,24 @@ const DangerContent = styled('span')`
 `;
 
 function Task(props) {
-    const { id, task, until, completed, isOver, onChangeCompleted, tabName } = props;
+    const { task, until, completed, isOver, onChangeCompleted, tabName } = props;
 
-    var content = `${task}(${until})`;
-    if(tabName === 'all'){
-        if(completed){
-            content = <s>{content}</s>;
-        }
-        if(isOver){
-            content = <DangerContent>{content}</DangerContent>;
-        }
+    const decorateContent = (content) => {
+        if(tabName === 'all'){
+            if(completed) return <s>{content}</s>;
+            if(isOver) return <DangerContent>{content}</DangerContent>;
+        } 
+        return content;
     }
+
     return (
         <TodoListComponent>
             <input 
                 type="checkbox" 
                 checked={completed} 
-                onChange={(e) => onChangeCompleted(id, e.target.checked)}
+                onChange={(e) => onChangeCompleted(e.target.checked)}
             />
-            {content}
+            {decorateContent(`${task}(${until})`)}
         </TodoListComponent>
     );
 }

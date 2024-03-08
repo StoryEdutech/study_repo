@@ -6,15 +6,15 @@ const TabContainer = styled('div')`
 `;
 
 function TodoTabPanel(props){
-    const { active, tabName, tabList, onChangeCompleted } = props;
+    const { isActive, tabName, tabList, onChangeCompleted } = props;
 
     return (
-        <TabContainer hidden={active !== tabName} >
-            {active === tabName && tabList.map((todo) =>
+        <TabContainer hidden={!isActive} >
+            {isActive && tabList.map((todo) =>
                 <Task 
                     key={todo.id} 
                     {...todo} 
-                    onChangeCompleted={onChangeCompleted} 
+                    onChangeCompleted={(checked) => onChangeCompleted(todo.id, checked)} 
                     tabName={tabName} 
                 />
             )}
