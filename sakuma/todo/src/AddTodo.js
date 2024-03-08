@@ -16,6 +16,13 @@ function AddTodo({onAddTodo, today}){
     const [task, setTask] = useState('');
     const [until, setUntill] = useState(today);
 
+    function handleClick() {
+        if(!task || !until) return;
+        onAddTodo({task, until}); 
+        setTask(''); 
+        setUntill(today);
+    }
+
     return (
         <BorderBox>
             <BlockDiv>
@@ -37,14 +44,7 @@ function AddTodo({onAddTodo, today}){
                     required 
                 />
             </BlockDiv>
-            <button 
-                type="button" 
-                onClick={() => {
-                    onAddTodo({task, until}); 
-                    setTask(''); 
-                    setUntill(today);
-                }}
-            >
+            <button type="button" onClick={handleClick}>
                 追加
             </button>
         </BorderBox>

@@ -5,6 +5,12 @@ import AddTodo from'./AddTodo';
 import { Tabs, Tab, Box } from "@mui/material";
 import { styled } from '@mui/system';
 
+const TAB_NAME = {
+    all: 'すべて',
+    over: '過ぎているタスク',
+    completed: '完了',
+};
+
 const TodoComponent = styled('div')`
     max-width: 400px;
     margin:100px auto;
@@ -23,8 +29,6 @@ export default function Todo() {
     const [activeTab, setActiveTab] = useState('all');
 
     function handleAddTodo(addTodo){
-        if(!addTodo.task) return;
-
         setList([
             ...list,
             {
@@ -75,7 +79,7 @@ export default function Todo() {
                 </Box>
 
                 <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)} centered>
-                    {tabLabels.map(({label, tabName}) => 
+                    {Object.entries(TAB_NAME).map(([tabName, label]) => 
                         <Tab 
                             key={tabName} 
                             label={label+'('+tabList[tabName].length+')'} 
@@ -83,32 +87,13 @@ export default function Todo() {
                         />
                     )}
                 </Tabs>
-                {tabLabels.map(({tabName}) => 
-                    <TodoTabPanel 
-                        key={tabName} 
-                        tabList={tabList[tabName]} 
-                        isActive={activeTab === tabName} 
-                        tabName={tabName} 
-                        onChangeCompleted={handleChangeCompleted}
-                    />
-                )}
+                <TodoTabPanel 
+                    tabList={tabList[activeTab]}
+                    tabName={activeTab}
+                    onChangeCompletedById={handleChangeCompleted}
+                />
 
             </TodoContainer>
         </TodoComponent>
     );
 }
-
-const tabLabels = [
-    {
-        label: 'すべて',
-        tabName: 'all'
-    },
-    {
-        label: '過ぎているタスク',
-        tabName: 'over'
-    },
-    {
-        label: '完了',
-        tabName: 'completed'
-    },
-];
