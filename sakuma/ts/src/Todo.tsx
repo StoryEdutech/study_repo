@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import initialList, {listType} from'./initialList';
+import initialList from'./initialList';
 import TodoTabPanel from'./TodoTabPanel';
-import AddTodo, { onAddTodoProps } from'./AddTodo';
+import AddTodo, { AddToDo } from'./AddTodo';
 import { Tabs, Tab, Box } from "@mui/material";
 import { styled } from '@mui/system';
 
@@ -22,17 +22,26 @@ const TodoContainer = styled('div')`
     width:100%;
 `;
 
-type tabListType = {
-    [key: string] : listType[];
+export type List = {
+    id: number;
+    task: string;
+    until: string;
+    completed: boolean;
+};
+
+type TabList = {
+    all: List[];
+    completed: List[];
+    over: List[];
 };
 
 export default function Todo() {
     const [list, setList] = useState(initialList);
     const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
     const [nextId,setNextId] = useState(initialList.length+1);
-    const [activeTab, setActiveTab] = useState('all');
+    const [activeTab, setActiveTab] = useState<'all' | 'completed' | 'over'>('all');
 
-    function handleAddTodo(addTodo: onAddTodoProps){
+    function handleAddTodo(addTodo: AddToDo){
         setList([
             ...list,
             {
@@ -53,7 +62,7 @@ export default function Todo() {
         }));
     }
 
-    var tabList: tabListType = {
+    const tabList: TabList = {
         all: list.map((todo) => { 
                 return {
                     ...todo, 
@@ -71,7 +80,7 @@ export default function Todo() {
         <TodoComponent>
             <TodoContainer>
                 
-                <AddTodo onAddTodo={(addTodo: onAddTodoProps) => handleAddTodo(addTodo)} today={today} />
+                <AddTodo handleAddTodo={(addTodo: AddToDo) => handleAddTodo(addTodo)} today={today} />
 
                 <Box>
                     今日：
@@ -83,13 +92,21 @@ export default function Todo() {
                 </Box>
 
                 <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)} centered>
-                    {Object.entries(TAB_NAME).map(([tabName, label]) => 
-                        <Tab 
-                            key={tabName} 
-                            label={label+'('+tabList[tabName].length+')'} 
-                            value={tabName} 
-                        />
-                    )}
+                    <Tab 
+                        key='all' 
+                        label={TAB_NAME['all']+'('+tabList.all.length+')'} 
+                        value='all' 
+                    />
+                    <Tab 
+                        key='over' 
+                        label={TAB_NAME['over']+'('+tabList.over.length+')'} 
+                        value='over' 
+                    />
+                    <Tab 
+                        key='completed' 
+                        label={TAB_NAME['completed']+'('+tabList.completed.length+')'} 
+                        value='completed' 
+                    />
                 </Tabs>
                 <TodoTabPanel 
                     tabList={tabList[activeTab]}

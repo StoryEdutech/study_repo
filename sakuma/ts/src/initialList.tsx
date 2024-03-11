@@ -1,10 +1,3 @@
-export type listType = {
-    id: number;
-    task: string;
-    until: string;
-    completed: boolean;
-};
-
 const initialList = [
     {
         id : 0,

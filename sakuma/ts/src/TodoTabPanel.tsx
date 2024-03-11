@@ -1,13 +1,13 @@
 import Task from'./Task';
 import { styled } from '@mui/system';
-import {listType} from'./initialList';
+import { List } from'./Todo';
 
 const TabContainer = styled('div')`
     padding: 10px 0;
 `;
 
 type TodoTabPanelProps = {
-    tabList: listType[];
+    tabList: List[];
     onChangeCompletedById: (id: number, checked: boolean) => void;
     tabName: string;
 };
@@ -17,7 +17,7 @@ function TodoTabPanel(props: TodoTabPanelProps){
 
     return (
         <TabContainer >
-            {tabList.map((todo:listType) =>
+            {tabList.map((todo:List) =>
                 <Task 
                     key={todo.id} 
                     {...todo} 
