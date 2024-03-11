@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 import { red } from '@mui/material/colors';
-import { List } from'./Todo';
+import { Todo } from'./Todo';
 
 const TodoListComponent = styled('label')`
     display: block;
@@ -10,7 +10,7 @@ const DangerContent = styled('span')`
     color: ${red[500]};
 `;
 
-type TaskProps = List & {
+type TaskProps = Todo & {
     isOver?: boolean;
     onChangeCompleted: (checked: boolean) => void;
     tabName: string;

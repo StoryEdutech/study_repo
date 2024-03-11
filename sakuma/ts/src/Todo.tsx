@@ -22,7 +22,7 @@ const TodoContainer = styled('div')`
     width:100%;
 `;
 
-export type List = {
+export type Todo = {
     id: number;
     task: string;
     until: string;
@@ -30,12 +30,12 @@ export type List = {
 };
 
 type TabList = {
-    all: List[];
-    completed: List[];
-    over: List[];
+    all: Todo[];
+    completed: Todo[];
+    over: Todo[];
 };
 
-export default function Todo() {
+export default function TodoApp() {
     const [list, setList] = useState(initialList);
     const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
     const [nextId,setNextId] = useState(initialList.length+1);
