@@ -24,6 +24,7 @@ class PostResource extends JsonResource
                 'post_count' => $this->user->posts->count()
             ],
             'content' => $this->content,
+            'image_url' => $this->image_url,
             'comments' => $this->comments,
             'tags' => $this->tags->map(function ($tag) {
                 return $tag->body;
