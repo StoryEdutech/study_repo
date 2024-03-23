@@ -24,7 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/post', PostController::class);
 
-Route::controller(LikeController::class)->group(function () {
-    Route::post('/like/{likeable_type}/{likeable_id}', 'store');
-    Route::delete('/like/{likeable_type}/{likeable_id}', 'destroy');
+Route::group([
+    'prefix' => '/like/{likeable_type}/{likeable_id}',
+    'controller' => LikeController::class,
+    'where' => ['likeable_type' => 'post|comment'],
+], function () {
+    Route::post('', 'store');
+    Route::delete('', 'destroy');
 });
