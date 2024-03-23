@@ -29,21 +29,10 @@ class LikeController extends Controller
         //ログインの処理を作ってないので仮
         $user = User::find(1); 
 
-        // いいねが紐づくモデル
-        $likeableModel = match ($likeable_type) {
-            'post' => Post::class,
-            'comment' => Comment::class,
-            default => null,
-        };
-
-        if($likeableModel === null){
-            return response(null, 500);
-        }
-
         // いいねのレコードをlikeテーブルに追加する
         Like::create([         
             'user_id' => $user->id,
-            'likeable_type' => $likeableModel,
+            'likeable_type' => $likeable_type,
             'likeable_id' => $likeable_id
         ]);
 
@@ -71,17 +60,10 @@ class LikeController extends Controller
      */
     public function destroy(Request $request, String $likeable_type, String $likeable_id)
     {
-        // いいねが紐づくモデル
-        $likeableModel = match ($likeable_type) {
-            'post' => Post::class,
-            'comment' => Comment::class,
-            default => null,
-        };
-
         // いいねを探す
         $like = Like::where([
             ['likeable_id', '=', $likeable_id],
-            ['likeable_type', '=', $likeableModel]
+            ['likeable_type', '=', $likeable_type]
         ])->firstOrFail();
 
         $like->delete();
