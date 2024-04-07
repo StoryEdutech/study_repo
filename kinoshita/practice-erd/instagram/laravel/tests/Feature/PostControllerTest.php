@@ -35,7 +35,7 @@ class PostControllerTest extends TestCase
             
         // getリクエスト
         $response = $this->get('/api/post/'.$post->id);
-
+        
         // データが期待通り
         $response->assertJsonStructure([
             "id",
@@ -45,9 +45,25 @@ class PostControllerTest extends TestCase
                 "post_count"
             ],
             "content",
-            "comments",
-            "tags",
-            "likes"
+            "comments" => [
+                "*" => [
+                    "id",
+                    "user_id",
+                    "content",
+                    "commentable_type",
+                    "commentable_id",
+                    "created_at",
+                    "updated_at",
+                    "deleted_at",
+                    "likes",
+                ]
+            ],
+            "tags" => [
+                0
+            ],
+            "likes" => [
+                0
+            ]
         ]);
     }
 
@@ -70,7 +86,7 @@ class PostControllerTest extends TestCase
         $response = $this->putJson('/api/post/'.$post->id, [
             'content' => 'updated content'
         ]);
-        
+
         // 変更後のデータを返す
         $response->assertJson([
             'content' => 'updated content'
