@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->string('icon_url');
+            $table->integer('role_id')->default(1); // 0: 管理者, 1: ユーザー
         });
     }
 
