@@ -70,6 +70,11 @@ class PostControllerTest extends TestCase
         $response = $this->putJson('/api/post/'.$post->id, [
             'content' => 'updated content'
         ]);
+        
+        // 変更後のデータを返す
+        $response->assertJson([
+            'content' => 'updated content'
+        ]);    
 
         // データが書き変わっていることを確認する
         $this->assertDatabaseMissing('posts', [
@@ -79,11 +84,6 @@ class PostControllerTest extends TestCase
         $this->assertDatabaseHas('posts', [
             'id' => $post->id,
             'content' => 'updated content',
-        ]);
-
-        // 変更後のデータを返す
-        $response->assertJson([
-            'content' => 'updated content'
         ]);
     }
 
