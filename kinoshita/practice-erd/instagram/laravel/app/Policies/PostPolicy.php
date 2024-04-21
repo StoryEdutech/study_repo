@@ -25,25 +25,12 @@ class PostPolicy
     public function update(User $user, Post $post): bool
     {
         // 自身の投稿なら編集できる
-        if($user->id == $post->user_id){
-            return true;
-        }  else {
-            return false;
-        }
+        return $user->id == $post->user_id;
     }
 
     public function delete(User $user, Post $post): bool
     {
-        // 管理者権限
-        if($user->role_id == 1) {
-            return true;
-        }
-
-        // 自身の投稿なら編集できる
-        if($user->id == $post->user_id){
-            return true;
-        }  else {
-            return false;
-        }
+        // 管理者か、投稿した本人であれば、削除できる
+        return $user->is_admin || $user->id == $post->user_id;
     }
 }

@@ -9,39 +9,12 @@ use App\Models\User;
 class CommentPolicy
 {
     /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, Comment $comment): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
-    {
-        if($user->is_following()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Comment $comment): bool
     {
-        //
+        // 自身のコメントなら編集できる
+        return $user->id == $comment->user_id;
     }
 
     /**
@@ -49,22 +22,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Comment $comment): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Comment $comment): bool
-    {
-        //
+        // 管理者か、投稿した本人であれば、削除できる
+        return $user->is_admin || $user->id == $comment->user_id;
     }
 }
