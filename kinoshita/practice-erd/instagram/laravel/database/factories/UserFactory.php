@@ -22,7 +22,7 @@ class UserFactory extends Factory
     {
         return [
             'username' => fake()->userName(),
-            'role_id' => 1,
+            'role_id' => 0, // ユーザー
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
@@ -31,6 +31,15 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function admin()
+    {
+        return $this->state(fn (array $attributes) => [
+            'role_id' => 1, // 管理者
+            'first_name' => "admin",
+            'last_name' => "!管理者!",
+        ]);
     }
 
     /**

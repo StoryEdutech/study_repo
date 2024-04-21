@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
             )->create();
 
         // 管理者
-        User::factory(1)->create(['role_id' => 0]);
+        User::factory()->admin()->create();
     }
 }

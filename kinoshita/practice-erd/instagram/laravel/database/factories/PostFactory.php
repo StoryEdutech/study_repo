@@ -19,7 +19,7 @@ class PostFactory extends Factory
     {
         // 選ばれたユーザーの投稿を作る
         return [
-            'user_id' => User::factory()->create()->id,
+            'user_id' => User::factory(),
             'content' => fake()->realText(),
             'image_url' => fake()->imageUrl(),
         ];
