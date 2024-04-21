@@ -69,7 +69,8 @@ class PostController extends Controller
         $post->load([
             'comments' => [ 'likes' ], //Postコメントとそれぞれのコメントのいいね
             'likes', // Postのいいね
-            'tags' // Postのタグ
+            'tags', // Postのタグ,
+            'user.followers'
         ]);
 
         return response()->json(new PostResource($post));

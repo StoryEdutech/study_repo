@@ -71,15 +71,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
-
-    // ログインしているユーザーがこのユーザー(このUserモデルのひと)をフォローしているかどうか
-    // = ログインユーザーが、このモデルのユーザーのフォロワーであるか
-    public function isFollowing() 
-    {
-        $id = $this->id;
-
-        $isFollowing = Auth::user()->followers()->where('follower_id',$id)->first();
-
-        return $isFollowing;
-    }
 }

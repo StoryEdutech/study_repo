@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class PostResource extends JsonResource
 {
@@ -13,9 +14,7 @@ class PostResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
-        // return parent::toArray($request);
-        
+    {        
         return [
             'id' => $this->id,
             'author' => [
@@ -31,7 +30,8 @@ class PostResource extends JsonResource
             }),
             'likes' => $this->likes->map(function ($like) {
                 return $like->user_id;
-            })
+            }),
+            'canComment' => Auth::user()->can('comment', $this)
         ];
     }
 }
