@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role_id == 1; // 1が管理者
+    }
 }

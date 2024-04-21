@@ -25,14 +25,7 @@ class AuthServiceProvider extends ServiceProvider
      * Register any authentication / authorization services.
      */
     public function boot(): void
-    {       
-        $this->registerPolicies(); // 要るか不明
-
-        Gate::define('isAdmin',function($user){
-           return $user->role == 1;
-
-        });
-
+    {
         Gate::guessPolicyNamesUsing(function (string $modelClass) {
             return Str::of($modelClass)->replace('App\Models', 'App\Policies').'Policy';
         });
