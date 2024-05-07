@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Models\Comment;
@@ -32,3 +33,8 @@ Route::group([
     Route::post('', 'store');
     Route::delete('', 'destroy');
 });
+
+Route::post(
+    '/comment/{commentable_type}/{commentable_id}', 
+    [CommentController::class, 'create']
+)->where('commentable_type', 'post|comment');

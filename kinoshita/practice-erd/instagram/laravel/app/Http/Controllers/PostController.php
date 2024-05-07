@@ -69,7 +69,8 @@ class PostController extends Controller
         $post->load([
             'comments' => [ 'likes' ], //Postコメントとそれぞれのコメントのいいね
             'likes', // Postのいいね
-            'tags' // Postのタグ
+            'tags', // Postのタグ,
+            'user.followers'
         ]);
 
         return response()->json(new PostResource($post));
@@ -80,6 +81,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update', $post);
+
         $validated = $request->validate([
             'content' => ['required', 'max:2200'],
         ]);
@@ -96,6 +99,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
        $post->delete();
 
         return response(null, 200);
