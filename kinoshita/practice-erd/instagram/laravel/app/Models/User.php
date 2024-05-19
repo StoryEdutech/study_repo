@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -75,10 +77,10 @@ class User extends Authenticatable
     // 対象のユーザーが、ログイン中のユーザーをフォローしているかどうか
     public function getIsFollowAttribute()
     {
-        $loginUser = Auth::user();
+        if($this->followees->isEmpty()) return false;
         
-        return $this->followees->contains(function ($followee) use ($loginUser) {
-            return $followee->id == $loginUser->id;
+        return $this->followees->contains(function ($followee) {
+            return $followee->id == Auth::user()->id;
         });
     }
 
