@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -38,3 +39,5 @@ Route::post(
     '/comment/{commentable_type}/{commentable_id}', 
     [CommentController::class, 'create']
 )->where('commentable_type', 'post|comment');
+
+Route::get('/profile/{user}', [ProfileController::class, 'show']);
