@@ -35,16 +35,22 @@ class ProfileController extends Controller
         $followersCount = count($user->followers->toArray());
         // フォロワー数
         $followeesCount = count($user->followees->toArray());
-        
-        // 認可はあとで
+
+        // ログイン中のユーザーをフォローしているかどうか
+        $isFollow = $user->is_follow;
 
         // 画像のリンク一覧
         // 投稿数はこの配列の要素数で分かる
-        $postImages = $user->posts->map(function (Post $post) {
-            return $post->image_url;
-        });
+        $postImages = $isFollow
+            ? $postImages = $user->posts->map(fn (Post $post) => $post->image_url)
+            : null; 
         
-        return response(null, 200);
+        return response()->json(compact([
+            'isFollow',
+            'followersCount',
+            'followeesCount',
+            'postImages'
+        ]));
     }
 
     /**

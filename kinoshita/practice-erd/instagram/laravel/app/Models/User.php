@@ -72,6 +72,16 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    // 対象のユーザーが、ログイン中のユーザーをフォローしているかどうか
+    public function getIsFollowAttribute()
+    {
+        $loginUser = Auth::user();
+        
+        return $this->followees->contains(function ($followee) use ($loginUser) {
+            return $followee->id == $loginUser->id;
+        });
+    }
+
     public function getIsAdminAttribute()
     {
         return $this->role_id == 1; // 1が管理者
