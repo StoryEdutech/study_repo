@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -41,3 +42,11 @@ Route::post(
 )->where('commentable_type', 'post|comment');
 
 Route::get('/profile/{user}', [ProfileController::class, 'show']);
+
+Route::group([
+    'prefix' => '/follow/{user}',
+    'controller' => FollowController::class,
+], function () {
+    Route::post('', 'store');
+    Route::delete('', 'destroy');
+});
