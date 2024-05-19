@@ -86,4 +86,9 @@ class User extends Authenticatable
     {
         return $this->role_id == 1; // 1が管理者
     }
+
+    public function getIsPrivateAttribute()
+    {
+        return $this->is_private == 1; // 1が鍵垢
+    }
 }

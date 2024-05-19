@@ -23,6 +23,7 @@ class UserFactory extends Factory
         return [
             'username' => fake()->userName(),
             'role_id' => 0, // ユーザー
+            'is_private' => 0, // 鍵垢ではない
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
@@ -31,6 +32,13 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function private()
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_private' => 1, // 鍵垢
+        ]);
     }
 
     public function admin()
