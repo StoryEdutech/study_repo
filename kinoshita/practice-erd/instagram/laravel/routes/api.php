@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +27,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/login/{user}', function(User $user){
+    Auth::login($user);
+
+    return $user;
+});
+
 Route::apiResource('/post', PostController::class);
 
 Route::group([
@@ -38,3 +48,13 @@ Route::post(
     '/comment/{commentable_type}/{commentable_id}', 
     [CommentController::class, 'create']
 )->where('commentable_type', 'post|comment');
+
+Route::get('/profile/{user}', [ProfileController::class, 'show']);
+
+Route::group([
+    'prefix' => '/follow/{user}',
+    'controller' => FollowController::class,
+], function () {
+    Route::post('', 'store');
+    Route::delete('', 'destroy');
+});

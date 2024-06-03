@@ -3,13 +3,23 @@
 namespace Tests\Feature;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class PostControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $user = User::factory()->create();
+        Auth::login($user);
+    }
 
     /**
      * A basic feature test example.
@@ -76,6 +86,7 @@ class PostControllerTest extends TestCase
         $post = Post::factory()
             ->state([
                 'content' => 'initial content',
+                'user_id' => Auth::user()->id, // ログイン中のユーザーの投稿になるようにする
             ])
             ->hasComments()
             ->hasLikes()
@@ -110,6 +121,9 @@ class PostControllerTest extends TestCase
     {
         // データを作る
         $post = Post::factory()
+            ->state([
+                'user_id' => Auth::user()->id, // ログイン中のユーザーの投稿になるようにする
+            ])
             ->hasComments()
             ->hasLikes()
             ->hasTags()
@@ -134,6 +148,9 @@ class PostControllerTest extends TestCase
     {
         // データを作る
         $post = Post::factory()
+            ->state([
+                'user_id' => Auth::user()->id, // ログイン中のユーザーの投稿になるようにする
+            ])
             ->hasComments()
             ->hasLikes()
             ->hasTags()

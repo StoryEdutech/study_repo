@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -70,6 +72,16 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    // 対象のユーザーが、ログイン中のユーザーをフォローしているかどうか
+    public function getIsFollowAttribute()
+    {
+        if($this->followees->isEmpty()) return false;
+        
+        return $this->followees->contains(function ($followee) {
+            return $followee->id == Auth::user()->id;
+        });
     }
 
     public function getIsAdminAttribute()

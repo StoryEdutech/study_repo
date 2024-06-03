@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('icon_url');
             $table->integer('role_id')->default(0); // 0: ユーザー, 1: 管理者
+            $table->integer('is_private')->default(0); // 0: 鍵垢ではない, 1: 鍵垢
         });
     }
 
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->dropColumn('last_name');
             $table->dropColumn('first_name');
             $table->dropColumn('icon_url');
+            $table->dropColumn('is_private');
         });
     }
 };
